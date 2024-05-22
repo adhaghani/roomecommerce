@@ -9,8 +9,6 @@ import Input from "../../../../Component/Input/Input";
 import Button from "../../../../Component/Button/Button";
 import Select from "../../../../Component/Select/Select";
 
-import ProductUserCard from "../../../User/Section/Purchase/UserProduct/ProductUserCard";
-
 const AdminProduct = () => {
   const [CurrentPage, setCurrentPage] = useState(1);
   const handleSubNavClick = (item) => {
@@ -308,7 +306,9 @@ const AdminProduct = () => {
                   id="CategoryID"
                   Category={CategoryList}
                   onChange={handleSelectChange}
+                  selectAdmin="Category"
                 />
+
                 <Input
                   formSize="full"
                   inputProps={{
@@ -422,6 +422,7 @@ const AdminProduct = () => {
                   id="CategoryID"
                   Category={CategoryList}
                   onChange={handleSelectChange}
+                  selectAdmin="Category"
                 />
                 <Input
                   formSize="full"
