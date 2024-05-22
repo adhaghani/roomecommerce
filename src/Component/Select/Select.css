@@ -1,0 +1,25 @@
+.Select-Container {
+  width: clamp(100px, 100%, 570px);
+}
+.Select-Container .Select {
+  width: clamp(250px, 100%, 570px);
+  height: 55px;
+  border-radius: 5px;
+  border: 2px solid var(--bg_colour_lgray);
+  font-size: var(--font_size_18);
+  margin: 10px 0px;
+  cursor: pointer;
+  padding: 0px 5px;
+  color: var(--text_colour_black);
+}
+.Select-Container .Select option {
+  cursor: pointer;
+}
+.Select-Container label {
+  transform: translateX(10px);
+  font-size: var(--font_size_14);
+  padding: 0px 4px;
+  background-color: white;
+  position: absolute;
+  color: var(--text_colour_dkgray);
+}/*# sourceMappingURL=Select.css.map */

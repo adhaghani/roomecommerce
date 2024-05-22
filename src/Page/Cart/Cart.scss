@@ -1,0 +1,171 @@
+.Cart {
+  .Cart-Container {
+    padding: 70px 0px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: var(--gap_20);
+    .Product-Container {
+      width: 700px;
+
+      padding: 10px;
+      display: flex;
+      flex-direction: column;
+      .ProductCart {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: var(--gap_20);
+        padding: var(--gap_15);
+        border-bottom: 1px solid var(--bg_colour_lgray);
+        .Product-Details {
+          min-width: 250px;
+          .Details {
+            display: flex;
+            gap: var(--gap_20);
+            .Product-Image {
+              width: var(--width_product);
+              aspect-ratio: 1/1;
+              background-color: var(--bg_colour_lgray);
+            }
+            .Product-Information {
+              .Product-Name {
+                font-size: var(--font_size_14);
+              }
+              p {
+                font-size: var(--font_size_10);
+                color: var(--text_colour_dkgray);
+              }
+            }
+          }
+          .Cancel {
+            display: none;
+          }
+        }
+
+        .Quantity {
+          display: flex;
+          border: 1px solid var(--bg_colour_lgray);
+          margin: 0px var(--gap_20);
+          button {
+            display: block;
+            width: 30px;
+            text-align: center;
+            aspect-ratio: 1/1;
+            background: none;
+            cursor: pointer;
+          }
+          input {
+            width: 70px;
+            padding: 5px 10px;
+            text-align: center;
+            appearance: none;
+            -webkit-appearance: none;
+          }
+          input::-webkit-outer-spin-button,
+          input::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+          }
+
+          /* Firefox */
+          input[type="number"] {
+            -moz-appearance: textfield;
+          }
+        }
+        .Product-SubTotal {
+          margin: 0px var(--gap_20);
+          font-weight: var(--font_weight_500);
+        }
+        .Cancel {
+          button {
+            background-color: transparent;
+            aspect-ratio: 1/1;
+            width: 30px;
+            cursor: pointer;
+            display: grid;
+            place-items: center;
+            border-radius: 100%;
+            svg {
+              width: 80%;
+              path {
+                stroke: var(--bg_colour_dkgray);
+              }
+            }
+            &:hover {
+              background-color: var(--bg_colour_lred);
+              svg {
+                path {
+                  stroke: var(--bg_colour_red);
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  .Checkout-Container {
+    position: sticky;
+    width: 400px;
+    padding: var(--padding_20);
+    display: flex;
+    flex-direction: column;
+    gap: var(--gap_20);
+    position: sticky;
+    .Card {
+      .Checkout-Card {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: var(--gap_20);
+        margin: var(--gap_15) 0px;
+        .Title {
+          width: clamp(100px, 100%, 150px);
+          font-size: var(--font_size_14);
+          text-align: right;
+        }
+        .Seperator {
+          width: 10px;
+        }
+        .Sub-Total {
+          width: calc(60% - 10px);
+          text-align: right;
+          letter-spacing: 1px;
+          font-size: var(--font_size_14);
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 690px) and (min-width: 1px) {
+  .Cart {
+    .Cart-Container {
+      .Product-Container {
+        .ProductCart {
+          .Product-Details {
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            .Details {
+            }
+            .Cancel {
+              display: block;
+            }
+          }
+          .Quantity {
+            margin: 0px;
+          }
+        }
+
+        .Cancel {
+          &.Part {
+            display: none;
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,23 @@
+#Outlet #Outlet-Container {
+  padding-top: 70px;
+}
+#Outlet #Outlet-Container .section {
+  margin: var(--gap_20);
+}
+#Outlet #Outlet-Container .section .section-title {
+  font-size: var(--font_size_24);
+  color: var(--colour_primary_dark);
+}
+#Outlet #Outlet-Container .section .section-details {
+  font-size: var(--font_size_18);
+  width: 100%;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+}
+#Outlet #Outlet-Container .section .section-details p {
+  text-align: justify;
+  min-width: 200px;
+  margin: var(--padding_20);
+  color: var(--text_colour_black);
+}/*# sourceMappingURL=Outlet.css.map */

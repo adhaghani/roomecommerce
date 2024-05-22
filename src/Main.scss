@@ -1,0 +1,73 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+* {
+  margin: 0;
+  padding: 0;
+  outline: none;
+  border: none;
+  box-sizing: border-box;
+  text-decoration: none;
+  list-style: none;
+  font-family: "Poppins", sans-serif;
+  transition: 0.1s all ease-in-out;
+  scroll-behavior: smooth;
+}
+
+:root {
+  --gap_20: 20px;
+  --gap_15: 15px;
+  --gap_10: 10px;
+
+  --padding_20: 20px;
+  --padding_10: 10px;
+
+  --bg_colour_black: #121212;
+  --bg_colour_dkgray: #cecece;
+  --bg_colour_lgray: #e7e7e7;
+  --bg_colour_white: #f3f3f3;
+
+  --bg_colour_red: #df4040;
+  --bg_colour_lred: #ffb8b8;
+
+  --bg_colour_yellow: #d9a900;
+  --bg_colour_lyellow: #fff8b8;
+
+  --bg_colour_green_dark: #006541;
+  --bg_colour_green: #268d68;
+  --bg_colour_green_accent: #a3dec9;
+
+  --text_colour_white: #f3f3f3;
+  --text_colour_black: #212121;
+  --text_colour_dkgray: #9b9b9b;
+  --text_colour_lgray: #c7c7c7;
+
+  --colour_primary_darker: #004a8b;
+  --colour_primary_dark: #0058a3;
+  --colour_primary: #00bae2;
+  --colour_primary_light: #71e1fa;
+  --colour_primary_accent: #bef3ff;
+
+  --width_container: clamp(1px, 100%, 1440px);
+
+  --width_icon: 40px;
+  --width_product: 80px;
+
+  --font_size_64: clamp(32px, 5vw, 64px);
+  --font_size_48: clamp(24px, 5vw, 48px);
+  --font_size_32: clamp(16px, 5vw, 32px);
+  --font_size_24: clamp(12px, 5vw, 24px);
+  --font_size_18: clamp(10px, 5vw, 18px);
+  --font_size_14: clamp(8px, 5vw, 14px); // 14px;
+  --font_size_12: clamp(8px, 5vw, 12px); // 12px;
+  --font_size_10: clamp(8px, 5vw, 10px); // 10px;
+
+  --font_weight_500: 500;
+  --font_weight_600: 600;
+  --font_weight_700: 700;
+
+  --box_shadow: rgba(50, 50, 105, 0.15) 0px 2px 5px 0px,
+    rgba(0, 0, 0, 0.05) 0px 1px 1px 0px;
+}
+
+body {
+  background-color: white;
+} /*# sourceMappingURL=Index.css.map */

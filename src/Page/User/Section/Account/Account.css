@@ -1,0 +1,63 @@
+#Account .Account-Container .page {
+  display: flex;
+  justify-content: center;
+}
+#Account .Account-Container .page .Page-Container {
+  width: 570px;
+}
+#Account .Account-Container .page .Page-Container .title-container {
+  margin-left: var(--gap_10);
+  padding-bottom: var(--padding_10);
+  margin: 15px 0px;
+}
+#Account .Account-Container .page .Page-Container .title-container .title h1 {
+  font-size: var(--font_size_24);
+  color: var(--text_colour_black);
+}
+#Account .Account-Container .page .Page-Container .title-container .title-detail p {
+  font-size: var(--font_size_14);
+  color: var(--text_colour_dkgray);
+}
+#Account .Account-Container .page .Page-Container .bar {
+  background-color: var(--bg_colour_lgray);
+  height: 6px;
+  border-radius: 12px;
+  margin: 10px 10px;
+  display: grid;
+}
+#Account .Account-Container .page .Page-Container .bar .progress {
+  height: 4;
+  border-radius: 8px;
+}
+#Account .Account-Container .page .Page-Container .bar .progress.red {
+  background-color: var(--bg_colour_red);
+}
+#Account .Account-Container .page .Page-Container .bar .progress.yellow {
+  background-color: var(--bg_colour_yellow);
+}
+#Account .Account-Container .page .Page-Container .bar .progress.green {
+  background-color: var(--bg_colour_green);
+}
+#Account .Account-Container .page .Page-Container .error-container {
+  margin: var(--gap_10);
+  margin-top: 0px;
+}
+#Account .Account-Container .page .Page-Container .error-container p {
+  color: var(--bg_colour_red);
+}
+#Account .Account-Container .page .Page-Container .good-container {
+  margin: var(--gap_10);
+  margin-top: 0px;
+}
+#Account .Account-Container .page .Page-Container .good-container p {
+  color: var(--bg_colour_green);
+}
+#Account .Account-Container .page .Page-Container .button-container {
+  height: -moz-fit-content;
+  height: fit-content;
+  display: flex;
+  justify-content: space-between;
+}
+#Account .Account-Container .page .Page-Container .button-container.end {
+  justify-content: flex-end;
+}/*# sourceMappingURL=Account.css.map */

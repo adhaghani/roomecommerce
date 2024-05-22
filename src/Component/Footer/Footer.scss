@@ -1,0 +1,35 @@
+#Footer {
+  width: 100%;
+  background-color: white;
+  .Footer-Container {
+    width: var(--width_container);
+    margin: 0px auto;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: var(--gap_20);
+    padding: var(--padding_20);
+    .footer-section {
+      min-width: 160px;
+      margin: var(--gap_20);
+      .title {
+        font-size: var(--font_size_18);
+        color: var(--text_colour_black);
+        margin-bottom: var(--gap_10);
+      }
+      ul {
+        li {
+          a {
+            color: var(--text_colour_dkgray);
+            display: block;
+            margin: 10px 0px;
+          }
+        }
+      }
+    }
+  }
+  .Copyright {
+    text-align: center;
+    padding: var(--padding_20);
+  }
+}

@@ -1,0 +1,16 @@
+.Product {
+  .Product-Container {
+    width: var(--width_container);
+    margin: auto;
+    padding-top: 70px;
+    padding-bottom: 70px;
+    .product-group {
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: center;
+      margin: 20px 0px;
+    }
+  }
+}

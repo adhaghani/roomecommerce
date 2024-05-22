@@ -1,0 +1,26 @@
+#Outlet {
+  #Outlet-Container {
+    padding-top: 70px;
+    .section {
+      margin: var(--gap_20);
+      .section-title {
+        font-size: var(--font_size_24);
+        color: var(--colour_primary_dark);
+      }
+      .section-details {
+        font-size: var(--font_size_18);
+        width: 100%;
+
+        p {
+          text-align: justify;
+          min-width: 200px;
+          margin: var(--padding_20);
+          color: var(--text_colour_black);
+        }
+        display: flex;
+        align-items: center;
+        flex-wrap: wrap;
+      }
+    }
+  }
+}

@@ -1,0 +1,172 @@
+.LoginRegister {
+  height: 100vh;
+}
+.LoginRegister .LoginRegister-Container {
+  width: var(--width_container);
+  margin: auto;
+  height: 100%;
+  display: grid;
+  place-items: center;
+}
+.LoginRegister .LoginRegister-Container .form-section {
+  width: clamp(320px, 100%, 1100px);
+  height: 500px;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  padding: var(--padding_20);
+  border-radius: 8px;
+  background-color: white;
+}
+.LoginRegister .LoginRegister-Container .form-section .progress-container {
+  flex: 1 1 40%;
+  aspect-ratio: 1/1;
+  background-color: var(--colour_primary_dark);
+  border-radius: 8px;
+  padding: var(--padding_20);
+  background-image: url(./Assets/bg.svg);
+  background-size: cover;
+  background-position: center;
+}
+.LoginRegister .LoginRegister-Container .form-section .progress-container h1 {
+  color: var(--text_colour_white);
+}
+.LoginRegister .LoginRegister-Container .form-section .progress-container h5 {
+  color: var(--colour_primary_accent);
+}
+.LoginRegister .LoginRegister-Container .form-section .progress-container .section {
+  margin: 20px 0px;
+  display: flex;
+  align-items: center;
+  gap: var(--gap_20);
+}
+.LoginRegister .LoginRegister-Container .form-section .progress-container .section .number {
+  border: 1px solid var(--bg_colour_white);
+  width: 50px;
+  aspect-ratio: 1/1;
+  display: grid;
+  place-items: center;
+  border-radius: 100%;
+}
+.LoginRegister .LoginRegister-Container .form-section .progress-container .section .number h2 {
+  color: var(--text_colour_white);
+}
+.LoginRegister .LoginRegister-Container .form-section .progress-container .section .page-name h4 {
+  color: var(--text_colour_white);
+}
+.LoginRegister .LoginRegister-Container .form-section .progress-container .section.active .number {
+  background-color: var(--colour_primary_accent);
+  border: 1px solid var(--colour_primary_accent);
+}
+.LoginRegister .LoginRegister-Container .form-section .progress-container .section.active .number h2 {
+  color: var(--colour_primary_dark);
+}
+.LoginRegister .LoginRegister-Container .form-section form {
+  width: 60%;
+  max-width: 574px;
+  padding-left: var(--padding_20);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.LoginRegister .LoginRegister-Container .form-section form .page .title-container {
+  margin-left: var(--gap_10);
+  padding-bottom: var(--padding_10);
+  margin: 15px 0px;
+}
+.LoginRegister .LoginRegister-Container .form-section form .page .title-container .title h1 {
+  font-size: var(--font_size_24);
+  color: var(--text_colour_black);
+}
+.LoginRegister .LoginRegister-Container .form-section form .page .title-container .title-detail p {
+  font-size: var(--font_size_14);
+  color: var(--text_colour_dkgray);
+}
+.LoginRegister .LoginRegister-Container .form-section form .page .bar {
+  background-color: var(--bg_colour_lgray);
+  height: 6px;
+  border-radius: 12px;
+  margin: 10px 10px;
+  display: grid;
+}
+.LoginRegister .LoginRegister-Container .form-section form .page .bar .progress {
+  height: 4;
+  border-radius: 8px;
+}
+.LoginRegister .LoginRegister-Container .form-section form .page .bar .progress.red {
+  background-color: var(--bg_colour_red);
+}
+.LoginRegister .LoginRegister-Container .form-section form .page .bar .progress.yellow {
+  background-color: var(--bg_colour_yellow);
+}
+.LoginRegister .LoginRegister-Container .form-section form .page .bar .progress.green {
+  background-color: var(--bg_colour_green);
+}
+.LoginRegister .LoginRegister-Container .form-section form .page .error-container {
+  margin: var(--gap_10);
+  margin-top: 0px;
+}
+.LoginRegister .LoginRegister-Container .form-section form .page .error-container p {
+  color: var(--bg_colour_red);
+}
+.LoginRegister .LoginRegister-Container .form-section form .page .good-container {
+  margin: var(--gap_10);
+  margin-top: 0px;
+}
+.LoginRegister .LoginRegister-Container .form-section form .page .good-container p {
+  color: var(--bg_colour_green);
+}
+.LoginRegister .LoginRegister-Container .form-section form .others {
+  margin: var(--gap_10) 0px;
+}
+.LoginRegister .LoginRegister-Container .form-section form .others p {
+  margin: 5px 0px;
+}
+.LoginRegister .LoginRegister-Container .form-section form .others p a {
+  color: var(--colour_primary_dark);
+}
+.LoginRegister .LoginRegister-Container .form-section form .button-container {
+  height: -moz-fit-content;
+  height: fit-content;
+  display: flex;
+  justify-content: space-between;
+}
+.LoginRegister .LoginRegister-Container .form-section form .button-container.end {
+  justify-content: flex-end;
+}
+
+@media screen and (max-width: 768px) and (min-width: 1px) {
+  .LoginRegister .LoginRegister-Container {
+    display: block;
+  }
+  .LoginRegister .LoginRegister-Container .form-section {
+    height: -moz-fit-content;
+    height: fit-content;
+    flex-direction: column;
+    padding: 0px;
+  }
+  .LoginRegister .LoginRegister-Container .form-section .progress-container {
+    max-height: 300px;
+    text-align: center;
+  }
+  .LoginRegister .LoginRegister-Container .form-section .progress-container .section-container {
+    margin-top: 30px;
+    display: flex;
+    justify-content: center;
+  }
+  .LoginRegister .LoginRegister-Container .form-section .progress-container .section-container .section {
+    flex-direction: column;
+    width: 100px;
+  }
+  .LoginRegister .LoginRegister-Container .form-section .progress-container .section-container .section .page-name h4 {
+    font-size: var(--font_size_12);
+  }
+  .LoginRegister .LoginRegister-Container .form-section form {
+    width: 100%;
+    padding: 0px var(--gap_20);
+    margin: auto;
+  }
+  .LoginRegister .LoginRegister-Container .form-section form .button-container {
+    gap: 10px;
+  }
+}/*# sourceMappingURL=Register.css.map */

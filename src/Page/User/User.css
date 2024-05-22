@@ -1,0 +1,72 @@
+#User .User-Container {
+  padding: 120px 20px;
+  width: var(--width_container);
+  margin: auto;
+  display: flex;
+  justify-content: center;
+  gap: var(--gap_20);
+}
+#User .User-Container .Profile {
+  width: 250px;
+}
+#User .User-Container .Profile .greeting {
+  height: 35px;
+  padding-bottom: var(--padding_10);
+  font-size: var(--font_size_16);
+}
+#User .User-Container .Profile .line {
+  width: 100%;
+  height: 1px;
+  background-color: var(--bg_colour_lgray);
+  margin-bottom: var(--gap_20);
+}
+#User .User-Container .Profile .List li {
+  padding: var(--padding_10) 0px;
+  display: flex;
+  align-items: center;
+  gap: var(--gap_20);
+  cursor: pointer;
+}
+#User .User-Container .Profile .List li .icon {
+  width: 40px;
+  aspect-ratio: 1/1;
+  display: grid;
+  place-items: center;
+}
+#User .User-Container .Profile .List li .icon svg path {
+  stroke: var(--text_colour_dkgray);
+}
+#User .User-Container .Profile .List li .name h4 {
+  font-size: var(--font_size_14);
+  font-weight: var(--font_weight_600);
+  color: var(--text_colour_dkgray);
+}
+#User .User-Container .Profile .List li.active .icon svg path {
+  stroke: var(--colour_primary_dark);
+}
+#User .User-Container .Profile .List li.active .name h4 {
+  color: var(--colour_primary_dark);
+}
+#User .User-Container .Task {
+  width: clamp(300px, 100%, 800px);
+}
+
+@media screen and (min-width: 1px) and (max-width: 768px) {
+  #User .User-Container {
+    flex-direction: column;
+  }
+  #User .User-Container .Profile {
+    width: 100%;
+  }
+  #User .User-Container .Profile .greeting {
+    text-align: center;
+  }
+  #User .User-Container .Profile .List {
+    display: flex;
+  }
+  #User .User-Container .Profile .List li {
+    flex: 1 1 0;
+    gap: 5px;
+    flex-direction: column;
+  }
+}/*# sourceMappingURL=User.css.map */

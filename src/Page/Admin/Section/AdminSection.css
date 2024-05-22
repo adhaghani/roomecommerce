@@ -1,0 +1,113 @@
+.admin-Container .Page {
+  width: 100%;
+  padding-top: var(--gap_20);
+  display: flex;
+  justify-content: center;
+}
+.admin-Container .Page .Page-Container {
+  width: 570px;
+}
+.admin-Container .Page .Page-Container .title-container {
+  margin-left: var(--gap_10);
+  padding-bottom: var(--padding_10);
+  margin: 15px 0px;
+}
+.admin-Container .Page .Page-Container .title-container .title h1 {
+  font-size: var(--font_size_24);
+  color: var(--text_colour_black);
+}
+.admin-Container .Page .Page-Container .title-container .title-detail p {
+  font-size: var(--font_size_14);
+  color: var(--text_colour_dkgray);
+}
+.admin-Container .Page .Page-Container .bar {
+  background-color: var(--bg_colour_lgray);
+  height: 6px;
+  border-radius: 12px;
+  margin: 10px 10px;
+  display: grid;
+}
+.admin-Container .Page .Page-Container .bar .progress {
+  height: 4;
+  border-radius: 8px;
+}
+.admin-Container .Page .Page-Container .bar .progress.red {
+  background-color: var(--bg_colour_red);
+}
+.admin-Container .Page .Page-Container .bar .progress.yellow {
+  background-color: var(--bg_colour_yellow);
+}
+.admin-Container .Page .Page-Container .bar .progress.green {
+  background-color: var(--bg_colour_green);
+}
+.admin-Container .Page .Page-Container .error-container {
+  margin: var(--gap_10);
+  margin-top: 0px;
+}
+.admin-Container .Page .Page-Container .error-container p {
+  color: var(--bg_colour_red);
+}
+.admin-Container .Page .Page-Container .good-container {
+  margin: var(--gap_10);
+  margin-top: 0px;
+}
+.admin-Container .Page .Page-Container .good-container p {
+  color: var(--bg_colour_green);
+}
+.admin-Container .Page .Page-Container .button-container {
+  height: -moz-fit-content;
+  height: fit-content;
+  display: flex;
+  justify-content: space-between;
+}
+.admin-Container .Page .Page-Container .button-container.end {
+  justify-content: flex-end;
+}
+.admin-Container.Orders .Page .Page-Container {
+  width: 100%;
+}
+.admin-Container.Users .Page .Page-Container {
+  width: 100%;
+}
+.admin-Container.Category .Page {
+  padding-top: 0px;
+}
+.admin-Container.Category .Page .Page-Container.List {
+  width: 100%;
+}
+.admin-Container.Product .Page .Page-Container .Image-Container {
+  display: flex;
+  gap: var(--gap_10);
+}
+.admin-Container.Product .Page .Page-Container .Image-Container .Add-Image {
+  aspect-ratio: 1/1;
+  border-radius: 8px;
+  background-color: var(--bg_colour_white);
+  width: 200px;
+  margin-bottom: 10px;
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+  overflow: hidden;
+}
+.admin-Container.Product .Page .Page-Container .Image-Container .Add-Image:hover {
+  background-color: var(--bg_colour_lgray);
+}
+.admin-Container.Product .Page .Page-Container .Image-Container .Add-Image:hover svg path {
+  stroke: var(--colour_primary_darker);
+}
+.admin-Container.Product .Page .Page-Container .Image-Container .Add-Image img {
+  width: 100%;
+  aspect-ratio: 1/1;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+.admin-Container.Product .Page .Page-Container .Image-Container .Add-Image.Larger {
+  width: 250px;
+}
+.admin-Container.Product .Page .Page-Container .Image-Container input {
+  display: none;
+}
+.admin-Container.Product .Page .Page-Container.List {
+  width: 100%;
+}/*# sourceMappingURL=AdminSection.css.map */

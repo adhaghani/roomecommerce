@@ -1,0 +1,125 @@
+.Product-Detail {
+  display: flex;
+  gap: var(--gap_10);
+  margin-top: 5px;
+  flex-wrap: wrap;
+}
+.Product-Detail .Product-Image .Image {
+  width: 120px;
+  aspect-ratio: 1/1;
+  border: 1px solid black;
+}
+.Product-Detail .Product-Text {
+  width: calc(100% - 130px);
+  height: -moz-fit-content;
+  height: fit-content;
+}
+.Product-Detail .Product-Text .Product-Title {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.Product-Detail .Product-Text .Product-Title .Product-Name h3 {
+  font-weight: var(--font_weight_600);
+  font-size: var(--font_size_18);
+  color: var(--text_colour_black);
+}
+.Product-Detail .Product-Text .Product-Title .Product-Status p {
+  font-size: var(--font_size_14);
+}
+.Product-Detail .Product-Text .Product-Title .Product-Status p.blue {
+  color: var(--colour_primary_darker);
+}
+.Product-Detail .Product-Text .Product-Title .Product-Status p.red {
+  color: var(--bg_colour_red);
+}
+.Product-Detail .Product-Text .Product-Title .Product-Status p.yellow {
+  color: var(--bg_colour_yellow);
+}
+.Product-Detail .Product-Text .Product-Title .Product-Status p.green {
+  color: var(--bg_colour_green);
+}
+.Product-Detail .Product-Text .Product-Quantity {
+  margin-top: 3px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+}
+.Product-Detail .Product-Text .Product-Quantity .Orders p {
+  font-size: var(--font_size_14);
+  color: var(--text_colour_dkgray);
+}
+.Product-Detail .Product-Text .Product-Quantity .Total-Orders h3 {
+  color: var(--text_colour_black);
+}
+.Product-Detail .Product-Text .Product-Actions {
+  margin-top: 5px;
+  display: flex;
+  justify-content: flex-end;
+  gap: var(--gap_10);
+}
+.Product-Detail .Product-Button {
+  display: none;
+}
+.Product-Detail .Product-Button.Mobile {
+  width: 100%;
+}
+.Product-Detail .Product-Button.Mobile .Product-Actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: var(--gap_10);
+}
+
+.userList,
+.categoryList {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  padding: var(--gap_10);
+  margin: var(--gap_10) 0px;
+  align-items: center;
+}
+.userList .Profile-Details div,
+.userList .Category-Details div,
+.categoryList .Profile-Details div,
+.categoryList .Category-Details div {
+  display: flex;
+}
+.userList .Profile-Details div span,
+.userList .Category-Details div span,
+.categoryList .Profile-Details div span,
+.categoryList .Category-Details div span {
+  display: block;
+  color: var(--text_colour_dkgray);
+  font-size: var(--font_size_18);
+}
+.userList .Profile-Details div span.title,
+.userList .Category-Details div span.title,
+.categoryList .Profile-Details div span.title,
+.categoryList .Category-Details div span.title {
+  width: 130px;
+  font-size: var(--font_size_16);
+  color: var(--text_colour_black);
+  font-weight: var(--font_weight_600);
+}
+
+.categoryList {
+  border-bottom: 1px solid var(--bg_colour_lgray);
+}
+.categoryList .Category-Details {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.categoryList .Category-Details .Category-ID .title {
+  width: -moz-fit-content;
+  width: fit-content;
+}
+.categoryList .Category-Details .Category-ID span {
+  margin: 0px 5px;
+}
+.categoryList .Category-Details .Category-Button {
+  display: flex;
+  gap: var(--gap_10);
+}/*# sourceMappingURL=List.css.map */

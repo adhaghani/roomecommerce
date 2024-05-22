@@ -1,0 +1,66 @@
+#Checkout .Container-Checkout {
+  width: var(--width_container);
+  margin: auto;
+  padding: 70px var(--gap_20);
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  align-items: center;
+  gap: var(--gap_20);
+}
+#Checkout .Container-Checkout .Checkout-Section .Title-Container {
+  margin-left: var(--gap_10);
+  padding-bottom: var(--padding_10);
+  margin: 15px 0px;
+}
+#Checkout .Container-Checkout .Checkout-Section .Title-Container .title h1 {
+  font-size: var(--font_size_24);
+  color: var(--text_colour_black);
+}
+#Checkout .Container-Checkout .Checkout-Section .Title-Container .title-detail p {
+  font-size: var(--font_size_14);
+  color: var(--text_colour_dkgray);
+}
+#Checkout .Container-Checkout .Checkout-Section .custom-select .PaymentMethod {
+  padding: var(--padding_10);
+  width: clamp(100px, 100%, 280px);
+  height: 55px;
+  border-radius: 8px;
+  border: 2px solid var(--bg_colour_lgray);
+  font-size: var(--font_size_14);
+  margin-bottom: 10px;
+  color: var(--text_colour_black);
+}
+#Checkout .Container-Checkout .Checkout-Section .custom-select .PaymentMethod option {
+  padding: 50px;
+}
+#Checkout .Container-Checkout .Checkout-Section .Checkout-Container {
+  position: sticky;
+  width: 100%;
+  padding: var(--padding_20);
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap_20);
+  position: sticky;
+}
+#Checkout .Container-Checkout .Checkout-Section .Checkout-Container .Card .Checkout-Card {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: var(--gap_20);
+  margin: var(--gap_15) 0px;
+}
+#Checkout .Container-Checkout .Checkout-Section .Checkout-Container .Card .Checkout-Card .Title {
+  width: clamp(100px, 100%, 150px);
+  font-size: var(--font_size_16);
+  text-align: right;
+}
+#Checkout .Container-Checkout .Checkout-Section .Checkout-Container .Card .Checkout-Card .Seperator {
+  width: 10px;
+}
+#Checkout .Container-Checkout .Checkout-Section .Checkout-Container .Card .Checkout-Card .Sub-Total {
+  width: calc(60% - 10px);
+  text-align: right;
+  letter-spacing: 1px;
+  font-size: var(--font_size_16);
+}/*# sourceMappingURL=Checkout.css.map */

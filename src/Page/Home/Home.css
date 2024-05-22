@@ -1,0 +1,50 @@
+.Home .heading-container {
+  width: 100%;
+  height: 100vh;
+  background-image: url(./Assets/bg.svg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: bottom;
+  padding: 20px;
+}
+.Home .heading-container .heading {
+  display: grid;
+  place-items: center;
+  height: 100vh;
+}
+.Home .heading-container .heading .title {
+  text-align: center;
+  color: var(--text_colour_white);
+}
+.Home .heading-container .heading .title h1 {
+  font-size: var(--font_size_64);
+}
+.Home .heading-container .heading .title h2 {
+  font-size: var(--font_size_64);
+}
+.Home .Home-Container {
+  width: var(--width_container);
+  margin: 0px auto;
+  padding: var(--padding_20);
+}
+.Home .Home-Container .section {
+  padding-top: 70px;
+  margin: var(--gap_20);
+}
+.Home .Home-Container .section .section-title {
+  font-size: var(--font_size_24);
+  color: var(--colour_primary_dark);
+}
+.Home .Home-Container .section .section-details {
+  font-size: var(--font_size_18);
+  width: 100%;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.Home .Home-Container .section .section-details p {
+  text-align: justify;
+  min-width: 200px;
+  margin: var(--padding_20);
+  color: var(--text_colour_black);
+}/*# sourceMappingURL=Home.css.map */

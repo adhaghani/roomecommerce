@@ -1,0 +1,37 @@
+#UserNav {
+  width: 100%;
+  ul {
+    display: flex;
+    li {
+      cursor: pointer;
+      flex: 1 1 0;
+      text-align: center;
+      border-bottom: 1px solid var(--bg_colour_dkgray);
+      cursor: pointer;
+      font-weight: var(--font_weight_500);
+      p {
+        color: var(--text_colour_dkgray);
+        padding-bottom: var(--padding_10);
+      }
+      &.active,
+      &:hover {
+        p {
+          color: var(--colour_primary_dark);
+        }
+        border-bottom: 1px solid var(--colour_primary_dark);
+      }
+    }
+  }
+}
+
+@media screen and (min-width: 1px) and (max-width: 520px) {
+  #UserNav {
+    ul {
+      li {
+        p {
+          font-size: var(--font_size_12);
+        }
+      }
+    }
+  }
+}

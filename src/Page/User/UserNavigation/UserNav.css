@@ -1,0 +1,30 @@
+#UserNav {
+  width: 100%;
+}
+#UserNav ul {
+  display: flex;
+}
+#UserNav ul li {
+  cursor: pointer;
+  flex: 1 1 0;
+  text-align: center;
+  border-bottom: 1px solid var(--bg_colour_dkgray);
+  cursor: pointer;
+  font-weight: var(--font_weight_500);
+}
+#UserNav ul li p {
+  color: var(--text_colour_dkgray);
+  padding-bottom: var(--padding_10);
+}
+#UserNav ul li.active, #UserNav ul li:hover {
+  border-bottom: 1px solid var(--colour_primary_dark);
+}
+#UserNav ul li.active p, #UserNav ul li:hover p {
+  color: var(--colour_primary_dark);
+}
+
+@media screen and (min-width: 1px) and (max-width: 520px) {
+  #UserNav ul li p {
+    font-size: var(--font_size_12);
+  }
+}/*# sourceMappingURL=UserNav.css.map */

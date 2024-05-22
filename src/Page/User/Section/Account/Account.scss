@@ -1,0 +1,70 @@
+#Account {
+  .Account-Container {
+    .page {
+      display: flex;
+      justify-content: center;
+      .Page-Container {
+        width: 570px;
+        .title-container {
+          margin-left: var(--gap_10);
+          padding-bottom: var(--padding_10);
+          margin: 15px 0px;
+          .title {
+            h1 {
+              font-size: var(--font_size_24);
+              color: var(--text_colour_black);
+            }
+          }
+          .title-detail {
+            p {
+              font-size: var(--font_size_14);
+              color: var(--text_colour_dkgray);
+            }
+          }
+        }
+        .bar {
+          background-color: var(--bg_colour_lgray);
+          height: 6px;
+          border-radius: 12px;
+          margin: 10px 10px;
+          display: grid;
+          .progress {
+            height: 4;
+            border-radius: 8px;
+            &.red {
+              background-color: var(--bg_colour_red);
+            }
+            &.yellow {
+              background-color: var(--bg_colour_yellow);
+            }
+            &.green {
+              background-color: var(--bg_colour_green);
+            }
+          }
+        }
+        .error-container {
+          margin: var(--gap_10);
+          margin-top: 0px;
+          p {
+            color: var(--bg_colour_red);
+          }
+        }
+        .good-container {
+          margin: var(--gap_10);
+          margin-top: 0px;
+          p {
+            color: var(--bg_colour_green);
+          }
+        }
+        .button-container {
+          height: fit-content;
+          display: flex;
+          justify-content: space-between;
+          &.end {
+            justify-content: flex-end;
+          }
+        }
+      }
+    }
+  }
+}

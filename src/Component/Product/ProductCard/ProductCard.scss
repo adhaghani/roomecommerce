@@ -1,0 +1,105 @@
+#ProductCard {
+  flex: 1 1 calc(25% - 20px);
+  aspect-ratio: 1/1.5;
+  max-width: 400px;
+  min-width: 250px;
+  cursor: pointer;
+  display: block;
+  .Card-Container {
+    .product-image {
+      width: 100%;
+      aspect-ratio: 1/1;
+      background-color: var(--bg_colour_lgray);
+    }
+    .product-details {
+      padding: 10px;
+      height: 200px;
+      .product-special {
+        p {
+          font-size: var(--font_size_12);
+          color: var(--bg_colour_red);
+        }
+      }
+      .product-category {
+        margin-top: 2px;
+        p {
+          font-size: var(--font_size_12);
+          color: var(--text_colour_dkgray);
+        }
+      }
+      .product-title {
+        h3 {
+          letter-spacing: 0.5px;
+          font-size: var(--font_size_18);
+          color: var(--text_colour_black);
+        }
+      }
+      .product-price {
+        margin: 5px 0px;
+        .price-before {
+          p {
+            font-size: var(--font_size_14);
+            color: var(--text_colour_dkgray);
+          }
+        }
+        .price-latest {
+          font-size: var(--font_size_24);
+          h3 {
+            color: var(--text_colour_black);
+            letter-spacing: 0.5px;
+            display: flex;
+            span {
+              margin-right: 5px;
+              transform: translateY(5px);
+              font-size: var(--font_size_14);
+            }
+          }
+        }
+      }
+      .product-description {
+      }
+      .product-buttons {
+        display: flex;
+        gap: var(--gap_10);
+        .product-button {
+          padding: 8px;
+          display: grid;
+          place-items: center;
+          border-radius: 100%;
+          cursor: pointer;
+          background-color: transparent;
+          &.cart {
+            background-color: var(--colour_primary_dark);
+            svg {
+              path {
+                stroke: var(--text_colour_white);
+              }
+            }
+          }
+          &:hover {
+            &.cart {
+              background-color: var(--colour_primary_darker);
+            }
+            &.like {
+              background-color: var(--bg_colour_lred);
+              svg {
+                path {
+                  stroke: var(--bg_colour_red);
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  &:hover {
+    .Card-Container {
+      .product-details {
+        .product-title {
+          text-decoration: underline;
+        }
+      }
+    }
+  }
+}

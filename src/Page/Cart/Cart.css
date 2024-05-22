@@ -1,0 +1,146 @@
+.Cart .Cart-Container {
+  padding: 70px 0px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--gap_20);
+}
+.Cart .Cart-Container .Product-Container {
+  width: 700px;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+}
+.Cart .Cart-Container .Product-Container .ProductCart {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: var(--gap_20);
+  padding: var(--gap_15);
+  border-bottom: 1px solid var(--bg_colour_lgray);
+}
+.Cart .Cart-Container .Product-Container .ProductCart .Product-Details {
+  min-width: 250px;
+}
+.Cart .Cart-Container .Product-Container .ProductCart .Product-Details .Details {
+  display: flex;
+  gap: var(--gap_20);
+}
+.Cart .Cart-Container .Product-Container .ProductCart .Product-Details .Details .Product-Image {
+  width: var(--width_product);
+  aspect-ratio: 1/1;
+  background-color: var(--bg_colour_lgray);
+}
+.Cart .Cart-Container .Product-Container .ProductCart .Product-Details .Details .Product-Information .Product-Name {
+  font-size: var(--font_size_14);
+}
+.Cart .Cart-Container .Product-Container .ProductCart .Product-Details .Details .Product-Information p {
+  font-size: var(--font_size_10);
+  color: var(--text_colour_dkgray);
+}
+.Cart .Cart-Container .Product-Container .ProductCart .Product-Details .Cancel {
+  display: none;
+}
+.Cart .Cart-Container .Product-Container .ProductCart .Quantity {
+  display: flex;
+  border: 1px solid var(--bg_colour_lgray);
+  margin: 0px var(--gap_20);
+  /* Firefox */
+}
+.Cart .Cart-Container .Product-Container .ProductCart .Quantity button {
+  display: block;
+  width: 30px;
+  text-align: center;
+  aspect-ratio: 1/1;
+  background: none;
+  cursor: pointer;
+}
+.Cart .Cart-Container .Product-Container .ProductCart .Quantity input {
+  width: 70px;
+  padding: 5px 10px;
+  text-align: center;
+  -moz-appearance: none;
+       appearance: none;
+  -webkit-appearance: none;
+}
+.Cart .Cart-Container .Product-Container .ProductCart .Quantity input::-webkit-outer-spin-button,
+.Cart .Cart-Container .Product-Container .ProductCart .Quantity input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+.Cart .Cart-Container .Product-Container .ProductCart .Quantity input[type=number] {
+  -moz-appearance: textfield;
+}
+.Cart .Cart-Container .Product-Container .ProductCart .Product-SubTotal {
+  margin: 0px var(--gap_20);
+  font-weight: var(--font_weight_500);
+}
+.Cart .Cart-Container .Product-Container .ProductCart .Cancel button {
+  background-color: transparent;
+  aspect-ratio: 1/1;
+  width: 30px;
+  cursor: pointer;
+  display: grid;
+  place-items: center;
+  border-radius: 100%;
+}
+.Cart .Cart-Container .Product-Container .ProductCart .Cancel button svg {
+  width: 80%;
+}
+.Cart .Cart-Container .Product-Container .ProductCart .Cancel button svg path {
+  stroke: var(--bg_colour_dkgray);
+}
+.Cart .Cart-Container .Product-Container .ProductCart .Cancel button:hover {
+  background-color: var(--bg_colour_lred);
+}
+.Cart .Cart-Container .Product-Container .ProductCart .Cancel button:hover svg path {
+  stroke: var(--bg_colour_red);
+}
+.Cart .Checkout-Container {
+  position: sticky;
+  width: 400px;
+  padding: var(--padding_20);
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap_20);
+  position: sticky;
+}
+.Cart .Checkout-Container .Card .Checkout-Card {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: var(--gap_20);
+  margin: var(--gap_15) 0px;
+}
+.Cart .Checkout-Container .Card .Checkout-Card .Title {
+  width: clamp(100px, 100%, 150px);
+  font-size: var(--font_size_14);
+  text-align: right;
+}
+.Cart .Checkout-Container .Card .Checkout-Card .Seperator {
+  width: 10px;
+}
+.Cart .Checkout-Container .Card .Checkout-Card .Sub-Total {
+  width: calc(60% - 10px);
+  text-align: right;
+  letter-spacing: 1px;
+  font-size: var(--font_size_14);
+}
+
+@media screen and (max-width: 690px) and (min-width: 1px) {
+  .Cart .Cart-Container .Product-Container .ProductCart .Product-Details {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+  }
+  .Cart .Cart-Container .Product-Container .ProductCart .Product-Details .Cancel {
+    display: block;
+  }
+  .Cart .Cart-Container .Product-Container .ProductCart .Quantity {
+    margin: 0px;
+  }
+  .Cart .Cart-Container .Product-Container .Cancel.Part {
+    display: none;
+  }
+}/*# sourceMappingURL=Cart.css.map */
