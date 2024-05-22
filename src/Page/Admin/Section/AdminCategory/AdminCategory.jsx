@@ -31,6 +31,7 @@ const AdminCategory = () => {
   // ADD CATEGORY
 
   const handleSubmit = (event) => {
+    event.preventDefault();
     fetch("http://localhost/CSC264/RoomAPI/PostCategory.php", {
       method: "POST",
       headers: {
@@ -41,6 +42,7 @@ const AdminCategory = () => {
       .then((response) => response.json())
       .then((data) => {
         console.log(data);
+        window.location.reload();
       });
   };
 
@@ -71,6 +73,7 @@ const AdminCategory = () => {
   };
 
   const handleUpdate = (event) => {
+    event.preventDefault();
     fetch("http://localhost/CSC264/RoomAPI/UpdateCategory.php", {
       method: "POST",
       headers: {
@@ -81,6 +84,7 @@ const AdminCategory = () => {
       .then((response) => response.json())
       .then((data) => {
         console.log(data);
+        window.location.reload();
       });
   };
 
@@ -165,6 +169,7 @@ const AdminCategory = () => {
                   id="CategoryID"
                   Category={CategoryList}
                   onChange={handleUpdateChange}
+                  selectAdmin="Category"
                 />
                 <Input
                   formSize="full"
@@ -172,8 +177,8 @@ const AdminCategory = () => {
                     type: "text",
                     name: "Name",
                     id: "Name",
-                    label: "Name",
-                    placeholder: "Category Name",
+                    label: "New Category Name",
+                    placeholder: "New Category Name",
                     className: "input",
                     value: UpdateCategory.Name,
                     onChange: handleUpdateChange

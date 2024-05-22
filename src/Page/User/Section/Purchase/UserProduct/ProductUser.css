@@ -8,10 +8,15 @@
   margin-top: 5px;
   flex-wrap: wrap;
 }
-#ProductPurchase .Product-Detail .Product-Image .Image {
+#ProductPurchase .Product-Detail .Image {
   width: 120px;
   aspect-ratio: 1/1;
-  border: 1px solid black;
+  overflow: hidden;
+}
+#ProductPurchase .Product-Detail .Image img {
+  width: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
 }
 #ProductPurchase .Product-Detail .Product-Text {
   width: calc(100% - 130px);

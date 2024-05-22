@@ -21,21 +21,6 @@ function deleteCategory(CategoryID) {
       });
   }
 }
-// function deleteCategory(CategoryID) {
-//   if (confirm("Are you sure you want to delete this category?")) {
-//     fetch("http://localhost/CSC264/RoomAPI/UpdateCategory.php", {
-//       method: "DELETE",
-//       headers: {
-//         "Content-Type": "application/json"
-//       },
-//       body: CategoryID
-//     })
-//       .then((response) => response.json())
-//       .then((data) => {
-//         console.log(data);
-//       });
-//   }
-// }
 
 const AdminCat = (props) => {
   return (

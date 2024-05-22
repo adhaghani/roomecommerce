@@ -7,11 +7,16 @@
     gap: var(--gap_10);
     margin-top: 5px;
     flex-wrap: wrap;
-    .Product-Image {
-      .Image {
-        width: 120px;
-        aspect-ratio: 1/1;
-        border: 1px solid black;
+
+    .Image {
+      width: 120px;
+      aspect-ratio: 1/1;
+      overflow: hidden;
+      border-radius: 4px;
+      img {
+        width: 100%;
+        object-fit: cover;
+        border-radius: 4px;
       }
     }
     .Product-Text {
