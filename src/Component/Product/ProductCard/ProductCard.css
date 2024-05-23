@@ -10,6 +10,10 @@
   width: 100%;
   aspect-ratio: 1/1;
   background-color: var(--bg_colour_lgray);
+  overflow: hidden;
+}
+#ProductCard .Card-Container .product-image img {
+  width: 100%;
 }
 #ProductCard .Card-Container .product-details {
   padding: 10px;

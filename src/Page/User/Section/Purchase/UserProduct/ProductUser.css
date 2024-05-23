@@ -12,11 +12,13 @@
   width: 120px;
   aspect-ratio: 1/1;
   overflow: hidden;
+  border-radius: 4px;
 }
 #ProductPurchase .Product-Detail .Image img {
   width: 100%;
   -o-object-fit: cover;
      object-fit: cover;
+  border-radius: 4px;
 }
 #ProductPurchase .Product-Detail .Product-Text {
   width: calc(100% - 130px);

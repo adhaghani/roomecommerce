@@ -1,15 +1,35 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import "./ProductCard.css";
+import axios from "axios";
 const ProductCard = (props) => {
+  const [Category, setCategory] = useState({});
+
+  useEffect(() => {
+    const fetchCategory = async () => {
+      try {
+        const response = await axios.get(
+          `http://localhost/CSC264/RoomAPI/GetCategory.php/${props.data.CategoryID}`
+        );
+        setCategory(response.data);
+        console.log(response.data);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+    fetchCategory();
+  }, [props.data.CategoryID]);
+
   return (
     <Link
-      to={`/Product/${props.UserID}/${props.CategoryID}/${props.ProductID}/`}
+      to={`/Product/${props.UserID}/${props.data.CategoryID}/${props.data.ProductID}/`}
       className="ProductCard"
       id="ProductCard"
     >
       <div className="Card-Container">
-        <div className="product-image"></div>
+        <div className="product-image">
+          <img src={props.data.PicturePath} alt="" />
+        </div>
         <div className="product-details">
           {props.hasSpecial && (
             <div className="product-special">
@@ -17,15 +37,16 @@ const ProductCard = (props) => {
             </div>
           )}
           <div className="product-title">
-            <h3>Hemlingby</h3>
+            <h3>{props.data.Name}</h3>
           </div>
           <div className="product-category">
-            <p>2-Seat Sofa</p>
+            <p>{Category.Name}</p>
           </div>
           <div className="product-price">
             <div className="price-latest">
               <h3>
-                <span>RM</span>250.00
+                <span>RM</span>
+                {props.data.Price}
               </h3>
             </div>
             {props.hasPromo && (

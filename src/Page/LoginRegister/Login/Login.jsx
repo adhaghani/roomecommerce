@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 
 import Input from "../../../Component/Input/Input";
@@ -17,29 +17,45 @@ const Login = (props) => {
     console.log(Inputs);
   };
 
-  const handleSubmit = async (event) => {
-    event.preventDefault();
-    try {
-      const response = await axios.post(
-        "http://localhost/CSC264/RoomAPI/Login.php",
-        {
-          username: Inputs.Username,
-          password: Inputs.Password
-        }
-      );
-
-      console.log(response.data);
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
   // Login system
 
   const [Users, setUsers] = useState([]);
   useEffect(() => {
     getUsers();
   }, []);
+
+  const navigate = useNavigate();
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    const { Username, Password } = Inputs;
+
+    const data = {
+      Username: Username,
+      Password: Password
+    };
+
+    fetch("http://localhost/CSC264/RoomAPI/UserLogin.php", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(data)
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        if (data.message === "Login Success") {
+          if (data.RoleID == 1) {
+            navigate(`/Admin/${data.UserID}`);
+          } else {
+            navigate(`/Product/${data.UserID}`);
+          }
+          console.log(data);
+          // navigate(`/Product/${data.UserID}`);
+        } else {
+          alert(data.message);
+        }
+      });
+  };
 
   function getUsers() {
     axios
@@ -59,7 +75,7 @@ const Login = (props) => {
               <h1 className="Title">Sign In</h1>
               <h5>Welcome to Room Furniture Online store!</h5>
             </div>
-            <form onSubmit={handleSubmit} method="POST">
+            <form method="POST" onSubmit={handleSubmit}>
               <>
                 <div className="page">
                   <div className="title-container">

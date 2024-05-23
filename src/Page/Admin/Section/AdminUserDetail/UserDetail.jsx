@@ -1,8 +1,28 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 
 import "./UserDetail.css";
-import { Link } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
+import axios from "axios";
 const UserDetail = (props) => {
+  const navigate = useNavigate();
+
+  const [user, setUser] = useState([]);
+
+  const { UserID } = useParams();
+
+  useEffect(() => {
+    getUser();
+  }, []);
+
+  const getUser = () => {
+    axios
+      .get(`http://localhost/CSC264/RoomAPI/getUser.php/${UserID}`)
+      .then((response) => {
+        console.log(response.data);
+        setUser(response.data);
+      });
+  };
+
   return (
     <div className="UserDetail" id="UserDetail">
       <div className="UserDetail-Container">
@@ -72,26 +92,26 @@ const UserDetail = (props) => {
                 <div className="details First-Name">
                   <div className="container-details">
                     <p className="label">First Name</p>
-                    <p>Ahmad Adha</p>
+                    <p>{user.firstName}</p>
                   </div>
                 </div>
                 <div className="details Last-Name">
                   <p className="container-details">
                     <p className="label">Last Name</p>
-                    <p>Bin Mohd Ghani</p>
+                    <p>{user.lastName}</p>
                   </p>
                 </div>
               </div>
               <div className="details Email-Address">
                 <div className="container-details">
                   <p className="label">Email Address</p>
-                  <p>adhaahmadwork@gmail.com</p>
+                  <p>{user.emailAddress}</p>
                 </div>
               </div>
               <div className="details Phone-Number">
                 <div className="container-details">
                   <p className="label">phone Number</p>
-                  <p>+60 18 2017 884</p>
+                  <p>{user.phoneNumber}</p>
                 </div>
               </div>
             </div>
@@ -121,33 +141,35 @@ const UserDetail = (props) => {
               <div className="details Address Line 1">
                 <div className="container-details">
                   <p className="label">Address Line 1</p>
-                  <p>No 14 Jalan Tenaga 16</p>
+                  <p>{user.addressLine1}</p>
                 </div>
               </div>
-              <div className="details Address Line 2">
-                <div className="container-details">
-                  <p className="label">Address Line 2</p>
-                  <p>Taman Tenaga</p>
+              {user.addressLine2 && (
+                <div className="details Address Line 2">
+                  <div className="container-details">
+                    <p className="label">Address Line 2</p>
+                    <p>{user.addressLine2}</p>
+                  </div>
                 </div>
-              </div>
+              )}
               <div className="details-State">
                 <div className="details Postcode">
                   <div className="container-details">
                     <p className="label">Postcode</p>
-                    <p>43000</p>
+                    <p>{user.postCode}</p>
                   </div>
                 </div>
                 <div className="details City">
                   <div className="container-details">
                     <p className="label">City</p>
-                    <p>Kajang</p>
+                    <p>{user.city}</p>
                   </div>
                 </div>
               </div>
               <div className="details Country">
                 <div className="container-details">
                   <p className="label">Country</p>
-                  <p>Malaysia</p>
+                  <p>{user.country}</p>
                 </div>
               </div>
             </div>
@@ -177,13 +199,34 @@ const UserDetail = (props) => {
               <div className="details User-Name">
                 <div className="container-details">
                   <p className="label">UserName</p>
-                  <p>adhaghani</p>
+                  <p>{user.Username}</p>
                 </div>
               </div>
               <div className="details Account-Password">
                 <div className="container-details">
                   <p className="label">Password</p>
-                  <p>Newbnewb@123</p>
+                  <p>{user.Password}</p>
+                </div>
+              </div>
+              <div className="details-State">
+                <div className="details Postcode">
+                  <div className="container-details">
+                    <p className="label">Date Registered</p>
+                    <p>{user.dateRegistered}</p>
+                  </div>
+                </div>
+                <div className="details City">
+                  <div className="container-details">
+                    <p className="label">UserID</p>
+                    <p>{user.UserID}</p>
+                  </div>
+                </div>
+              </div>
+              <div className="details Account-Password">
+                <div className="container-details">
+                  <p className="label">User Role</p>
+                  {user.RoleID == 1 && <p>Admin</p>}
+                  {user.RoleID == 2 && <p>Customer</p>}
                 </div>
               </div>
             </div>

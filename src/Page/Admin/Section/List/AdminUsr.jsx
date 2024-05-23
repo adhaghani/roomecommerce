@@ -10,15 +10,15 @@ const AdminUsr = (props) => {
       <div className="Profile-Details">
         <div className="User-ID">
           <span className="title">User ID:</span>
-          <span>UID12312412</span>
+          <span>{props.item.UserID}</span>
         </div>
         <div className="Full-Name">
           <span className="title">Full Name:</span>
-          <span>Ahmad Adha bin Mohd Ghani</span>
+          <span>{props.item.firstName + " " + props.item.lastName}</span>
         </div>
         <div className="UserName">
           <span className="title">UserName:</span>
-          <span>Mossad</span>
+          <span>{props.item.Username}</span>
         </div>
       </div>
       <div className="View-Detail">
@@ -26,7 +26,7 @@ const AdminUsr = (props) => {
           title="View Detail"
           value="View Detail"
           type="link"
-          link={`/Admin/UserDetails/${props.AdminID}/${props.UserID}/`}
+          link={`/Admin/UserDetails/${props.AdminID}/${props.item.UserID}/`}
           className="outline gray"
         />
       </div>

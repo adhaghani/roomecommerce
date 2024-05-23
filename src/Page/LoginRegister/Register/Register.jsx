@@ -4,6 +4,7 @@ import Input from "../../../Component/Input/Input";
 import Button from "../../../Component/Button/Button";
 import ProgressBar from "./ProgressBar";
 import "./Register.css";
+import axios from "axios";
 const Register = () => {
   // Flipping page
   const [CurrentPage, setCurrentPage] = useState(0);
@@ -23,17 +24,21 @@ const Register = () => {
     } else if (CurrentPage == 1) {
       if (
         isInputEmpty.addressLine1 ||
-        isInputEmpty.City ||
-        isInputEmpty.Country ||
-        isInputEmpty.Postcode
+        isInputEmpty.city ||
+        isInputEmpty.country ||
+        isInputEmpty.postCode
       ) {
       } else {
         setCurrentPage(CurrentPage + 1);
       }
     } else if (CurrentPage == 2) {
-      if (isInputEmpty.password || isInputEmpty.confirmPassword) {
+      if (isInputEmpty.Password || isInputEmpty.confirmPassword) {
       } else {
-        setCurrentPage(CurrentPage + 1);
+        if (Inputs.Password === Inputs.confirmPassword) {
+          setCurrentPage(CurrentPage + 1);
+        } else {
+          console.log("password not same");
+        }
       }
     }
     if (CurrentPage == 3) {
@@ -57,33 +62,34 @@ const Register = () => {
   const [isValidNumber, setIsValidNumber] = useState(false);
 
   const [Inputs, setInputs] = useState({
+    Username: "",
+    Password: "",
+    RoleID: 2,
     firstName: "",
     lastName: "",
     emailAddress: "",
     phoneNumber: "",
     addressLine1: "",
     addressLine2: "",
-    City: "",
-    Country: "",
-    Postcode: "",
-    password: "",
-    confirmPassword: "",
-    Username: ""
+    postCode: "",
+    city: "",
+    country: "",
+    confirmPassword: ""
   });
 
   const [isInputEmpty, setIsInputEmpty] = useState({
+    Username: true,
+    Password: true,
     firstName: true,
     lastName: true,
     emailAddress: true,
     phoneNumber: true,
     addressLine1: true,
     addressLine2: true,
-    City: true,
-    Country: true,
-    Postcode: true,
-    password: true,
-    confirmPassword: true,
-    Username: true
+    postCode: true,
+    city: true,
+    country: true,
+    confirmPassword: true
   });
 
   const handleChange = (event) => {
@@ -96,7 +102,7 @@ const Register = () => {
     }));
     console.log(Inputs);
 
-    if (name === "password") {
+    if (name === "Password") {
       setIsValidLength(validateLength(value));
       setIsValidSymbol(validateSymbol(value));
       setIsValidNumber(validateNumber(value));
@@ -116,6 +122,52 @@ const Register = () => {
   const validateNumber = (password) => {
     const hasNumber = /[0-9]+/;
     return hasNumber.test(password);
+  };
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    const {
+      Username,
+      Password,
+      RoleID,
+      firstName,
+      lastName,
+      emailAddress,
+      phoneNumber,
+      addressLine1,
+      addressLine2,
+      postCode,
+      city,
+      country
+    } = Inputs;
+    const data = {
+      Username,
+      Password,
+      RoleID,
+      firstName,
+      lastName,
+      emailAddress,
+      phoneNumber,
+      addressLine1,
+      addressLine2,
+      postCode,
+      city,
+      country
+    };
+    fetch("http://localhost/CSC264/RoomAPI/RegisterUser.php", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(data)
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        console.log(data);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
   };
 
   return (
@@ -161,7 +213,7 @@ const Register = () => {
                 </div>
               </div>
             </div>
-            <form action="" autoComplete="off">
+            <form method="POST" onSubmit={handleSubmit} autoComplete="off">
               {/* Personal Information */}
               {CurrentPage == 0 && (
                 <>
@@ -293,24 +345,24 @@ const Register = () => {
                       formSize="half"
                       inputProps={{
                         type: "text",
-                        name: "Postcode",
-                        id: "Postcode",
-                        label: "PostCode",
-                        placeholder: "Postcode",
-                        className: isInputEmpty.Postcode
+                        name: "postCode",
+                        id: "postCode",
+                        label: "postCode",
+                        placeholder: "postCode",
+                        className: isInputEmpty.postCode
                           ? "input error"
                           : "input",
-                        value: Inputs.Postcode,
+                        value: Inputs.postCode,
                         onChange: handleChange
                       }}
                       inputProps2={{
                         type: "text",
-                        name: "City",
-                        id: "City",
+                        name: "city",
+                        id: "city",
                         label: "City",
                         placeholder: "City",
-                        className: isInputEmpty.City ? "input error" : "input",
-                        value: Inputs.City,
+                        className: isInputEmpty.city ? "input error" : "input",
+                        value: Inputs.city,
                         onChange: handleChange
                       }}
                     />
@@ -318,14 +370,14 @@ const Register = () => {
                       formSize="full"
                       inputProps={{
                         type: "text",
-                        name: "Country",
-                        id: "Country",
+                        name: "country",
+                        id: "country",
                         label: "Country",
                         placeholder: "Country",
-                        className: isInputEmpty.Country
+                        className: isInputEmpty.country
                           ? "input error"
                           : "input",
-                        value: Inputs.Country,
+                        value: Inputs.country,
                         onChange: handleChange
                       }}
                     />
@@ -367,14 +419,14 @@ const Register = () => {
                       formSize="full"
                       inputProps={{
                         type: "password",
-                        name: "password",
-                        id: "password",
+                        name: "Password",
+                        id: "Password",
                         label: "New Password",
                         placeholder: "Password",
-                        className: isInputEmpty.password
+                        className: isInputEmpty.Password
                           ? "input error"
                           : "input",
-                        value: Inputs.password,
+                        value: Inputs.Password,
                         onChange: handleChange
                       }}
                     />
@@ -458,10 +510,9 @@ const Register = () => {
                       onClick={PreviousPage}
                     />
                     <Button
-                      type="Register"
+                      type="formsubmit"
                       className="fill primary"
                       value={"Register"}
-                      link={"/login"}
                     />
                   </div>
                 </>

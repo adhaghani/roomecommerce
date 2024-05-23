@@ -8,7 +8,7 @@ import "./Product.css";
 import axios from "axios";
 
 const Product = () => {
-  const [Product, setProduct] = useState([]);
+  const [ProductList, setProductList] = useState([]);
   useEffect(() => {
     getProduct();
   }, []);
@@ -18,12 +18,12 @@ const Product = () => {
       .get("http://localhost/CSC264/RoomAPI/GetProduct.php")
       .then((response) => {
         console.log(response.data);
-        setUsers(response.data);
+        setProductList(response.data);
       });
   }
   return (
     <div className="Product" id="Product">
-      <Navigation />
+      <Navigation   />
       <div className="Product-Container">
         <Promotion
           size="large"
@@ -31,18 +31,9 @@ const Product = () => {
           mainText="Get 20% OFF all Product"
         />
         <div className="product-group">
-          <ProductCard hasPromo={true} id="1" category="Sofa" />
-          <ProductCard hasSpecial={true} />
-          <ProductCard />
-          <ProductCard />
-          <ProductCard />
-          <ProductCard />
-          <ProductCard />
-          <ProductCard />
-          <ProductCard />
-          <ProductCard />
-          <ProductCard />
-          <ProductCard />
+          {ProductList.map((item) => (
+            <ProductCard key={item.ProductID} id={item.ProductID} data={item} />
+          ))}
         </div>
         <Promotion
           size="large"
