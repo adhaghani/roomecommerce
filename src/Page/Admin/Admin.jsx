@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 
-import Navigation from "../../Component/Navigation/Navigation";
 import AdminCategory from "./Section/AdminCategory/AdminCategory";
 import AdminOrders from "./Section/AdminOrders/AdminOrders";
 import AdminProduct from "./Section/AdminProduct/AdminProduct";
@@ -9,9 +8,13 @@ import AdminStatistic from "./Section/AdminStatistic/AdminStatistic";
 
 import "./Admin.css";
 
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 
 const Admin = (props) => {
+  const { AdminID } = useParams();
+
+  console.log(AdminID);
+
   const [CurrentPage, setCurrentPage] = useState("Statistic");
   return (
     <div className="Admin" id="Admin">
@@ -177,11 +180,11 @@ const Admin = (props) => {
           </ul>
         </div>
         <div className="CurrentPage">
-          {CurrentPage === "Statistic" && <AdminStatistic />}
-          {CurrentPage === "Product" && <AdminProduct />}
-          {CurrentPage === "Category" && <AdminCategory />}
-          {CurrentPage === "Orders" && <AdminOrders />}
-          {CurrentPage === "Users" && <AdminUsers />}
+          {CurrentPage === "Statistic" && <AdminStatistic AdminID={AdminID} />}
+          {CurrentPage === "Product" && <AdminProduct AdminID={AdminID} />}
+          {CurrentPage === "Category" && <AdminCategory AdminID={AdminID} />}
+          {CurrentPage === "Orders" && <AdminOrders AdminID={AdminID} />}
+          {CurrentPage === "Users" && <AdminUsers AdminID={AdminID} />}
         </div>
       </div>
     </div>

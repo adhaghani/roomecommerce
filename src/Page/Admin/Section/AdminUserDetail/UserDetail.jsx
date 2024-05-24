@@ -8,6 +8,7 @@ const UserDetail = (props) => {
 
   const [user, setUser] = useState([]);
 
+  const { AdminID } = useParams();
   const { UserID } = useParams();
 
   useEffect(() => {
@@ -46,7 +47,7 @@ const UserDetail = (props) => {
             User Detail
           </h2>
           <div className="back">
-            <Link to={`/Admin/${props.AdminID}`}>
+            <Link to={`/Admin/${AdminID}`}>
               <svg
                 width="40px"
                 height="40px"

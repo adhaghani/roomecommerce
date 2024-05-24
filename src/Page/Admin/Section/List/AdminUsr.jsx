@@ -3,8 +3,12 @@ import React from "react";
 import "./List.css";
 
 import Button from "../../../../Component/Button/Button";
+import { useParams } from "react-router-dom";
 
 const AdminUsr = (props) => {
+  const { AdminID } = useParams();
+
+  console.log(AdminID);
   return (
     <div className="userList" id="userList">
       <div className="Profile-Details">
@@ -26,7 +30,7 @@ const AdminUsr = (props) => {
           title="View Detail"
           value="View Detail"
           type="link"
-          link={`/Admin/UserDetails/${props.AdminID}/${props.item.UserID}/`}
+          link={`/Admin/UserDetails/${AdminID}/${props.item.UserID}/`}
           className="outline gray"
         />
       </div>

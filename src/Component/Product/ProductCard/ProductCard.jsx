@@ -3,23 +3,6 @@ import { Link } from "react-router-dom";
 import "./ProductCard.css";
 import axios from "axios";
 const ProductCard = (props) => {
-  const [Category, setCategory] = useState({});
-
-  useEffect(() => {
-    const fetchCategory = async () => {
-      try {
-        const response = await axios.get(
-          `http://localhost/CSC264/RoomAPI/GetCategory.php/${props.data.CategoryID}`
-        );
-        setCategory(response.data);
-        console.log(response.data);
-      } catch (error) {
-        console.error(error);
-      }
-    };
-    fetchCategory();
-  }, [props.data.CategoryID]);
-
   return (
     <Link
       to={`/Product/${props.UserID}/${props.data.CategoryID}/${props.data.ProductID}/`}
@@ -40,7 +23,7 @@ const ProductCard = (props) => {
             <h3>{props.data.Name}</h3>
           </div>
           <div className="product-category">
-            <p>{Category.Name}</p>
+            <p>{props.data.CategoryID}</p>
           </div>
           <div className="product-price">
             <div className="price-latest">

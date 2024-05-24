@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 
 // import IconButton from "../IconButton/IconButton";
 import Button from "../Button/Button";
@@ -29,6 +29,8 @@ const Navigation = (props) => {
       window.removeEventListener("resize", handleResize);
     };
   }, []);
+
+  const { UserID } = useParams();
 
   return (
     <>
@@ -70,7 +72,7 @@ const Navigation = (props) => {
                   <Link to="/">Home</Link>
                 </li>
                 <li>
-                  <Link to={`/Product/${props.UserID}`}>Furniture</Link>
+                  <Link to={`/Product/${UserID}`}>Furniture</Link>
                 </li>
               </ul>
             )}
@@ -106,7 +108,7 @@ const Navigation = (props) => {
             )}
             {!props.isOnHomePage && (
               <div className="Cart">
-                <Link to={`/Cart/${props.id}`}>
+                <Link to={`/Cart/${UserID}`}>
                   <svg
                     width="800px"
                     height="800px"
@@ -128,7 +130,7 @@ const Navigation = (props) => {
 
             {!props.isOnHomePage && (
               <div className="User">
-                <Link to={`/User/${props.id}`}>
+                <Link to={`/User/${UserID}`}>
                   <svg
                     width="800px"
                     height="800px"

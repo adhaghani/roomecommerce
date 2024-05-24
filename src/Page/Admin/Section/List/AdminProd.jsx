@@ -4,6 +4,8 @@ import Button from "../../../../Component/Button/Button";
 import axios from "axios";
 
 import "../../../User/Section/Purchase/UserProduct/ProductUser.css";
+import { useParams } from "react-router-dom";
+import Admin from "../../Admin";
 const AdminProd = (props) => {
   function deleteProduct(ProductID) {
     if (confirm("Are you sure you want to delete this Product?")) {
@@ -19,6 +21,11 @@ const AdminProd = (props) => {
         });
     }
   }
+
+  const { AdminID } = useParams();
+
+  console.log(AdminID);
+
   return (
     <div className="Product" id="ProductPurchase">
       <div className="Product-Detail">
@@ -53,7 +60,7 @@ const AdminProd = (props) => {
               title="view details"
               value="View Details"
               type="link"
-              link={`/Product/${props.UserID}/${props.CategoryID}/${props.ProductID}`}
+              link={`/Product/${AdminID}/${props.CategoryID}/${props.ProductID}`}
               className="outline gray product"
             />
             <Button

@@ -4,10 +4,15 @@ import axios from "axios";
 import UserNav from "../../../User/UserNavigation/UserNav";
 import AdminUsr from "../List/AdminUsr";
 import "../AdminSection.css";
+import { useParams } from "react-router-dom";
 
-const AdminUsers = () => {
+const AdminUsers = (props) => {
   // GET CATEGORY
   const [UserList, setUserList] = useState([]);
+
+  const { AdminID } = useParams();
+
+  console.log(AdminID);
 
   // get from server
   useEffect(() => {
@@ -30,7 +35,7 @@ const AdminUsers = () => {
           <div className="Page-Container">
             <div className="List-Container">
               {UserList.map((item) => (
-                <AdminUsr key={item.id} item={item} AdminID={"001"} />
+                <AdminUsr key={item.id} item={item} AdminID={AdminID} />
               ))}
             </div>
           </div>

@@ -6,6 +6,7 @@ import ProductCard from "../../Component/Product/ProductCard/ProductCard";
 import Footer from "../../Component/Footer/Footer";
 import "./Product.css";
 import axios from "axios";
+import { useParams } from "react-router-dom";
 
 const Product = () => {
   const [ProductList, setProductList] = useState([]);
@@ -17,13 +18,15 @@ const Product = () => {
     axios
       .get("http://localhost/CSC264/RoomAPI/GetProduct.php")
       .then((response) => {
-        console.log(response.data);
         setProductList(response.data);
       });
   }
+
+  const { UserID } = useParams();
+
   return (
     <div className="Product" id="Product">
-      <Navigation   />
+      <Navigation />
       <div className="Product-Container">
         <Promotion
           size="large"
@@ -32,7 +35,12 @@ const Product = () => {
         />
         <div className="product-group">
           {ProductList.map((item) => (
-            <ProductCard key={item.ProductID} id={item.ProductID} data={item} />
+            <ProductCard
+              key={item.ProductID}
+              id={item.ProductID}
+              data={item}
+              UserID={UserID}
+            />
           ))}
         </div>
         <Promotion

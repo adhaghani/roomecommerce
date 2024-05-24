@@ -484,6 +484,7 @@ const AdminProduct = () => {
                       AdminPage={true}
                       key={product.ProductID}
                       {...product}
+                      
                     />
                   );
                 })}

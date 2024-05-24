@@ -8,10 +8,12 @@ import Account from "./Section/Account/Account";
 import Liked from "./Section/Liked/Liked";
 import Purchase from "./Section/Purchase/Purchase";
 import "./User.css";
+import { useParams } from "react-router-dom";
 
 const User = (props) => {
   const [CurrentPage, setCurrentPage] = useState("Purchase");
 
+  const { UserID } = useParams();
   return (
     <div className="User" id="User">
       <Navigation />
