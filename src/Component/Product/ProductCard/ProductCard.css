@@ -73,6 +73,12 @@
 #ProductCard .Card-Container .product-details .product-buttons .product-button.cart svg path {
   stroke: var(--text_colour_white);
 }
+#ProductCard .Card-Container .product-details .product-buttons .product-button.like.active svg {
+  fill: var(--bg_colour_red);
+}
+#ProductCard .Card-Container .product-details .product-buttons .product-button.like.active svg path {
+  stroke: var(--bg_colour_red);
+}
 #ProductCard .Card-Container .product-details .product-buttons .product-button:hover.cart {
   background-color: var(--colour_primary_darker);
 }

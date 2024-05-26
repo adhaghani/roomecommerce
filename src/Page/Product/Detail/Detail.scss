@@ -12,49 +12,33 @@
     padding: 120px var(--gap_20);
     display: flex;
     justify-content: center;
-    flex-wrap: wrap;
     .Product-Image-Container {
-      width: clamp(100px, 100%, 500px);
       display: flex;
       flex-direction: column;
-      flex-wrap: wrap;
       gap: var(--gap_20);
       padding: 10px;
       .Main-Image-Container {
         aspect-ratio: 1/1;
-        width: 100%;
         display: grid;
         place-items: center;
-
+        width: 450px;
         .Main-Image {
-          width: 100%;
           aspect-ratio: 1/1;
           display: grid;
           place-items: center;
           border-radius: 12px;
           border: 1px solid var(--bg_colour_lgray);
+          overflow: hidden;
+          img {
+            width: 400px;
+          }
         }
       }
-      // .Sub-Image-Container {
-      //   display: flex;
-      //   justify-content: center;
-      //   align-items: center;
-      //   flex-wrap: wrap;
-      //   gap: var(--gap_20);
-      //   .Sub-Image {
-      //     width: 100px;
-      //     border: 1px solid black;
-      //     aspect-ratio: 1/1;
-      //     display: grid;
-      //     place-items: center;
-      //   }
-      // }
     }
     .Product-Detail-Container {
       display: flex;
       flex-direction: column;
-      width: 100%;
-      max-width: 500px;
+      width: clamp(1px, 100%, 700px);
       padding: 20px;
       .product-special {
         p {
@@ -131,6 +115,17 @@
             }
           }
         }
+        &.like {
+          background-color: transparent;
+          &.active {
+            svg {
+              fill: var(--bg_colour_red);
+              path {
+                stroke: var(--bg_colour_red);
+              }
+            }
+          }
+        }
         &:hover {
           &.cart {
             background-color: var(--colour_primary_darker);
@@ -144,6 +139,48 @@
             }
           }
         }
+      }
+    }
+  }
+}
+
+@media screen and (min-width: 425px) and (max-width: 768px) {
+  .ProductDetail {
+    .Container-ProductDetail {
+      flex-wrap: wrap;
+      .Product-Image-Container {
+        .Main-Image-Container {
+          .Main-Image {
+            width: 100%;
+
+            img {
+              width: 100%;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+@media screen and (min-width: 1px) and (max-width: 500px) {
+  .ProductDetail {
+    .Container-ProductDetail {
+      flex-wrap: wrap;
+      .Product-Image-Container {
+        padding: var(--gap_10) 0px;
+        .Main-Image-Container {
+          width: 100%;
+          .Main-Image {
+            width: 100%;
+            img {
+              width: 100%;
+            }
+          }
+        }
+      }
+      .Product-Detail-Container {
+        padding: 0px;
       }
     }
   }

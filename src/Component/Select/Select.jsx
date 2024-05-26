@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import "./Select.css";
 
 const Select = (props) => {
+
   return (
     <>
       {props.selectAdmin == "Category" && (
@@ -24,9 +25,9 @@ const Select = (props) => {
                 value={item.CategoryID}
                 name="CategoryID"
                 id="CategoryID"
-                data-img_src={item.PicturePath}
               >
-                <div className="test">Test Test</div>
+                {item.CategoryID}
+                <p> | </p>
                 {item.Name}
               </option>
             ))}
@@ -53,7 +54,6 @@ const Select = (props) => {
                 name="ProductID"
                 id="ProductID"
               >
-                <img src={item.PicturePath} alt={item.Name} />
                 {item.Name}
               </option>
             ))}

@@ -11,35 +11,34 @@
   padding: 120px var(--gap_20);
   display: flex;
   justify-content: center;
-  flex-wrap: wrap;
 }
 .ProductDetail .Container-ProductDetail .Product-Image-Container {
-  width: clamp(100px, 100%, 500px);
   display: flex;
   flex-direction: column;
-  flex-wrap: wrap;
   gap: var(--gap_20);
   padding: 10px;
 }
 .ProductDetail .Container-ProductDetail .Product-Image-Container .Main-Image-Container {
   aspect-ratio: 1/1;
-  width: 100%;
   display: grid;
   place-items: center;
+  width: 450px;
 }
 .ProductDetail .Container-ProductDetail .Product-Image-Container .Main-Image-Container .Main-Image {
-  width: 100%;
   aspect-ratio: 1/1;
   display: grid;
   place-items: center;
   border-radius: 12px;
   border: 1px solid var(--bg_colour_lgray);
+  overflow: hidden;
+}
+.ProductDetail .Container-ProductDetail .Product-Image-Container .Main-Image-Container .Main-Image img {
+  width: 400px;
 }
 .ProductDetail .Container-ProductDetail .Product-Detail-Container {
   display: flex;
   flex-direction: column;
-  width: 100%;
-  max-width: 500px;
+  width: clamp(1px, 100%, 700px);
   padding: 20px;
 }
 .ProductDetail .Container-ProductDetail .Product-Detail-Container .product-special p {
@@ -106,6 +105,15 @@
 .ProductDetail .Container-ProductDetail .Product-Detail-Container .product-button.cart svg path {
   stroke: var(--text_colour_white);
 }
+.ProductDetail .Container-ProductDetail .Product-Detail-Container .product-button.like {
+  background-color: transparent;
+}
+.ProductDetail .Container-ProductDetail .Product-Detail-Container .product-button.like.active svg {
+  fill: var(--bg_colour_red);
+}
+.ProductDetail .Container-ProductDetail .Product-Detail-Container .product-button.like.active svg path {
+  stroke: var(--bg_colour_red);
+}
 .ProductDetail .Container-ProductDetail .Product-Detail-Container .product-button:hover.cart {
   background-color: var(--colour_primary_darker);
 }
@@ -114,4 +122,36 @@
 }
 .ProductDetail .Container-ProductDetail .Product-Detail-Container .product-button:hover.like svg path {
   stroke: var(--bg_colour_red);
+}
+
+@media screen and (min-width: 425px) and (max-width: 768px) {
+  .ProductDetail .Container-ProductDetail {
+    flex-wrap: wrap;
+  }
+  .ProductDetail .Container-ProductDetail .Product-Image-Container .Main-Image-Container .Main-Image {
+    width: 100%;
+  }
+  .ProductDetail .Container-ProductDetail .Product-Image-Container .Main-Image-Container .Main-Image img {
+    width: 100%;
+  }
+}
+@media screen and (min-width: 1px) and (max-width: 500px) {
+  .ProductDetail .Container-ProductDetail {
+    flex-wrap: wrap;
+  }
+  .ProductDetail .Container-ProductDetail .Product-Image-Container {
+    padding: var(--gap_10) 0px;
+  }
+  .ProductDetail .Container-ProductDetail .Product-Image-Container .Main-Image-Container {
+    width: 100%;
+  }
+  .ProductDetail .Container-ProductDetail .Product-Image-Container .Main-Image-Container .Main-Image {
+    width: 100%;
+  }
+  .ProductDetail .Container-ProductDetail .Product-Image-Container .Main-Image-Container .Main-Image img {
+    width: 100%;
+  }
+  .ProductDetail .Container-ProductDetail .Product-Detail-Container {
+    padding: 0px;
+  }
 }/*# sourceMappingURL=Detail.css.map */

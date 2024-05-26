@@ -80,6 +80,16 @@
               }
             }
           }
+          &.like {
+            &.active {
+              svg {
+                fill: var(--bg_colour_red);
+                path {
+                  stroke: var(--bg_colour_red);
+                }
+              }
+            }
+          }
           &:hover {
             &.cart {
               background-color: var(--colour_primary_darker);
