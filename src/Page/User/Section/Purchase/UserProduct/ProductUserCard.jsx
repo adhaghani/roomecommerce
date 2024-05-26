@@ -28,6 +28,19 @@ const ProductUserCard = (props) => {
     }
   };
 
+  function removeLike(UserID, ProductID) {
+    axios
+      .delete(`http://localhost/CSC264/RoomAPI/DeleteLike.php/`, {
+        params: {
+          UserID,
+          ProductID
+        }
+      })
+      .then((response) => {
+        console.log(response.data);
+      });
+  }
+
   return (
     <>
       {props.OrderPage && (
@@ -133,45 +146,60 @@ const ProductUserCard = (props) => {
         </div>
       )}
       {props.isLiked && (
-        <Link
-          to={`/Product/${UserID}/${props.data.CategoryID}/${props.data.ProductID}`}
-          className="Product-Link"
-        >
-          <div className="Product" id="ProductPurchase">
-            <div className="Product-Detail">
-              <div className="Product-Image">
-                <div className="Image">
+        <div className="Product" id="ProductPurchase">
+          <div className="Product-Detail">
+            <div className="Product-Image">
+              <div className="Image">
+                <Link
+                  to={`/Product/${UserID}/${props.data.CategoryID}/${props.data.ProductID}`}
+                  className="Product-Link"
+                >
                   <img src={props.data.PicturePath} alt="" />
+                </Link>
+              </div>
+            </div>
+            <div className="Product-Text">
+              <div className="Product-Title">
+                <div className="Product-Name">
+                  <h3>
+                    {props.data.Name} <span> {props.data.ProductID}</span>
+                  </h3>
                 </div>
               </div>
-              <div className="Product-Text">
-                <div className="Product-Title">
-                  <div className="Product-Name">
-                    <h3>{props.data.Name}</h3>
-                  </div>
+              <div className="Product-Quantity">
+                <div className="Orders">
+                  <p>
+                    {props.data.CategoryID} | {Categories.Name}
+                  </p>
+                  <p>Stocks: {props.data.ProductStock} items left</p>
                 </div>
-                <div className="Product-Quantity">
-                  <div className="Orders">
-                    <p>
-                      {props.data.CategoryID} | {Categories.Name}
-                    </p>
-                  </div>
-                  <div className="Total-Orders">
-                    <h3>RM {props.data.Price}</h3>
-                  </div>
+                <div className="Total-Orders">
+                  <h3>RM {props.data.Price}</h3>
                 </div>
-                <div className="Product-Actions">
-                  <Button
-                    title="Unlike"
-                    value="Unlike"
-                    type="Unlike"
-                    className="outline gray product cancel"
-                  />
-                </div>
+              </div>
+              <div className="Product-Actions">
+                <Button
+                  title="Delete"
+                  value="Remove Like"
+                  type="delete"
+                  className="outline gray product cancel"
+                  onClick={() => removeLike(UserID, props.data.ProductID)}
+                />
+              </div>
+            </div>
+            <div className="Product-Button Mobile">
+              <div className="Product-Actions">
+                <Button
+                  title="Delete"
+                  value="Unlike"
+                  type="delete"
+                  className="outline gray product cancel"
+                  onClick={() => removeLike(UserID, props.data.ProductID)}
+                />
               </div>
             </div>
           </div>
-        </Link>
+        </div>
       )}
       {props.OnOrder && (
         <div className="Product Order" id="ProductPurchase">

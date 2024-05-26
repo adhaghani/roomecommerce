@@ -46,7 +46,7 @@ const Liked = (props) => {
 
   return (
     <div className="Like" id="Like">
-      <div className="Like-Container">
+      <div className="Like-Container" onClick={getLike}>
         {Product.map((item) => (
           <ProductUserCard isLiked={true} data={item} />
         ))}

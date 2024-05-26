@@ -54,8 +54,30 @@ const ProductCard = (props) => {
         }
       });
   };
+
   const handleLike = (event) => {
     event.preventDefault();
+    if (IsLiked) {
+      removeLike(UserID, props.data.ProductID);
+    } else {
+      addLike(UserID, props.data.ProductID);
+    }
+  };
+  function removeLike(UserID, ProductID) {
+    axios
+      .delete(`http://localhost/CSC264/RoomAPI/DeleteLike.php/`, {
+        params: {
+          UserID,
+          ProductID
+        }
+      })
+      .then((response) => {
+        getLikes();
+        console.log(response.data);
+      });
+  }
+
+  function addLike(UserID, ProductID) {
     fetch("http://localhost/CSC264/RoomAPI/PostLike.php", {
       method: "POST",
       headers: {
@@ -63,19 +85,42 @@ const ProductCard = (props) => {
       },
       body: JSON.stringify({
         UserID: UserID,
-        ProductID: props.data.ProductID
+        ProductID: ProductID
+      })
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        getLikes();
+        console.log(data);
+      });
+  }
+
+  useEffect(() => {
+    getLikes();
+  }, []);
+
+  const handleAddToCart = (event) => {
+    event.preventDefault();
+    addToCart(UserID, props.data.ProductID, 1);
+  };
+
+  const addToCart = (UserID, ProductID, Quantity) => {
+    fetch("http://localhost/CSC264/RoomAPI/PostCart.php", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        UserID: UserID,
+        ProductID: ProductID,
+        Quantity: Quantity
       })
     })
       .then((response) => response.json())
       .then((data) => {
         console.log(data);
-        setIsLiked(!IsLiked);
       });
   };
-
-  useEffect(() => {
-    getLikes();
-  }, []);
 
   return (
     <Link
@@ -113,7 +158,7 @@ const ProductCard = (props) => {
             )}
           </div>
           <div className="product-buttons">
-            <button className="product-button cart">
+            <button className="product-button cart" onClick={handleAddToCart}>
               <svg
                 width="20px"
                 height="20px"

@@ -6,7 +6,7 @@
   gap: var(--gap_20);
 }
 .Cart .Cart-Container .Product-Container {
-  width: 700px;
+  width: 900px;
   padding: 10px;
   display: flex;
   flex-direction: column;
@@ -31,12 +31,29 @@
   width: var(--width_product);
   aspect-ratio: 1/1;
   background-color: var(--bg_colour_lgray);
+  overflow: hidden;
+  border-radius: 4px;
+}
+.Cart .Cart-Container .Product-Container .ProductCart .Product-Details .Details .Product-Image img {
+  width: 100%;
+}
+.Cart .Cart-Container .Product-Container .ProductCart .Product-Details .Details .Product-Information {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 5px;
 }
 .Cart .Cart-Container .Product-Container .ProductCart .Product-Details .Details .Product-Information .Product-Name {
+  font-size: var(--font_size_16);
+}
+.Cart .Cart-Container .Product-Container .ProductCart .Product-Details .Details .Product-Information .Product-Name span {
   font-size: var(--font_size_14);
+  color: var(--text_colour_dkgray);
+  font-weight: var(--font_weight_500);
 }
 .Cart .Cart-Container .Product-Container .ProductCart .Product-Details .Details .Product-Information p {
-  font-size: var(--font_size_10);
+  font-size: var(--font_size_14);
   color: var(--text_colour_dkgray);
 }
 .Cart .Cart-Container .Product-Container .ProductCart .Product-Details .Cancel {
@@ -44,25 +61,30 @@
 }
 .Cart .Cart-Container .Product-Container .ProductCart .Quantity {
   display: flex;
-  border: 1px solid var(--bg_colour_lgray);
-  margin: 0px var(--gap_20);
+  border: 2px solid var(--bg_colour_lgray);
+  width: 150px;
+  justify-content: center;
+  border-radius: 6px;
   /* Firefox */
 }
 .Cart .Cart-Container .Product-Container .ProductCart .Quantity button {
   display: block;
-  width: 30px;
+  width: 39px;
   text-align: center;
-  aspect-ratio: 1/1;
   background: none;
   cursor: pointer;
+  font-size: var(--font_size_14);
+  font-weight: var(--font_weight_600);
 }
 .Cart .Cart-Container .Product-Container .ProductCart .Quantity input {
   width: 70px;
-  padding: 5px 10px;
+  height: 35px;
   text-align: center;
   -moz-appearance: none;
        appearance: none;
   -webkit-appearance: none;
+  font-size: var(--font_size_14);
+  font-weight: var(--font_weight_600);
 }
 .Cart .Cart-Container .Product-Container .ProductCart .Quantity input::-webkit-outer-spin-button,
 .Cart .Cart-Container .Product-Container .ProductCart .Quantity input::-webkit-inner-spin-button {
@@ -73,23 +95,51 @@
   -moz-appearance: textfield;
 }
 .Cart .Cart-Container .Product-Container .ProductCart .Product-SubTotal {
-  margin: 0px var(--gap_20);
+  display: flex;
+  height: 100%;
+  align-items: flex-end;
+  justify-content: flex-end;
+  flex-direction: column;
+  width: 250px;
+}
+.Cart .Cart-Container .Product-Container .ProductCart .Product-SubTotal h4 {
+  display: flex;
+  font-weight: var(--font_weight_600);
+  font-size: var(--font_size_18);
+  margin-left: 10px;
+}
+.Cart .Cart-Container .Product-Container .ProductCart .Product-SubTotal h4 span {
+  text-align: right;
+}
+.Cart .Cart-Container .Product-Container .ProductCart .Product-SubTotal h4 span.title {
+  width: 90px;
   font-weight: var(--font_weight_500);
+}
+.Cart .Cart-Container .Product-Container .ProductCart .Product-SubTotal h4 span.content {
+  width: 190px;
+}
+.Cart .Cart-Container .Product-Container .ProductCart .Product-SubTotal h4 span.currency, .Cart .Cart-Container .Product-Container .ProductCart .Product-SubTotal h4 span.Piece {
+  font-size: var(--font_size_14);
+}
+.Cart .Cart-Container .Product-Container .ProductCart .Cancel {
+  position: absolute;
+  transform: translateY(-60px) translateX(5px);
 }
 .Cart .Cart-Container .Product-Container .ProductCart .Cancel button {
   background-color: transparent;
   aspect-ratio: 1/1;
-  width: 30px;
+  width: 22px;
   cursor: pointer;
   display: grid;
   place-items: center;
   border-radius: 100%;
+  background-color: white;
 }
 .Cart .Cart-Container .Product-Container .ProductCart .Cancel button svg {
   width: 80%;
 }
 .Cart .Cart-Container .Product-Container .ProductCart .Cancel button svg path {
-  stroke: var(--bg_colour_dkgray);
+  stroke: var(--bg_colour_black);
 }
 .Cart .Cart-Container .Product-Container .ProductCart .Cancel button:hover {
   background-color: var(--bg_colour_lred);
@@ -139,6 +189,11 @@
   }
   .Cart .Cart-Container .Product-Container .ProductCart .Quantity {
     margin: 0px;
+  }
+  .Cart .Cart-Container .Product-Container .ProductCart .Product-SubTotal {
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
   }
   .Cart .Cart-Container .Product-Container .Cancel.Part {
     display: none;

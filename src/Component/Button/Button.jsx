@@ -29,7 +29,7 @@ const Button = (props) => {
         className={"layout " + props.className}
         onClick={props.onClick}
       >
-        Delete
+        {props.value ? props.value : "Delete"}
       </button>
     );
   } else {

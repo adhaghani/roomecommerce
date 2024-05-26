@@ -66,25 +66,6 @@ const ProductDetail = () => {
   };
 
   const [IsLiked, setIsLiked] = useState(false);
-  const handleLike = (event) => {
-    event.preventDefault();
-    fetch("http://localhost/CSC264/RoomAPI/PostLike.php", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify({
-        UserID: UserID,
-        ProductID: ProductID
-      })
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        console.log(data);
-        setIsLiked(!IsLiked);
-      });
-  };
-
   useEffect(() => {
     getLikes();
   }, []);
@@ -101,6 +82,46 @@ const ProductDetail = () => {
         }
       });
   };
+
+  const handleLike = (event) => {
+    if (IsLiked) {
+      removeLike(UserID, ProductID);
+    } else {
+      addLike(UserID, ProductID);
+    }
+  };
+
+  function addLike(UserID, ProductID) {
+    fetch("http://localhost/CSC264/RoomAPI/PostLike.php", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        UserID: UserID,
+        ProductID: ProductID
+      })
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        getLikes();
+        console.log(data);
+      });
+  }
+
+  function removeLike(UserID, ProductID) {
+    axios
+      .delete(`http://localhost/CSC264/RoomAPI/DeleteLike.php/`, {
+        params: {
+          UserID,
+          ProductID
+        }
+      })
+      .then((response) => {
+        getLikes();
+        console.log(response.data);
+      });
+  }
 
   const [IsNew, setIsNew] = useState(false);
 

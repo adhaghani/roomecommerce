@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Navigation from "../../Component/Navigation/Navigation";
 import Footer from "../../Component/Footer/Footer";
 
@@ -10,17 +10,52 @@ import Promotion from "../../Component/Promotion/Promotion";
 import Button from "../../Component/Button/Button";
 
 import "./Cart.css";
+import axios from "axios";
+import { useParams } from "react-router-dom";
+import Product from "../Product/Product";
 const Cart = (props) => {
+  const [products, setProducts] = useState([]);
+  const [Cart, setCart] = useState([]);
+
+  const { UserID } = useParams();
+
+  const getCartData = () => {
+    axios
+      .get(`http://localhost/CSC264/RoomAPI/getCart.php/${UserID}`)
+      .then((response) => {
+        setCart(response.data);
+      });
+  };
+
+  useEffect(() => {
+    getCartData();
+  }, []);
+
+  const getProductData = async () => {
+    const productDetail = await Promise.all(
+      Cart.map(async (item) => {
+        const response = await axios.get(
+          `http://localhost/CSC264/RoomAPI/getProductDetail.php/${item.ProductID}`
+        );
+        return response.data;
+      })
+    );
+    setProducts(productDetail);
+  };
+
+  useEffect(() => {
+    getProductData();
+  }, [Cart]);
+
   return (
     <div className="Cart" id="Cart">
       <Navigation isOnHomePage={false} />
 
       <div className="Cart-Container">
         <div className="Product-Container">
-          <ProductCart />
-          <ProductCart />
-          <ProductCart />
-          <ProductCart />
+          {products.map((item) => (
+            <ProductCart key={item.id} id={item.id} data={item} />
+          ))}
         </div>
         <div className="Checkout-Container">
           <div className="Card">

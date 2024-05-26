@@ -65,7 +65,7 @@ const AdminProd = (props) => {
             />
             <Button
               title="Delete"
-              value={props.ProductID}
+              value="remove Product"
               Name="ProductID"
               type="delete"
               className="outline gray product cancel"
