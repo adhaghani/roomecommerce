@@ -49,8 +49,6 @@ const Login = (props) => {
           } else {
             navigate(`/Product/${data.UserID}`);
           }
-          console.log(data);
-          // navigate(`/Product/${data.UserID}`);
         } else {
           alert(data.message);
         }

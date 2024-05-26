@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import "./ProductCard.css";
 import axios from "axios";
 const ProductCard = (props) => {
@@ -13,6 +13,8 @@ const ProductCard = (props) => {
   const ProductDateAdded = props.data.DateAdded;
   const date = new Date(ProductDateAdded);
   const currentDate = new Date();
+
+  const { UserID } = useParams();
 
   useEffect(() => {
     const currentDate = new Date();
@@ -39,10 +41,41 @@ const ProductCard = (props) => {
       });
   };
 
+  const getLikes = () => {
+    axios
+      .get(
+        `http://localhost/CSC264/RoomAPI/getLikeSpecific.php/${props.data.ProductID}/${UserID}`
+      )
+      .then((response) => {
+        if (response.data === 1) {
+          setIsLiked(true);
+        } else if (response.data === 0) {
+          setIsLiked(false);
+        }
+      });
+  };
   const handleLike = (event) => {
     event.preventDefault();
-    setIsLiked(!IsLiked);
+    fetch("http://localhost/CSC264/RoomAPI/PostLike.php", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        UserID: UserID,
+        ProductID: props.data.ProductID
+      })
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        console.log(data);
+        setIsLiked(!IsLiked);
+      });
   };
+
+  useEffect(() => {
+    getLikes();
+  }, []);
 
   return (
     <Link

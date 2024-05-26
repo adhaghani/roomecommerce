@@ -68,7 +68,38 @@ const ProductDetail = () => {
   const [IsLiked, setIsLiked] = useState(false);
   const handleLike = (event) => {
     event.preventDefault();
-    setIsLiked(!IsLiked);
+    fetch("http://localhost/CSC264/RoomAPI/PostLike.php", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        UserID: UserID,
+        ProductID: ProductID
+      })
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        console.log(data);
+        setIsLiked(!IsLiked);
+      });
+  };
+
+  useEffect(() => {
+    getLikes();
+  }, []);
+  const getLikes = () => {
+    axios
+      .get(
+        `http://localhost/CSC264/RoomAPI/getLikeSpecific.php/${ProductID}/${UserID}`
+      )
+      .then((response) => {
+        if (response.data === 1) {
+          setIsLiked(true);
+        } else if (response.data === 0) {
+          setIsLiked(false);
+        }
+      });
   };
 
   const [IsNew, setIsNew] = useState(false);
@@ -144,7 +175,14 @@ const ProductDetail = () => {
                     />
                   </svg>
                 </div>
-                <div className="product-button like">
+                <button
+                  className={
+                    IsLiked
+                      ? "product-button like active"
+                      : "product-button like"
+                  }
+                  onClick={handleLike}
+                >
                   <svg
                     width="20px"
                     height="20px"
@@ -162,7 +200,7 @@ const ProductDetail = () => {
                       stroke-linejoin="round"
                     />
                   </svg>
-                </div>
+                </button>
               </div>
             </div>
           </div>

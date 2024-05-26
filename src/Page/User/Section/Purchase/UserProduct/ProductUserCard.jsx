@@ -1,10 +1,33 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 
 import "./ProductUser.css";
 
 import Button from "../../../../../Component/Button/Button";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
+import axios from "axios";
 const ProductUserCard = (props) => {
+  const { UserID } = useParams();
+
+  const [Categories, setCategories] = useState({
+    Name: ""
+  });
+
+  useEffect(() => {
+    getCategoryName();
+  }, []);
+  const getCategoryName = () => {
+    if (props.data && props.data.CategoryID) {
+      axios
+        .get(
+          `http://localhost/CSC264/RoomAPI/GetCategoryName.php/${props.data.CategoryID}`,
+          {}
+        )
+        .then((response) => {
+          setCategories(response.data);
+        });
+    }
+  };
+
   return (
     <>
       {props.OrderPage && (
@@ -111,27 +134,39 @@ const ProductUserCard = (props) => {
       )}
       {props.isLiked && (
         <Link
-          to={`/Product/${props.UserID}/${props.CategoryID}/${props.ProductID}`}
+          to={`/Product/${UserID}/${props.data.CategoryID}/${props.data.ProductID}`}
           className="Product-Link"
         >
           <div className="Product" id="ProductPurchase">
             <div className="Product-Detail">
               <div className="Product-Image">
-                <div className="Image"></div>
+                <div className="Image">
+                  <img src={props.data.PicturePath} alt="" />
+                </div>
               </div>
               <div className="Product-Text">
                 <div className="Product-Title">
                   <div className="Product-Name">
-                    <h3>Product Name</h3>
+                    <h3>{props.data.Name}</h3>
                   </div>
                 </div>
                 <div className="Product-Quantity">
                   <div className="Orders">
-                    <p>Product Category</p>
+                    <p>
+                      {props.data.CategoryID} | {Categories.Name}
+                    </p>
                   </div>
                   <div className="Total-Orders">
-                    <h3>RM 500.00</h3>
+                    <h3>RM {props.data.Price}</h3>
                   </div>
+                </div>
+                <div className="Product-Actions">
+                  <Button
+                    title="Unlike"
+                    value="Unlike"
+                    type="Unlike"
+                    className="outline gray product cancel"
+                  />
                 </div>
               </div>
             </div>
