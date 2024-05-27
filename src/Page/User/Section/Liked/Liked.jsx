@@ -15,7 +15,6 @@ const Liked = (props) => {
     axios
       .get(`http://localhost/CSC264/RoomAPI/getLikeUser.php/${UserID}`)
       .then((response) => {
-        console.log(response.data);
         setLike(response.data);
       });
   };
@@ -35,8 +34,6 @@ const Liked = (props) => {
         return response.data;
       })
     );
-
-    console.log(productDetails);
     setProduct(productDetails);
   };
 
@@ -44,11 +41,29 @@ const Liked = (props) => {
     getProductDetail();
   }, [Like]);
 
+  function removeLike(UserID, ProductID) {
+    axios
+      .delete(`http://localhost/CSC264/RoomAPI/DeleteLike.php/`, {
+        params: {
+          UserID,
+          ProductID
+        }
+      })
+      .then((response) => {
+        getLike();
+        getProductDetail();
+      });
+  }
+
   return (
     <div className="Like" id="Like">
       <div className="Like-Container" onClick={getLike}>
         {Product.map((item) => (
-          <ProductUserCard isLiked={true} data={item} />
+          <ProductUserCard
+            isLiked={true}
+            data={item}
+            onRemoveClick={() => removeLike(UserID, item.ProductID)}
+          />
         ))}
       </div>
     </div>

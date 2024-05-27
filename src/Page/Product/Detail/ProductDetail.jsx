@@ -135,6 +135,29 @@ const ProductDetail = () => {
     }
   }, [Product.DateAdded]);
 
+  const handleAddToCart = (event) => {
+    event.preventDefault();
+    addToCart(UserID, ProductID, Quantity);
+  };
+
+  const addToCart = (UserID, ProductID, Quantity) => {
+    fetch("http://localhost/CSC264/RoomAPI/PostCart.php", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        UserID: UserID,
+        ProductID: ProductID,
+        Quantity: Quantity
+      })
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        console.log(data);
+      });
+  };
+
   return (
     <>
       {determineAdmin() === false && (
@@ -171,6 +194,9 @@ const ProductDetail = () => {
               <div className="product-description">
                 <p>{Product.Description}</p>
               </div>
+              <div className="product-category">
+                <p>{Product.ProductStock} items left</p>
+              </div>
               <div className="quantity">
                 <div className="quantity-button">
                   <button onClick={handleDecrement}>-</button>
@@ -179,7 +205,10 @@ const ProductDetail = () => {
                 </div>
               </div>
               <div className="product-buttons">
-                <div className="product-button cart">
+                <button
+                  className="product-button cart"
+                  onClick={handleAddToCart}
+                >
                   <svg
                     width="20px"
                     height="20px"
@@ -195,7 +224,7 @@ const ProductDetail = () => {
                       stroke-linejoin="round"
                     />
                   </svg>
-                </div>
+                </button>
                 <button
                   className={
                     IsLiked

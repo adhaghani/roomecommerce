@@ -6,7 +6,7 @@
   gap: var(--gap_20);
 }
 .Cart .Cart-Container .Product-Container {
-  width: 900px;
+  width: 700px;
   padding: 10px;
   display: flex;
   flex-direction: column;
@@ -65,7 +65,6 @@
   width: 150px;
   justify-content: center;
   border-radius: 6px;
-  /* Firefox */
 }
 .Cart .Cart-Container .Product-Container .ProductCart .Quantity button {
   display: block;
@@ -76,31 +75,21 @@
   font-size: var(--font_size_14);
   font-weight: var(--font_weight_600);
 }
-.Cart .Cart-Container .Product-Container .ProductCart .Quantity input {
+.Cart .Cart-Container .Product-Container .ProductCart .Quantity div {
+  display: grid;
+  place-items: center;
   width: 70px;
   height: 35px;
-  text-align: center;
-  -moz-appearance: none;
-       appearance: none;
-  -webkit-appearance: none;
   font-size: var(--font_size_14);
   font-weight: var(--font_weight_600);
 }
-.Cart .Cart-Container .Product-Container .ProductCart .Quantity input::-webkit-outer-spin-button,
-.Cart .Cart-Container .Product-Container .ProductCart .Quantity input::-webkit-inner-spin-button {
-  -webkit-appearance: none;
-  margin: 0;
-}
-.Cart .Cart-Container .Product-Container .ProductCart .Quantity input[type=number] {
-  -moz-appearance: textfield;
-}
 .Cart .Cart-Container .Product-Container .ProductCart .Product-SubTotal {
   display: flex;
-  height: 100%;
   align-items: flex-end;
   justify-content: flex-end;
   flex-direction: column;
   width: 250px;
+  height: 100%;
 }
 .Cart .Cart-Container .Product-Container .ProductCart .Product-SubTotal h4 {
   display: flex;
@@ -121,7 +110,7 @@
 .Cart .Cart-Container .Product-Container .ProductCart .Product-SubTotal h4 span.currency, .Cart .Cart-Container .Product-Container .ProductCart .Product-SubTotal h4 span.Piece {
   font-size: var(--font_size_14);
 }
-.Cart .Cart-Container .Product-Container .ProductCart .Cancel {
+.Cart .Cart-Container .Product-Container .ProductCart .Cancel.Part {
   position: absolute;
   transform: translateY(-60px) translateX(5px);
 }
@@ -192,10 +181,15 @@
   }
   .Cart .Cart-Container .Product-Container .ProductCart .Product-SubTotal {
     width: 100%;
+    height: -moz-fit-content;
+    height: fit-content;
     display: flex;
     justify-content: flex-end;
   }
   .Cart .Cart-Container .Product-Container .Cancel.Part {
     display: none;
+  }
+  .Cart .Cart-Container .Product-Container .Cancel button {
+    border: 1px solid var(--bg_colour_lgray);
   }
 }/*# sourceMappingURL=Cart.css.map */

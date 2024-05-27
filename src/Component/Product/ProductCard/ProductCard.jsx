@@ -142,7 +142,8 @@ const ProductCard = (props) => {
             <h3>{props.data.Name}</h3>
           </div>
           <div className="product-category">
-            <p>{Categories.Name}</p>
+            <p>{Categories.Name}</p>{" "}
+            <p>{props.data.ProductStock} pieces left</p>
           </div>
           <div className="product-price">
             <div className="price-latest">

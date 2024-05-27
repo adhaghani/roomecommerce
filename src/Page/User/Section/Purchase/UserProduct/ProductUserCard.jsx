@@ -28,18 +28,9 @@ const ProductUserCard = (props) => {
     }
   };
 
-  function removeLike(UserID, ProductID) {
-    axios
-      .delete(`http://localhost/CSC264/RoomAPI/DeleteLike.php/`, {
-        params: {
-          UserID,
-          ProductID
-        }
-      })
-      .then((response) => {
-        console.log(response.data);
-      });
-  }
+  const handleRemoveLike = () => {
+    props.onRemoveClick();
+  };
 
   return (
     <>
@@ -179,16 +170,29 @@ const ProductUserCard = (props) => {
               </div>
               <div className="Product-Actions">
                 <Button
+                  title="Goto"
+                  value="View Product"
+                  link={`/Product/${UserID}/${props.data.CategoryID}/${props.data.ProductID}`}
+                  className="fill primary product"
+                />
+
+                <Button
                   title="Delete"
                   value="Remove Like"
                   type="delete"
                   className="outline gray product cancel"
-                  onClick={() => removeLike(UserID, props.data.ProductID)}
+                  onClick={handleRemoveLike}
                 />
               </div>
             </div>
             <div className="Product-Button Mobile">
               <div className="Product-Actions">
+                <Button
+                  title="Goto"
+                  value="View Product"
+                  link={`/Product/${UserID}/${props.data.CategoryID}/${props.data.ProductID}`}
+                  className="fill primary product"
+                />
                 <Button
                   title="Delete"
                   value="Unlike"

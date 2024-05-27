@@ -4,28 +4,20 @@ import Button from "../../../Component/Button/Button";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 const ProductCart = (props) => {
-  const [Amount, setAmount] = useState(1);
+  const [Amount, setAmount] = useState(10);
 
   const addAmount = () => {
     setAmount(Amount + 1);
-    UpdateQuantity(Amount + 1);
+    props.updateQuantity(props.data.ProductID, Amount + 1);
   };
 
   const subAmount = () => {
     if (Amount === 1) return;
     setAmount(Amount - 1);
-    UpdateQuantity(Amount - 1);
+    props.updateQuantity(props.data.ProductID, Amount - 1);
   };
 
   const { UserID } = useParams();
-
-  const UpdateQuantity = (Quantity) => {
-    axios.post(`http://localhost/CSC264/RoomAPI/updateCart.php`, {
-      UserID: UserID,
-      ProductID: props.data.ProductID,
-      Quantity: Quantity
-    });
-  };
 
   const getCartData = () => {
     axios
@@ -41,18 +33,8 @@ const ProductCart = (props) => {
     getCartData();
   }, []);
 
-  const RemoveFromCart = (UserID, ProductID) => {
-    axios
-      .delete(`http://localhost/CSC264/RoomAPI/DeleteCart.php`, {
-        params: {
-          UserID: UserID,
-          ProductID: ProductID
-        }
-      })
-      .then((response) => {
-        window.location.reload();
-        console.log(response.data);
-      });
+  const handleRemoveFromCart = () => {
+    props.onRemoveFromCart();
   };
 
   return (
@@ -84,13 +66,13 @@ const ProductCart = (props) => {
             />
             <div className="Quantity">
               <button onClick={subAmount}>-</button>
-              <input type="number" value={Amount} />
+              <div className="value">{Amount}</div>
               <button onClick={addAmount}>+</button>
             </div>
           </div>
         </div>
-        <div className="Cancel">
-          <button onClick={() => RemoveFromCart(UserID, props.data.ProductID)}>
+        <div className="Cancel" onClick={handleRemoveFromCart}>
+          <button>
             <svg
               viewBox="0 0 24 24"
               fill="none"
@@ -127,10 +109,7 @@ const ProductCart = (props) => {
         </h4>
       </div>
       <div className="Cancel Part">
-        <button
-          button
-          onClick={() => RemoveFromCart(UserID, props.data.ProductID)}
-        >
+        <button onClick={handleRemoveFromCart}>
           <svg
             viewBox="0 0 24 24"
             fill="none"
