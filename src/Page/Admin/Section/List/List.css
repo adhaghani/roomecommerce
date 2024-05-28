@@ -4,13 +4,8 @@
   margin-top: 5px;
   flex-wrap: wrap;
 }
-.Product-Detail .Product-Image .Image {
-  width: 120px;
-  aspect-ratio: 1/1;
-  border: 1px solid black;
-}
 .Product-Detail .Product-Text {
-  width: calc(100% - 130px);
+  width: 100%;
   height: -moz-fit-content;
   height: fit-content;
 }
@@ -57,6 +52,22 @@
   display: flex;
   justify-content: flex-end;
   gap: var(--gap_10);
+}
+.Product-Detail .Product-Text .Product-Actions .btn {
+  width: 40px;
+  aspect-ratio: 1/1;
+  border-radius: 6px;
+  display: grid;
+  place-items: center;
+  background-color: transparent;
+  border: 2px solid var(--colour_primary_dark);
+  cursor: pointer;
+}
+.Product-Detail .Product-Text .Product-Actions .btn svg {
+  transition: 0.35s ease-in-out;
+}
+.Product-Detail .Product-Text .Product-Actions .btn.active svg {
+  transform: rotate(180deg);
 }
 .Product-Detail .Product-Button {
   display: none;
@@ -122,4 +133,12 @@
 .categoryList .Category-Details .Category-Button {
   display: flex;
   gap: var(--gap_10);
+}
+
+.orderList .prod-Container {
+  height: 0%;
+  overflow: hidden;
+}
+.orderList .prod-Container.active {
+  height: 100%;
 }/*# sourceMappingURL=List.css.map */

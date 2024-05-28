@@ -1,122 +1,223 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 
 import "./List.css";
 
 import Button from "../../../../Component/Button/Button";
+
+import AdminProd from "./AdminProd";
+import { useParams } from "react-router-dom";
 const AdminOrd = (props) => {
+  const [Products, setProducts] = useState([]);
+  const [ProductsDetail, setProductsDetail] = useState([]);
+
+  useEffect(() => {
+    getProductData();
+    console.log(Products);
+  }, []);
+
+  useEffect(() => {
+    getProductDetails();
+  }, [Products]);
+
+  const getProductData = () => {
+    fetch(
+      `http://localhost/CSC264/RoomAPI/getOrderDetail.php/${props.data.OrderID}`
+    ).then((response) => {
+      response.json().then((data) => {
+        setProducts(data);
+      });
+    });
+  };
+
+  const getProductDetails = async () => {
+    try {
+      const promises = Products.map(async (product) => {
+        const productDetail = await getProductDetail(product.ProductID);
+        return { ...productDetail, Quantity: product.Quantity };
+      });
+      const results = await Promise.all(promises);
+      setProductsDetail(results);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+  const getProductDetail = (ProductID) => {
+    return fetch(
+      `http://localhost/CSC264/RoomAPI/getProductDetail.php/${ProductID}`
+    )
+      .then((response) => response.json())
+      .catch((error) => {
+        console.error(error);
+        throw error;
+      });
+  };
+
+  const [ShowProduct, setShowProduct] = useState(false);
+
+  const handleShowProduct = () => {
+    setShowProduct(!ShowProduct);
+  };
+
+  const { AdminID } = useParams();
+
   return (
-    <div className="orderList" id="orderList">
-      <div className="Product-Detail">
-        <div className="Product-Image">
-          <div className="Image"></div>
-        </div>
-        <div className="Product-Text">
-          <div className="Product-Title">
-            <div className="Product-Name">
-              <h3>
-                {props.data.OrderID} | {props.data.UserID}
-              </h3>
-            </div>
-            {
-              <div className="Product-Status">
-                {props.status === "Shipped" && <p className="blue">Shipped</p>}
-                {props.status === "Cancelled" && (
-                  <p className="red">Cancelled</p>
-                )}
-                {props.status === "Ordered" && (
-                  <p className="yellow">Pending</p>
-                )}
-                {props.status === "Completed" && (
-                  <p className="green">Delivered</p>
-                )}
+    <>
+      <div className="orderList" id="orderList">
+        <div className="Product-Detail">
+          <div className="Product-Text">
+            <div className="Product-Title">
+              <div className="Product-Name">
+                <h3>
+                  {props.data.OrderID} | {props.data.UserID}
+                </h3>
               </div>
-            }
-          </div>
-          <div className="Product-Quantity">
-            <div className="Orders">
-              <p>Date Ordered : {props.data.OrderDate}</p>
-              <p>Payment Method : {props.data.PaymentMethod}</p>
+              {
+                <div className="Product-Status">
+                  {props.status === "Shipped" && (
+                    <p className="blue">Shipped</p>
+                  )}
+                  {props.status === "Cancelled" && (
+                    <p className="red">Cancelled</p>
+                  )}
+                  {props.status === "Ordered" && (
+                    <p className="yellow">Pending</p>
+                  )}
+                  {props.status === "Completed" && (
+                    <p className="green">Delivered</p>
+                  )}
+                </div>
+              }
             </div>
-            <div className="Total-Orders">
-              <h3>RM {props.data.TotalPrice}</h3>
+            <div className="Product-Quantity">
+              <div className="Orders">
+                <p>Date Ordered : {props.data.OrderDate}</p>
+                <p>Payment Method : {props.data.PaymentMethod}</p>
+              </div>
+              <div className="Total-Orders">
+                <h3>RM {props.data.TotalPrice}</h3>
+              </div>
             </div>
-          </div>
-          <div className="Product-Actions">
-            <Button
-              title="View Detail"
-              value="View Detail"
-              type="link"
-              link={`/Order/${props.data.UserID}/${props.data.OrderID}`}
-              className="outline gray product"
-            />
-            {props.status === "Shipped" && (
+            <div className="Product-Actions">
+              {props.status === "Shipped" && (
+                <Button
+                  title="Deliver Order"
+                  value="Deliver Order"
+                  type="link"
+                  link={`/Product/`}
+                  className="outline gray product"
+                />
+              )}
+              {props.status === "Ordered" && (
+                <Button
+                  title="Ship Order"
+                  value="Ship Order"
+                  link={`/Product/`}
+                  className="outline gray product"
+                />
+              )}
+              {props.status === "Completed" && (
+                <Button
+                  title="Delete"
+                  value="Delete"
+                  type="Delete"
+                  className="outline gray product cancel"
+                />
+              )}
+              {props.status === "Cancelled" && (
+                <Button
+                  title="Delete"
+                  value="Delete"
+                  type="Delete"
+                  className="outline gray product cancel"
+                />
+              )}
               <Button
-                title="Deliver Order"
-                value="Deliver Order"
-                type="link"
-                link={`/Product/`}
+                title="View Detail"
+                value="View Detail"
+                type="View Detail"
+                link={`/Admin/Order/${AdminID}/${props.data.UserID}/${props.data.OrderID}`}
                 className="outline gray product"
               />
-            )}
-            {props.status === "Ordered" && (
+              <button
+                className={ShowProduct ? "btn active" : "btn"}
+                onClick={handleShowProduct}
+              >
+                <svg
+                  width="30px"
+                  height="30px"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M6 9L12 15L18 9"
+                    stroke="#000000"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                </svg>
+              </button>
+            </div>
+          </div>
+          <div className="Product-Button Mobile">
+            <div className="Product-Actions">
+              {props.status === "Shipped" && (
+                <Button
+                  title="Deliver Order"
+                  value="Deliver Order"
+                  type="link"
+                  link={`/Product/`}
+                  className="outline gray product"
+                />
+              )}
+              {props.status === "Ordered" && (
+                <Button
+                  title="Ship Order"
+                  value="Ship Order"
+                  type="link"
+                  link={`/Product/`}
+                  className="outline gray product"
+                />
+              )}
+              {props.status === "Completed" && (
+                <Button
+                  title="Ship Order"
+                  value="Ship Order"
+                  type="link"
+                  className="outline gray product"
+                />
+              )}
               <Button
-                title="Ship Order"
-                value="Ship Order"
-                link={`/Product/`}
+                title="View Detail"
+                value="View Detail"
+                type="View Detail"
+                link={`/Order/${props.data.UserID}/${props.data.OrderID}`}
                 className="outline gray product"
               />
-            )}
-            {props.status === "Completed" && (
-              <Button
-                title="Delete"
-                value="Delete"
-                type="Delete"
-                className="outline gray product cancel"
-              />
-            )}
-            {props.status === "Cancelled" && (
-              <Button
-                title="Delete"
-                value="Delete"
-                type="Delete"
-                className="outline gray product cancel"
-              />
-            )}
+            </div>
           </div>
         </div>
-        <div className="Product-Button Mobile">
-          <div className="Product-Actions">
-            {props.status === "Shipped" && (
-              <Button
-                title="Deliver Order"
-                value="Deliver Order"
-                type="link"
-                link={`/Product/`}
-                className="outline gray product"
-              />
-            )}
-            {props.status === "Ordered" && (
-              <Button
-                title="Ship Order"
-                value="Ship Order"
-                type="link"
-                link={`/Product/`}
-                className="outline gray product"
-              />
-            )}
-            {props.status === "Completed" && (
-              <Button
-                title="Ship Order"
-                value="Ship Order"
-                type="link"
-                link={`/Product/`}
-                className="outline gray product"
-              />
-            )}
-          </div>
-        </div>
+
+        <>
+          {ShowProduct && (
+            <div
+              className={
+                ShowProduct ? "prod-Container active" : "prod-Container "
+              }
+            >
+              {ProductsDetail.map((product) => (
+                <AdminProd
+                  type="Order"
+                  data={{ ...product, Quantity: product.Quantity }}
+                  key={product.ProductID}
+                />
+              ))}
+            </div>
+          )}
+        </>
       </div>
-    </div>
+    </>
   );
 };
 

@@ -24,73 +24,115 @@ const AdminProd = (props) => {
   const { AdminID } = useParams();
 
   return (
-    <div className="Product" id="ProductPurchase">
-      <div className="Product-Detail">
-        <div className="Image">
-          <img src={props.PicturePath} alt="" />
-        </div>
-        <div className="Product-Text">
-          <div className="Product-Title">
-            <div className="Product-Name">
-              <h3>
-                {props.Name} <span> | {props.ProductID}</span>
-              </h3>
+    <>
+      {props.type !== "Order" && (
+        <div className="Product" id="ProductPurchase">
+          <div className="Product-Detail">
+            <div className="Image">
+              <img src={props.PicturePath} alt="" />
             </div>
-            <div className="Product-Status">
-              <p>Date Uploaded: {props.DateAdded}</p>
-            </div>
-          </div>
-          <div className="Product-Quantity">
-            <div className="Orders">
-              <p>
-                <span>Category ID:</span> {props.CategoryID}
-              </p>
-              <p>Stock : {props.ProductStock} Piece</p>
-            </div>
+            <div className="Product-Text">
+              <div className="Product-Title">
+                <div className="Product-Name">
+                  <h3>
+                    {props.Name} <span> | {props.ProductID}</span>
+                  </h3>
+                </div>
+                <div className="Product-Status">
+                  <p>Date Uploaded: {props.DateAdded}</p>
+                </div>
+              </div>
+              <div className="Product-Quantity">
+                <div className="Orders">
+                  <p>
+                    <span>Category ID:</span> {props.CategoryID}
+                  </p>
+                  <p>Stock : {props.ProductStock} Piece</p>
+                </div>
 
-            <div className="Total-Orders">
-              <h3>RM {props.Price}</h3>
+                <div className="Total-Orders">
+                  <h3>RM {props.Price}</h3>
+                </div>
+              </div>
+              <div className="Product-Actions">
+                <Button
+                  title="view details"
+                  value="View Details"
+                  type="link"
+                  link={`/Product/${AdminID}/${props.CategoryID}/${props.ProductID}`}
+                  className="outline gray product"
+                />
+                <Button
+                  title="Delete"
+                  value="remove Product"
+                  Name="ProductID"
+                  type="delete"
+                  className="outline gray product cancel"
+                  onClick={() => deleteProduct(props.ProductID)}
+                />
+              </div>
+            </div>
+            <div className="Product-Button Mobile">
+              <div className="Product-Actions">
+                <Button
+                  title="view details"
+                  value="View Details"
+                  type="link"
+                  link={`/Product/${props.UserID}/${props.CategoryID}/${props.ProductID}`}
+                  className="outline gray product"
+                />
+                <Button
+                  title="Delete"
+                  value={props.ProductID}
+                  Name="ProductID"
+                  type="delete"
+                  className="outline gray product cancel"
+                  onClick={() => deleteProduct(props.ProductID)}
+                />
+              </div>
             </div>
           </div>
-          <div className="Product-Actions">
-            <Button
-              title="view details"
-              value="View Details"
-              type="link"
-              link={`/Product/${AdminID}/${props.CategoryID}/${props.ProductID}`}
-              className="outline gray product"
-            />
-            <Button
-              title="Delete"
-              value="remove Product"
-              Name="ProductID"
-              type="delete"
-              className="outline gray product cancel"
-              onClick={() => deleteProduct(props.ProductID)}
-            />
+        </div>
+      )}
+
+      {props.type === "Order" && (
+        <div className="Product Order" id="ProductPurchase">
+          <div className="Product-Detail">
+            <div className="Image">
+              <img src={props.data.PicturePath} alt="" />
+            </div>
+            <div className="Product-Text">
+              <div className="Product-Title">
+                <div className="Product-Name">
+                  <h3>
+                    {props.data.Name} <span> | {props.data.ProductID}</span>
+                  </h3>
+                </div>
+              </div>
+              <div className="Product-Quantity">
+                <div className="Orders">
+                  <p>
+                    <span>Category ID:</span> {props.data.CategoryID}
+                  </p>
+                  <p>Stock : {props.data.ProductStock} Piece</p>
+                  <p>Quantity Ordered : {props.data.Quantity} Piece</p>
+                </div>
+
+                <div className="Total-Orders">
+                  <h3>
+                    RM {props.data.Price} x {props.data.Quantity} Pieces
+                  </h3>
+                  <h3>
+                    Total : RM{" "}
+                    {(props.data.Price * props.data.Quantity).toFixed(2)}
+                  </h3>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
-        <div className="Product-Button Mobile">
-          <div className="Product-Actions">
-            <Button
-              title="view details"
-              value="View Details"
-              type="link"
-              link={`/Product/${props.UserID}/${props.CategoryID}/${props.ProductID}`}
-              className="outline gray product"
-            />
-            <Button
-              title="Delete"
-              value={props.ProductID}
-              Name="ProductID"
-              type="delete"
-              className="outline gray product cancel"
-              onClick={() => deleteProduct(props.ProductID)}
-            />
-          </div>
-        </div>
-      </div>
-    </div>
+      )}
+    </>
   );
 };
 

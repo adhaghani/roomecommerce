@@ -34,7 +34,12 @@ function App() {
           />
           <Route exact path="/User/:UserID" element={<User />} />
           <Route exact path="/Admin/:AdminID" element={<Admin />} />
-          <Route exact path="Order/:UserID/:orderID" element={<Order />} />
+          <Route exact path="/Order/:UserID/:orderID" element={<Order />} />
+          <Route
+            exact
+            path="/Admin/Order/:AdminID/:UserID/:OrderID"
+            element={<Order />}
+          />
           <Route
             exact
             path={"/Product/:UserID/:categoryID/:ProductID"}

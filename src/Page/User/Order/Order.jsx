@@ -1,10 +1,30 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 import "./Order.css";
 
 import ProductUserCard from "../Section/Purchase/UserProduct/ProductUserCard";
 import Button from "../../../Component/Button/Button";
+import { useLocation, useParams } from "react-router-dom";
 const Order = (props) => {
+  const [IsAdmin, setIsAdmin] = useState(false);
+
+  const location = useLocation();
+  function DetermineUser() {
+    const pathname = location.pathname;
+    if (pathname.startsWith("/Admin/Order")) {
+      setIsAdmin(true);
+    } else {
+      setIsAdmin(false);
+    }
+  }
+  useEffect(() => {
+    DetermineUser();
+  }, []);
+
+  const { AdminID, UserID, OrderID } = useParams();
+
+  // GETTING ORDER DETAILS
+
   return (
     <div className="Order" id="Order">
       <div className="Order-Container">
@@ -28,12 +48,9 @@ const Order = (props) => {
               </svg>
               <h3>Back</h3>
             </div>
-            <div className="Title">
-              <h3>Order Details</h3>
-            </div>
             <div className="ID-Desktop">
               <p>
-                OrderID : <span>OID6664421</span>
+                OrderID : <span>{OrderID}</span>
               </p>
               <p>| Order Shipped</p>
               {props.status === "Ordered" && <p>Order Received</p>}

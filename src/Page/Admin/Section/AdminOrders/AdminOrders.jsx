@@ -14,8 +14,6 @@ const AdminOrders = () => {
 
   const [OrderData, setOrderData] = useState([]);
 
-  // TODO: GET ORDER FROM ORDERTABLE
-
   useEffect(() => {
     getOrderData();
   }, []);

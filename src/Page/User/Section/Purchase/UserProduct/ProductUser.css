@@ -93,19 +93,38 @@
 #ProductPurchase.Order .Product-Detail {
   justify-content: space-between;
 }
-#ProductPurchase.Order .Product-Image .Image {
+#ProductPurchase.Order .Product-Detail .Product-Image .Image {
   width: 100px;
 }
-#ProductPurchase.Order .Product-Text .Product-Title .Product-Name h3 span {
+#ProductPurchase.Order .Product-Detail .Product-Text .Product-Title .Product-Name h3 span {
   color: var(--text_colour_dkgray);
   font-weight: var(--font_weight_500);
   font-size: var(--font_size_14);
 }
-#ProductPurchase.Order .Product-Text .Product-Quantity {
+#ProductPurchase.Order .Product-Detail .Product-Text .Product-Quantity {
   align-items: flex-start;
 }
-#ProductPurchase.Order .Product-Text .Product-Quantity .Total-Orders {
+#ProductPurchase.Order .Product-Detail .Product-Text .Product-Quantity .Total-Orders {
   text-align: end;
+}
+
+.Product.Order {
+  margin: 5px 0px;
+  padding: 5px !important;
+  margin-left: 10px;
+  border: 2px solid var(--bg_colour_lgray) !important;
+  border-radius: 6px;
+}
+.Product.Order .Product-Detail {
+  margin-top: 0px !important;
+  padding-right: 20px;
+}
+.Product.Order .Product-Detail .Image {
+  width: 100px !important;
+}
+.Product.Order .Product-Text .Total-Orders h3 {
+  font-size: var(--font_size_16);
+  font-weight: var(--font_weight_600);
 }
 
 @media screen and (min-width: 511px) and (max-width: 768px) {

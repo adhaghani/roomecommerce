@@ -13,8 +13,6 @@ import { Link, useParams } from "react-router-dom";
 const Admin = (props) => {
   const { AdminID } = useParams();
 
-  console.log(AdminID);
-
   const [CurrentPage, setCurrentPage] = useState("Statistic");
   return (
     <div className="Admin" id="Admin">
