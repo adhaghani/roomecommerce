@@ -18,7 +18,6 @@ const ProductDetail = () => {
   useEffect(() => {
     getUser();
     getProduct();
-
     getCategoryName();
   }, []);
 
@@ -258,7 +257,7 @@ const ProductDetail = () => {
           </div>
           {/* Comment Section */}
           <div className="Container-ProductDetail Comment">
-            <CommentSection />
+            <CommentSection UserID={UserID} ProductID={ProductID} />
           </div>
           <Footer />
         </div>

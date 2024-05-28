@@ -1,12 +1,67 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 
 import Comment from "./Comment";
 
 import "./Comment.css";
 
 import Button from "../../../../Component/Button/Button";
+import axios from "axios";
 
 const CommentSection = (props) => {
+  // receive props like UserID, ProductID
+  // get Review Data from server
+  // Create a Post review Function
+
+  const [Review, setReview] = useState({
+    UserID: props.UserID,
+    ProductID: props.ProductID,
+    ReviewTitle: "",
+    ReviewText: ""
+  });
+
+  const [ReviewData, setReviewData] = useState([]);
+
+  const handleChange = (event) => {
+    const name = event.target.name;
+    const value = event.target.value;
+    setReview({ ...Review, [name]: value });
+    console.log(Review);
+  };
+
+  useEffect(() => {
+    getProductReview();
+  }, []);
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    PostReview();
+    getProductReview();
+  };
+
+  const PostReview = () => {
+    fetch("http://localhost/CSC264/RoomAPI/PostReview.php", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(Review)
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        console.log(data);
+      });
+  };
+
+  const getProductReview = () => {
+    // get at Review using ProductID
+    axios
+      .get(`http://localhost/CSC264/RoomAPI/getReview.php/${props.ProductID}`)
+      .then((response) => {
+        console.log(response.data);
+        setReviewData(response.data);
+      });
+    console.log(ReviewData);
+  };
+
   return (
     <div className="Comment-Section">
       <div className="Comment-Container">
@@ -31,8 +86,14 @@ const CommentSection = (props) => {
             <div className="Review-Section">
               <div className="Review-Information-Section">
                 <div className="Name">
-                  <p>UserName</p>
-                  <input type="text" placeholder="Review Title" />
+                  <p>UserName | </p>
+                  <input
+                    name="ReviewTitle"
+                    id="ReviewTitle"
+                    type="text"
+                    placeholder="Review Title"
+                    onChange={handleChange}
+                  />
                 </div>
                 <div className="Date-Posted">
                   <p>Current Date</p>
@@ -41,9 +102,10 @@ const CommentSection = (props) => {
               <div className="Review-Information-Section">
                 <div className="Review-Text">
                   <textarea
-                    name=""
-                    id=""
+                    name="ReviewText"
+                    id="ReviewText"
                     placeholder="Review Details"
+                    onChange={handleChange}
                   ></textarea>
                 </div>
               </div>
@@ -51,9 +113,9 @@ const CommentSection = (props) => {
                 <Button
                   title="Post Review"
                   value="Post Review"
-                  type="Post"
-                  link={`/Product/`}
-                  className="outline primary product"
+                  type="Post Review"
+                  className="fill primary product"
+                  onClick={handleSubmit}
                 />
               </div>
             </div>

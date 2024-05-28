@@ -23,7 +23,7 @@ const Comment = () => {
         <div className="Review-Section">
           <div className="Review-Information-Section">
             <div className="Name">
-              <p>Adhaghani</p>
+              <p>Adhaghani | ReviewID</p>
               <h3>Great Product!</h3>
             </div>
             <div className="Date-Posted">

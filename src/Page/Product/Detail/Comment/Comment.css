@@ -20,8 +20,10 @@
   display: flex;
   justify-content: space-between;
 }
-.Comment-Section .Comment-Container .Comment .CommentDetail-Container .Review-Section .Review-Information-Section .Name h3 {
+.Comment-Section .Comment-Container .Comment .CommentDetail-Container .Review-Section .Review-Information-Section .Name {
   padding-left: 10px;
+}
+.Comment-Section .Comment-Container .Comment .CommentDetail-Container .Review-Section .Review-Information-Section .Name h3 {
   font-size: var(--font_size_18);
   font-weight: var(--font_weight_600);
 }
@@ -31,7 +33,6 @@
   color: var(--text_colour_dkgray);
 }
 .Comment-Section .Comment-Container .Comment .CommentDetail-Container .Review-Section .Review-Information-Section .Name input {
-  margin-left: 10px;
   border: 1px solid black;
   padding: var(--gap_10);
   width: 100%;
