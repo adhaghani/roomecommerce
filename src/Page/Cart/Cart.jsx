@@ -112,6 +112,8 @@ const Cart = () => {
     return subtotal + serviceFeeAmount1 + serviceFeeAmount2;
   };
 
+  const totalAmount = calculateTotalAmount(subtotal, 6, 5);
+
   return (
     <div className="Cart" id="Cart">
       <Navigation isOnHomePage={false} />
@@ -148,9 +150,10 @@ const Cart = () => {
             <Button
               title="Login"
               type="formsubmit"
-              link={`/Checkout/${UserID}`}
+              link={`/Checkout/${UserID}/${totalAmount.toFixed(2)}`}
               className="fill primary long center"
-              value="Checkout"
+              value="checkout"
+              TotalAmount={calculateTotalAmount(subtotal, 6, 5).toFixed(2)}
             />
           </div>
         </div>

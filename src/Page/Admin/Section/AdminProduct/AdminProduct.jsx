@@ -29,7 +29,6 @@ const AdminProduct = () => {
     const name = event.target.name;
     const value = event.target.value;
     setProducts((values) => ({ ...values, [name]: value }));
-    console.log(products);
   };
 
   // Category Choosing Handler
@@ -41,7 +40,6 @@ const AdminProduct = () => {
         ...values,
         CategoryID: selectedOption
       }));
-      console.log(products);
     }
   };
 
@@ -66,12 +64,10 @@ const AdminProduct = () => {
       const filePath = response.data.filePath;
 
       // Get the file path from the server response
-      console.log(filePath);
       const serverpath = "http://localhost/CSC264/RoomAPI/ProductImage";
       let imagepath = serverpath + filePath;
 
       setProducts((values) => ({ ...values, PicturePath: imagepath }));
-      console.log(products);
     } catch (error) {
       console.error(error);
     }
@@ -99,8 +95,7 @@ const AdminProduct = () => {
     })
       .then((response) => response.json())
       .then((data) => {
-        console.log(data);
-        window.location.reload();
+        getProduct();
       });
   };
 
@@ -120,7 +115,6 @@ const AdminProduct = () => {
     const name = event.target.name;
     const value = event.target.value;
     setUpdateProduct((values) => ({ ...values, [name]: value }));
-    console.log(UpdateProduct);
   };
 
   // Product Update Select Handler
@@ -143,7 +137,6 @@ const AdminProduct = () => {
         });
       }
     }
-    console.log(UpdateProduct);
   };
   // Change Image
   const handleImageUpdate = async (event) => {
@@ -166,12 +159,10 @@ const AdminProduct = () => {
       const filePath = response.data.filePath;
 
       // Get the file path from the server response
-      console.log(filePath);
       const serverpath = "http://localhost/CSC264/RoomAPI/ProductImage";
       let imagepath = serverpath + filePath;
 
       setProducts((values) => ({ ...values, PicturePath: imagepath }));
-      console.log(products);
     } catch (error) {
       console.error(error);
     }
@@ -207,7 +198,7 @@ const AdminProduct = () => {
     })
       .then((response) => response.json())
       .then((data) => {
-        console.log(data);
+        getProduct();
       });
   };
   // GET CATEGORY
@@ -221,7 +212,6 @@ const AdminProduct = () => {
     axios
       .get("http://localhost/CSC264/RoomAPI/GetCategory.php")
       .then((response) => {
-        console.log(response.data);
         setCategoryList(response.data);
       });
   }
@@ -237,7 +227,6 @@ const AdminProduct = () => {
     axios
       .get("http://localhost/CSC264/RoomAPI/GetProduct.php")
       .then((response) => {
-        console.log(response.data);
         setProductList(response.data);
       });
   }

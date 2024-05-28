@@ -2,10 +2,12 @@ import React, { useEffect, useState } from "react";
 
 import Navigation from "../../../Component/Navigation/Navigation";
 import Footer from "../../../Component/Footer/Footer";
+import CommentSection from "./Comment/CommentSection";
 
 import "./Detail.css";
 import { useParams } from "react-router-dom";
 import axios from "axios";
+
 const ProductDetail = () => {
   const [Product, setProduct] = useState([]);
   const [CategoryName, setCategoryName] = useState([]);
@@ -254,7 +256,10 @@ const ProductDetail = () => {
               </div>
             </div>
           </div>
-
+          {/* Comment Section */}
+          <div className="Container-ProductDetail Comment">
+            <CommentSection />
+          </div>
           <Footer />
         </div>
       )}

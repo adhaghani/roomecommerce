@@ -7,6 +7,9 @@ const ProductCart = (props) => {
   const [Amount, setAmount] = useState(10);
 
   const addAmount = () => {
+    if (Amount + 1 > props.data.ProductStock) {
+      return;
+    }
     setAmount(Amount + 1);
     props.updateQuantity(props.data.ProductID, Amount + 1);
   };
@@ -49,8 +52,11 @@ const ProductCart = (props) => {
               <h3>
                 {props.data.Name} <span>{props.data.ProductID}</span>
               </h3>
+              <p></p>
             </div>
-            <div className="Product-ID"></div>
+            <div className="Product-ID">
+              <p>{props.data.ProductStock} pieces Left</p>
+            </div>
             <div className="Product-Price">
               <p>
                 Price per Piece: RM<span>{props.data.Price}</span>

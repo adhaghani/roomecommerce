@@ -17,14 +17,11 @@ const AdminProd = (props) => {
         })
         .then((response) => {
           window.location.reload();
-          console.log(response.data);
         });
     }
   }
 
   const { AdminID } = useParams();
-
-  console.log(AdminID);
 
   return (
     <div className="Product" id="ProductPurchase">

@@ -27,7 +27,11 @@ function App() {
           <Route exact path="/Forgot-Password" element={<ForgotPassword />} />
           <Route exact path="/Product/:UserID" element={<Product />} />
           <Route exact path="/Cart/:UserID" element={<Cart />} />
-          <Route exact path="/Checkout/:UserID" element={<Checkout />} />
+          <Route
+            exact
+            path="/Checkout/:UserID/:TotalAmount"
+            element={<Checkout />}
+          />
           <Route exact path="/User/:UserID" element={<User />} />
           <Route exact path="/Admin/:AdminID" element={<Admin />} />
           <Route exact path="Order/:UserID/:orderID" element={<Order />} />

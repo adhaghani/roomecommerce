@@ -40,7 +40,7 @@
   --colour_primary_accent: #bef3ff;
   --width_container: clamp(1px, 100%, 1440px);
   --width_icon: 40px;
-  --width_product: 160px;
+  --width_product: 170px;
   --font_size_64: clamp(32px, 5vw, 64px);
   --font_size_48: clamp(24px, 5vw, 48px);
   --font_size_32: clamp(16px, 5vw, 32px);

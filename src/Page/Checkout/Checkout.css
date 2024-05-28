@@ -5,8 +5,8 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: space-evenly;
-  align-items: center;
   gap: var(--gap_20);
+  height: 100%;
 }
 #Checkout .Container-Checkout .Checkout-Section .Title-Container {
   margin-left: var(--gap_10);
@@ -35,13 +35,17 @@
   padding: 50px;
 }
 #Checkout .Container-Checkout .Checkout-Section .Checkout-Container {
-  position: sticky;
   width: 100%;
+  max-width: 350px;
   padding: var(--padding_20);
   display: flex;
   flex-direction: column;
   gap: var(--gap_20);
-  position: sticky;
+  border-radius: 8px;
+  border: 2px solid var(--bg_colour_lgray);
+}
+#Checkout .Container-Checkout .Checkout-Section .Checkout-Container .Card {
+  border-bottom: 1px solid var(--bg_colour_lgray);
 }
 #Checkout .Container-Checkout .Checkout-Section .Checkout-Container .Card .Checkout-Card {
   display: flex;
@@ -53,7 +57,7 @@
 #Checkout .Container-Checkout .Checkout-Section .Checkout-Container .Card .Checkout-Card .Title {
   width: clamp(100px, 100%, 150px);
   font-size: var(--font_size_16);
-  text-align: right;
+  text-align: left;
 }
 #Checkout .Container-Checkout .Checkout-Section .Checkout-Container .Card .Checkout-Card .Seperator {
   width: 10px;
@@ -63,4 +67,13 @@
   text-align: right;
   letter-spacing: 1px;
   font-size: var(--font_size_16);
+}
+#Checkout .Container-Checkout .Checkout-Section.two {
+  display: flex;
+  align-items: center;
+}
+#Checkout .Container-Checkout .Checkout-Section.two.Card {
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap_20);
 }/*# sourceMappingURL=Checkout.css.map */
