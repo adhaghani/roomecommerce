@@ -2,6 +2,49 @@
   width: 100%;
   height: 100%;
 }
+.Comment-Section .Comment-Container .buttons {
+  display: flex;
+  gap: var(--gap_10);
+  margin-left: var(--gap_20);
+  background-color: transparent;
+  align-items: center;
+  padding: var(--gap_10) var(--gap_20);
+  border-radius: 6px;
+  border: 2px solid var(--bg_colour_lgray);
+  cursor: pointer;
+}
+.Comment-Section .Comment-Container .buttons .AddReview {
+  display: grid;
+  place-items: center;
+}
+.Comment-Section .Comment-Container .buttons p {
+  color: var(--text_colour_black);
+  font-weight: var(--font_weight_500);
+  font-size: var(--font_size_14);
+}
+.Comment-Section .Comment-Container .buttons:hover {
+  background-color: var(--colour_primary_dark);
+  border: 2px solid var(--colour_primary_dark);
+}
+.Comment-Section .Comment-Container .buttons:hover p {
+  color: var(--text_colour_white);
+}
+.Comment-Section .Comment-Container .buttons:hover svg path {
+  stroke: #fff;
+}
+.Comment-Section .Comment-Container .buttons.active svg {
+  transform: rotate(45deg);
+}
+.Comment-Section .Comment-Container .buttons.active:hover {
+  background-color: var(--bg_colour_lred);
+  border: 2px solid var(--bg_colour_red);
+}
+.Comment-Section .Comment-Container .buttons.active:hover p {
+  color: var(--bg_colour_red);
+}
+.Comment-Section .Comment-Container .buttons.active:hover svg path {
+  stroke: var(--bg_colour_red);
+}
 .Comment-Section .Comment-Container .Comment {
   margin: var(--gap_20);
   border: 2px solid var(--bg_colour_lgray);
@@ -68,4 +111,19 @@
 .Comment-Section .Comment-Container .Comment .CommentDetail-Container .Review-Section .Review-Information-Section.button {
   margin-top: 10px;
   justify-content: flex-end;
+}
+.Comment-Section .Comment-Container .Comment .CommentDetail-Container .noreview {
+  display: block;
+  width: 100%;
+  text-align: center;
+}
+
+@media screen and (min-width: 1px) and (max-width: 500px) {
+  .Comment-Section .Comment-Container .buttons {
+    margin-left: 0px;
+  }
+  .Comment-Section .Comment-Container .Comment {
+    margin: 20px 0px;
+    text-align: left;
+  }
 }/*# sourceMappingURL=Comment.css.map */

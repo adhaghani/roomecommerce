@@ -9,6 +9,7 @@
   width: var(--width_container);
   margin: auto;
   padding: 120px var(--gap_20);
+  padding-bottom: 50px;
   display: flex;
   justify-content: center;
 }

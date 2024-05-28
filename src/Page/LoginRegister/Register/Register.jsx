@@ -513,6 +513,7 @@ const Register = () => {
                       type="formsubmit"
                       className="fill primary"
                       value={"Register"}
+                      link="/Login"
                     />
                   </div>
                 </>

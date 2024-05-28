@@ -1,6 +1,20 @@
-import React from "react";
+import axios from "axios";
+import React, { useEffect, useState } from "react";
 
-const Comment = () => {
+const Comment = (props) => {
+  const [User, setUser] = useState([]);
+
+  const getUserData = () => {
+    axios
+      .get(`http://localhost/CSC264/RoomAPI/getUser.php/${props.data.UserID}`)
+      .then((response) => {
+        setUser(response.data);
+      });
+  };
+  useEffect(() => {
+    getUserData();
+  }, []);
+
   return (
     <div className="Comment">
       <div className="CommentDetail-Container">
@@ -23,24 +37,18 @@ const Comment = () => {
         <div className="Review-Section">
           <div className="Review-Information-Section">
             <div className="Name">
-              <p>Adhaghani | ReviewID</p>
-              <h3>Great Product!</h3>
+              <p>
+                {User.firstName} | {props.data.ReviewID}
+              </p>
+              <h3>{props.data.ReviewTitle}</h3>
             </div>
             <div className="Date-Posted">
-              <p>2024-12-31</p>
+              <p>{props.data.ReviewDate}</p>
             </div>
           </div>
           <div className="Review-Information-Section">
             <div className="Review-Text">
-              <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-                enim ad minim veniam, quis nostrud exercitation ullamco laboris
-                nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor
-                in reprehenderit in voluptate velit esse cillum dolore eu fugiat
-                nulla pariatur. Excepteur sint occaecat cupidatat non proident,
-                sunt in culpa qui officia deserunt mollit anim id est laborum.
-              </p>
+              <p>{props.data.ReviewText}</p>
             </div>
           </div>
         </div>

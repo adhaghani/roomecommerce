@@ -13,7 +13,9 @@ const AdminOrd = (props) => {
         <div className="Product-Text">
           <div className="Product-Title">
             <div className="Product-Name">
-              <h3>OID25440210</h3>
+              <h3>
+                {props.data.OrderID} | {props.data.UserID}
+              </h3>
             </div>
             {
               <div className="Product-Status">
@@ -22,26 +24,21 @@ const AdminOrd = (props) => {
                   <p className="red">Cancelled</p>
                 )}
                 {props.status === "Ordered" && (
-                  <p className="yellow">Ordered</p>
+                  <p className="yellow">Pending</p>
                 )}
                 {props.status === "Completed" && (
-                  <p className="green">Completed</p>
+                  <p className="green">Delivered</p>
                 )}
               </div>
             }
           </div>
           <div className="Product-Quantity">
             <div className="Orders">
-              <p>
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quasi,
-                molestiae!
-              </p>
-              <p>
-                <span className="price">2</span> pieces
-              </p>
+              <p>Date Ordered : {props.data.OrderDate}</p>
+              <p>Payment Method : {props.data.PaymentMethod}</p>
             </div>
             <div className="Total-Orders">
-              <h3>RM 500.00</h3>
+              <h3>RM {props.data.TotalPrice}</h3>
             </div>
           </div>
           <div className="Product-Actions">
@@ -49,7 +46,7 @@ const AdminOrd = (props) => {
               title="View Detail"
               value="View Detail"
               type="link"
-              link={`/Order/${props.UserID}/${props.OrderID}`}
+              link={`/Order/${props.data.UserID}/${props.data.OrderID}`}
               className="outline gray product"
             />
             {props.status === "Shipped" && (

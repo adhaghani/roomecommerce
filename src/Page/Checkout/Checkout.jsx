@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 
 import "./Checkout.css";
@@ -123,11 +123,14 @@ const Checkout = () => {
       });
   };
 
+  const navigate = useNavigate();
+
   const handleSubmit = (event) => {
     event.preventDefault();
     PostOrder();
     setTimeout(() => {
       PostOrderDetails();
+      navigate(`/User/${UserID}`);
     }, 500);
   };
 
