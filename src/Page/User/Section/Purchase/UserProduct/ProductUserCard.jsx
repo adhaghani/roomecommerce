@@ -209,23 +209,27 @@ const ProductUserCard = (props) => {
         <div className="Product Order" id="ProductPurchase">
           <div className="Product-Detail">
             <div className="Product-Image">
-              <div className="Image"></div>
+              <div className="Image">
+                <img src={props.data.PicturePath} alt="" />
+              </div>
             </div>
             <div className="Product-Text">
               <div className="Product-Title">
                 <div className="Product-Name">
                   <h3>
-                    Product Name <span>| PID055324</span>
+                    {props.data.Name} <span>| {props.data.ProductID}</span>
                   </h3>
                 </div>
               </div>
               <div className="Product-Quantity">
                 <div className="Orders">
-                  <p>RM 250.00/pcs</p>
+                  <p>RM {props.data.Price} per Piece</p>
                 </div>
                 <div className="Total-Orders">
-                  <p>2 pcs</p>
-                  <h3>RM 500.00</h3>
+                  <p>{props.data.Quantity} Pieces</p>
+                  <h3>
+                    RM {(props.data.Price * props.data.Quantity).toFixed(2)}
+                  </h3>
                 </div>
               </div>
             </div>

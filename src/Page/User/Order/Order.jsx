@@ -25,6 +25,87 @@ const Order = (props) => {
 
   // GETTING ORDER DETAILS
 
+  const [Products, setProducts] = useState([]);
+  const [ProductsDetail, setProductsDetail] = useState([]);
+  const [Order, setOrder] = useState({});
+  const [OrderRecipient, setOrderRecipient] = useState({});
+
+  useEffect(() => {
+    getProductData();
+    getOrder();
+    getOrderRecipient();
+  }, []);
+
+  useEffect(() => {
+    getProductDetails();
+  }, [Products]);
+
+  const getOrder = () => {
+    fetch(`http://localhost/CSC264/RoomAPI/getOrder.php/${OrderID}`).then(
+      (response) => {
+        response.json().then((data) => {
+          setOrder(data);
+          console.log(Order);
+        });
+      }
+    );
+  };
+  const getOrderRecipient = () => {
+    fetch(
+      `http://localhost/CSC264/RoomAPI/getOrderRecipient.php/${OrderID}`
+    ).then((response) => {
+      response.json().then((data) => {
+        setOrderRecipient(data);
+        console.log(OrderRecipient);
+      });
+    });
+  };
+
+  const getProductData = () => {
+    fetch(`http://localhost/CSC264/RoomAPI/getOrderDetail.php/${OrderID}`).then(
+      (response) => {
+        response.json().then((data) => {
+          setProducts(data);
+        });
+      }
+    );
+  };
+
+  const getProductDetails = async () => {
+    try {
+      const promises = Products.map(async (product) => {
+        const productDetail = await getProductDetail(product.ProductID);
+        return { ...productDetail, Quantity: product.Quantity };
+      });
+      const results = await Promise.all(promises);
+      setProductsDetail(results);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+  const getProductDetail = (ProductID) => {
+    return fetch(
+      `http://localhost/CSC264/RoomAPI/getProductDetail.php/${ProductID}`
+    )
+      .then((response) => response.json())
+      .catch((error) => {
+        console.error(error);
+        throw error;
+      });
+  };
+
+  const decideStatus = (status) => {
+    if (status === 1) {
+      return "Order received";
+    } else if (status === 2) {
+      return "Order Shipped";
+    } else if (status === 3) {
+      return "Order Delivered";
+    } else if (status === 4) {
+      return "Order Cancelled";
+    }
+  };
+
   return (
     <div className="Order" id="Order">
       <div className="Order-Container">
@@ -52,18 +133,19 @@ const Order = (props) => {
               <p>
                 OrderID : <span>{OrderID}</span>
               </p>
-              <p>| Order Shipped</p>
-              {props.status === "Ordered" && <p>Order Received</p>}
-              {props.status === "Shipped" && <p>OrderShipped</p>}
-              {props.status === "Cancelled" && <p>OrderCancelled</p>}
-              {props.status === "Received" && <p>Order Received</p>}
+              <p>| {decideStatus(Order.StatusID)} </p>
             </div>
           </div>
         </div>
         <div className="Status-Card">
           <div className="Status-Detail">
             <div className="Status-Main">
-              <h2>We are Packing your orders</h2>
+              {Order.StatusID == 1 && <h2>We are Packing your orders</h2>}
+              {Order.StatusID == 2 && (
+                <h2>Your order has been shipped and will arrive soon</h2>
+              )}
+              {Order.StatusID == 3 && <h2>Your order has been delivered</h2>}
+              {Order.StatusID == 4 && <h2>This order is cancelled</h2>}
             </div>
           </div>
           <div className="Status-Image">
@@ -202,11 +284,15 @@ const Order = (props) => {
                 <h3>Delivery Address</h3>
               </div>
               <div className="address">
-                <p className="Name">John Cole</p>
-                <p className="Phone">+0123456789</p>
-                <p className="Line1">NO 14 JALAN TENAGA 16</p>
-                <p className="Line2">TAMAN TENAGA 43000 KAJANG</p>
-                <p className="StateCountry">SELANGOR , MALAYSIA</p>
+                <p className="Name">
+                  {OrderRecipient.FirstName} {OrderRecipient.LastName}
+                </p>
+                <p className="Phone">{OrderRecipient.PhoneNumber}</p>
+                <p className="Line1">{OrderRecipient.AddressLine1}</p>
+                <p className="Line2">{OrderRecipient.AddressLine2}</p>
+                <p className="StateCountry">
+                  {OrderRecipient.City} , {OrderRecipient.Country}
+                </p>
               </div>
             </div>
           </div>
@@ -233,7 +319,7 @@ const Order = (props) => {
                 <h3>Payment Method</h3>
               </div>
               <div className="method">
-                <p className="Name">Cash on Delivery</p>
+                <p className="Name">{Order.PaymentMethod}</p>
               </div>
             </div>
           </div>
@@ -262,51 +348,51 @@ const Order = (props) => {
               <div className="detail">
                 <div className="details-section">
                   <h3>Order ID</h3>
-                  <h3>OID2400512</h3>
+                  <h3>{OrderID}</h3>
                 </div>
                 <div className="details-section">
                   <p>Order Time</p>
-                  <p>13-05-2024 00:30 </p>
-                </div>
-                <div className="details-section">
-                  <p>Item Ordered</p>
-                  <p>25 total products</p>
+                  <p>{Order.OrderDate} </p>
                 </div>
                 <div className="details-section">
                   <p>Total Amount</p>
-                  <p>RM 2500.00</p>
+                  <p>RM {Order.TotalPrice}</p>
                 </div>
               </div>
             </div>
           </div>
         </div>
         {/* Product Details */}
-        <div className="Section-Container">
+        <div className="Section-Container Product">
           <div className="Section Product">
-            <ProductUserCard OnOrder={true} />
-            <ProductUserCard OnOrder={true} />
-            <ProductUserCard OnOrder={true} />
-            <ProductUserCard OnOrder={true} />
-            <ProductUserCard OnOrder={true} />
+            {ProductsDetail.map((product) => (
+              <ProductUserCard
+                OnOrder={true}
+                data={{ ...product, Quantity: product.Quantity }}
+              />
+            ))}
+          </div>
+
+          <div className="Section Product Total">
             <div className="Order-Total">
               <div className="Subtotal">
                 <h3>
-                  <span className="reason">Tax (10%)</span>:
-                  <span className="amount">RM250.00</span>
+                  <span className="reason">Tax (6%)</span>:
+                  <span className="amount">
+                    RM {(0.06 * Order.TotalPrice).toFixed(2)}
+                  </span>
                 </h3>
                 <h3>
-                  <span className="reason">Service Fee (10%)</span>:
-                  <span className="amount">RM250.00</span>
-                </h3>
-                <h3>
-                  <span className="reason">Delivery Fee (10%)</span>:
-                  <span className="amount">RM250.00</span>
+                  <span className="reason">Service Fee (5%)</span>:
+                  <span className="amount">
+                    RM {(0.05 * Order.TotalPrice).toFixed(2)}
+                  </span>
                 </h3>
               </div>
               <div className="total">
                 <h3>
                   <span className="reason">Total</span>:
-                  <span className="amount">RM2500.00</span>
+                  <span className="amount">{Order.TotalPrice}</span>
                 </h3>
               </div>
             </div>

@@ -150,12 +150,12 @@
   text-align: center;
 }
 #Order .Order-Container .Section-Container .Section.Product {
-  width: clamp(300px, 100%, 800px);
-  flex-direction: column;
+  width: 100%;
+  margin: 0px;
 }
 #Order .Order-Container .Section-Container .Section.Product .Order-Total {
-  border-top: 2px solid var(--bg_colour_lgray);
-  border-bottom: 2px solid var(--bg_colour_lgray);
+  border: 2px solid var(--bg_colour_lgray);
+  border-radius: 6px;
   padding: var(--gap_20);
   text-align: end;
 }
@@ -195,6 +195,9 @@
 #Order .Order-Container .Section-Container .Section.Product .Order-Total .total h3 span.amount {
   width: 150px;
 }
+#Order .Order-Container .Section-Container .Section.Product.Total {
+  margin: 0px;
+}
 #Order .Order-Container .Section-Container.Details {
   gap: var(--gap_20);
   margin: auto;
@@ -211,10 +214,25 @@
 }
 #Order .Order-Container .Section-Container.Button {
   padding: 0px var(--gap_20);
-  margin: var(--gap_20) auto;
-  max-width: 800px;
-  justify-content: flex-end;
+  margin: 20px auto;
+  max-width: 100%;
+  justify-content: center;
   gap: var(--gap_20);
+}
+#Order .Order-Container .Section-Container.Product {
+  margin: 0px;
+}
+#Order .Order-Container .Section-Container.Product .Section.Product {
+  padding: var(--gap_20);
+  gap: var(--gap_1s0) var(--gap_10);
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+}
+#Order .Order-Container .Section-Container.Product .Section.Product .Product {
+  min-width: 380px;
+  flex: 1 1 100%;
+  max-width: 33%;
 }
 
 @media screen and (min-width: 1px) and (max-width: 559px) {
