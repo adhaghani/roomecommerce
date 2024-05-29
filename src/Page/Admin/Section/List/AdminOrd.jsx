@@ -93,6 +93,53 @@ const AdminOrd = (props) => {
     window.location.reload();
   };
 
+  const deleteOrder = (event) => {
+    event.preventDefault();
+    axios
+      .delete(`http://localhost/CSC264/RoomAPI/DeleteOrder.php`, {
+        params: {
+          OrderID: props.data.OrderID
+        }
+      })
+      .then((response) => {
+        console.log(response.data);
+      });
+  };
+
+  const deleteOrderDetail = (event) => {
+    event.preventDefault();
+    axios
+      .delete(`http://localhost/CSC264/RoomAPI/DeleteOrderDetail.php`, {
+        params: {
+          OrderID: props.data.OrderID
+        }
+      })
+      .then((response) => {
+        console.log(response.data);
+      });
+  };
+
+  const deleteOrderRecipient = (event) => {
+    event.preventDefault();
+    axios
+      .delete(`http://localhost/CSC264/RoomAPI/DeleteOrderRecipient.php`, {
+        params: {
+          OrderID: props.data.OrderID
+        }
+      })
+      .then((response) => {
+        console.log(response.data);
+      });
+  };
+
+  const handleDeleteOrder = (event) => {
+    event.preventDefault();
+    deleteOrderDetail(event);
+    setTimeout(() => {
+      deleteOrder(event);
+    }, 1000);
+  };
+
   return (
     <>
       <div className="orderList" id="orderList">
@@ -163,6 +210,7 @@ const AdminOrd = (props) => {
                     title="Delete"
                     value="Delete"
                     type="Delete"
+                    onClick={handleDeleteOrder}
                     className="outline gray product cancel"
                   />
                 )}

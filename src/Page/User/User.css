@@ -20,6 +20,48 @@
   background-color: var(--bg_colour_lgray);
   margin-bottom: var(--gap_20);
 }
+#User .User-Container .Profile .List {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+#User .User-Container .Profile .List .hamburger {
+  aspect-ratio: 1/1;
+  width: 50px;
+  height: 50px;
+  border-radius: 12px;
+  display: none;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 5px;
+  cursor: pointer;
+  background-color: transparent;
+}
+#User .User-Container .Profile .List .hamburger div {
+  width: 60%;
+  height: 5px;
+  background-color: var(--bg_colour_black);
+  border-radius: 15px;
+}
+#User .User-Container .Profile .List .hamburger div.top {
+  width: 60%;
+}
+#User .User-Container .Profile .List .hamburger div.bot {
+  width: 60%;
+}
+#User .User-Container .Profile .List .hamburger.active div.top {
+  width: 60%;
+  transform: rotate(45deg) translate(7px, 7px);
+}
+#User .User-Container .Profile .List .hamburger.active div.mid {
+  width: 0%;
+  opacity: 0;
+}
+#User .User-Container .Profile .List .hamburger.active div.bot {
+  width: 60%;
+  transform: rotate(-45deg) translate(7px, -7px);
+}
 #User .User-Container .Profile .List li {
   padding: var(--padding_10) 0px;
   display: flex;
@@ -51,22 +93,85 @@
   width: clamp(300px, 100%, 800px);
 }
 
-@media screen and (min-width: 1px) and (max-width: 768px) {
+@media screen and (min-width: 501px) and (max-width: 768px) {
   #User .User-Container {
-    flex-direction: column;
+    gap: 0px;
+    padding-left: 70px;
   }
   #User .User-Container .Profile {
-    width: 100%;
+    height: 100%;
+    width: 50px;
+    position: fixed;
+    z-index: 3;
+    left: 0px;
   }
   #User .User-Container .Profile .greeting {
-    text-align: center;
+    display: none;
+  }
+  #User .User-Container .Profile .line {
+    display: none;
   }
   #User .User-Container .Profile .List {
+    width: 50px;
+    flex-direction: column;
+  }
+  #User .User-Container .Profile .List .hamburger {
     display: flex;
   }
   #User .User-Container .Profile .List li {
-    flex: 1 1 0;
-    gap: 5px;
+    padding: 20px 0px;
+    width: 50px;
+    margin-left: 10px;
+    overflow: hidden;
+  }
+  #User .User-Container .Profile .List li .name {
+    opacity: 0;
+  }
+  #User .User-Container .Profile .List.active {
+    width: 250px;
+    background-color: white;
+    box-shadow: rgba(17, 17, 26, 0.05) 0px 1px 0px, rgba(17, 17, 26, 0.1) 0px 0px 8px;
+    border-radius: 0px 12px 12px 0px;
+  }
+  #User .User-Container .Profile .List.active li {
+    width: 100%;
+  }
+  #User .User-Container .Profile .List.active li .name {
+    opacity: 1;
+  }
+}
+@media screen and (min-width: 1px) and (max-width: 500px) {
+  #User .User-Container .Profile {
+    position: fixed;
+    height: 80px;
+    background-color: white;
+    width: 100%;
+    bottom: 0px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: rgba(17, 17, 26, 0.05) 0px 1px 0px, rgba(17, 17, 26, 0.1) 0px 0px 8px;
+  }
+  #User .User-Container .Profile .line {
+    display: none;
+  }
+  #User .User-Container .Profile .greeting {
+    display: none;
+  }
+  #User .User-Container .Profile .List {
+    flex-direction: row;
+  }
+  #User .User-Container .Profile .List li {
+    width: 100px;
     flex-direction: column;
+    gap: 0px !important;
+    padding: 0px !important;
+  }
+  #User .User-Container .Profile .List li .icon svg {
+    width: 30px;
+  }
+  #User .User-Container .Profile .List li .name h4 {
+    text-align: center;
+    font-size: 11px !important;
   }
 }/*# sourceMappingURL=User.css.map */

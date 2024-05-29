@@ -199,15 +199,17 @@ const AdminCategory = () => {
         {CurrentPage == 3 && (
           <div className="Page">
             <div className="Page-Container List">
-              {CategoryList.map((item) => {
-                return (
-                  <AdminCat
-                    key={item.CategoryID}
-                    Name={item.Name}
-                    CategoryID={item.CategoryID}
-                  />
-                );
-              })}
+              <table border="1" className="Table">
+                {CategoryList.map((item) => {
+                  return (
+                    <AdminCat
+                      key={item.CategoryID}
+                      Name={item.Name}
+                      CategoryID={item.CategoryID}
+                    />
+                  );
+                })}
+              </table>
             </div>
           </div>
         )}

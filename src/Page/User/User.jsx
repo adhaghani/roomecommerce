@@ -1,4 +1,7 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
+import { useParams } from "react-router-dom";
+import axios from "axios";
 
 import Footer from "../../Component/Footer/Footer";
 import Navigation from "../../Component/Navigation/Navigation";
@@ -8,21 +11,52 @@ import Account from "./Section/Account/Account";
 import Liked from "./Section/Liked/Liked";
 import Purchase from "./Section/Purchase/Purchase";
 import "./User.css";
-import { useParams } from "react-router-dom";
 
-import { Link } from "react-router-dom";
 const User = (props) => {
   const [CurrentPage, setCurrentPage] = useState("Purchase");
 
   const { UserID } = useParams();
+
+  const [User, setUser] = useState({});
+
+  const getUserData = () => {
+    axios
+      .get(`http://localhost/CSC264/RoomAPI/getUser.php/${UserID}`)
+      .then((response) => {
+        setUser(response.data);
+      });
+  };
+
+  useEffect(() => {
+    getUserData();
+  }, []);
+
+  console.log(User);
+
+  const [IsActive, setIsActive] = useState(false);
+
   return (
     <div className="User" id="User">
-      <Navigation />
+      <Navigation
+        UserProfilePage={true}
+        UserData={User}
+        setCurrentPage={setCurrentPage}
+        CurrentPage={CurrentPage}
+      />
       <div className="User-Container">
         <div className="Profile">
-          <h3 className="greeting">Hello, Adhaghani</h3>
+          <h3 className="greeting">Hello, {User.Username}</h3>
           <div className="line"></div>
-          <ul className="List">
+          <ul className={IsActive ? "List active" : "List"}>
+            <button
+              className={IsActive ? "hamburger active" : "hamburger"}
+              id="hamburger"
+              onClick={() => setIsActive(!IsActive)}
+            >
+              <div className="top"></div>
+              <div className="mid"></div>
+              <div className="bot"></div>
+            </button>
             <li
               className={CurrentPage === "Purchase" ? "active" : ""}
               onClick={() => setCurrentPage("Purchase")}
@@ -80,7 +114,6 @@ const User = (props) => {
                 <h4>Update Account</h4>
               </div>
             </li>
-
             <li
               className={CurrentPage === "Like" ? "active" : ""}
               onClick={() => setCurrentPage("Like")}

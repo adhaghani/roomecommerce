@@ -155,7 +155,7 @@ const Navigation = (props) => {
               <Link to="/">Home</Link>
             </li>
             <li>
-              <Link to="/Product">Products</Link>
+              <Link to={`/Product/${UserID}`}>Products</Link>
             </li>
           </ul>
         )}

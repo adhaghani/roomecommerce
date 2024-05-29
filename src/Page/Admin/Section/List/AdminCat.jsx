@@ -24,14 +24,12 @@ function deleteCategory(CategoryID) {
 
 const AdminCat = (props) => {
   return (
-    <div className="categoryList" id="categoryList">
-      <div className="Category-Details">
-        <div className="Category-ID">
-          <span className="title">Category ID:</span>
-          <span>{props.CategoryID}</span>
-          <span>| {props.Name}</span>
-        </div>
-        <div className="Category-Button">
+    <tr>
+      <div className="CategoryContainer">
+        <div className="CategoryID">{props.CategoryID}</div>
+        <div className="Name">{props.Name}</div>
+        <div className="Button">
+          {" "}
           <Button
             title="Delete"
             Name="CategoryID"
@@ -41,7 +39,7 @@ const AdminCat = (props) => {
           />
         </div>
       </div>
-    </div>
+    </tr>
   );
 };
 

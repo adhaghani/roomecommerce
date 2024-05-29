@@ -47,7 +47,7 @@ const Checkout = () => {
     StatusID: 1
   });
 
-  const [OrderData, setOrderData] = useState({
+  const [OrderData, setOrderData] = ({
     // fName,Lname,aL1,aL2,postcode,City,Country,TelNo
     orderRecipient: {
       FirstName: "",

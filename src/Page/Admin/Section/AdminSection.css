@@ -83,6 +83,30 @@
 .admin-Container.Category .Page .Page-Container.List {
   max-width: 700px;
 }
+.admin-Container.Category .Page .Page-Container.List table {
+  width: 100%;
+}
+.admin-Container.Category .Page .Page-Container.List table tr {
+  height: 60px !important;
+  display: block;
+  border: 2px solid var(--bg_colour_lgray);
+  border-radius: 6px;
+  margin: 10px 0px;
+  height: 50px;
+}
+.admin-Container.Category .Page .Page-Container.List table tr .CategoryContainer {
+  display: flex;
+  height: 100%;
+  align-items: center;
+  padding: 10px;
+}
+.admin-Container.Category .Page .Page-Container.List table tr .CategoryContainer div {
+  flex: 1 1 0;
+  display: flex;
+}
+.admin-Container.Category .Page .Page-Container.List table tr .CategoryContainer div.Button {
+  justify-content: flex-end;
+}
 .admin-Container.Product .Page {
   padding: var(--gap_10);
 }
