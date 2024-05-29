@@ -11,25 +11,6 @@ const Navigation = (props) => {
     setIsActive(!IsActive);
   };
 
-  const [isSideNavVisible, setIsSideNavVisible] = useState(false);
-
-  useEffect(() => {
-    const handleResize = () => {
-      if (window.innerWidth >= 910) {
-        setIsSideNavVisible(false);
-      } else {
-        setIsSideNavVisible(true);
-      }
-    };
-
-    window.addEventListener("resize", handleResize);
-
-    // Clean up the event listener on component unmount
-    return () => {
-      window.removeEventListener("resize", handleResize);
-    };
-  }, []);
-
   const { UserID } = useParams();
 
   return (
@@ -72,7 +53,7 @@ const Navigation = (props) => {
                   <Link to="/">Home</Link>
                 </li>
                 <li>
-                  <Link to={`/Product/${UserID}`}>Furniture</Link>
+                  <Link to={`/Product/${UserID}`}>Products</Link>
                 </li>
               </ul>
             )}
@@ -159,41 +140,39 @@ const Navigation = (props) => {
           </div>
         </div>
       </div>
-      {isSideNavVisible && (
-        <div
-          className={IsActive ? "SideNavigation active" : "SideNavigation"}
-          id="SideNavigation"
-        >
-          {!props.isOnHomePage && (
-            <div className="Search">
-              <input type="text" placeholder="Search" />
-            </div>
-          )}
-          {!props.isOnHomePage && (
-            <ul className="link">
-              <li>
-                <Link to="/">Home</Link>
-              </li>
-              <li>
-                <Link to="/Product">Furniture</Link>
-              </li>
-            </ul>
-          )}
-          {props.isOnHomePage && (
-            <ul className="link">
-              <li>
-                <Link to="/">Home</Link>
-              </li>
-              <li>
-                <a href="#About">About Us</a>
-              </li>
-              <li>
-                <Link to="/Sales">Outlet</Link>
-              </li>
-            </ul>
-          )}
-        </div>
-      )}
+      <div
+        className={IsActive ? "SideNavigation active" : "SideNavigation"}
+        id="SideNavigation"
+      >
+        {!props.isOnHomePage && (
+          <div className="Search">
+            <input type="text" placeholder="Search" />
+          </div>
+        )}
+        {!props.isOnHomePage && (
+          <ul className="link">
+            <li>
+              <Link to="/">Home</Link>
+            </li>
+            <li>
+              <Link to="/Product">Products</Link>
+            </li>
+          </ul>
+        )}
+        {props.isOnHomePage && (
+          <ul className="link">
+            <li>
+              <Link to="/">Home</Link>
+            </li>
+            <li>
+              <a href="#About">About Us</a>
+            </li>
+            <li>
+              <Link to="/Sales">Outlet</Link>
+            </li>
+          </ul>
+        )}
+      </div>
     </>
   );
 };

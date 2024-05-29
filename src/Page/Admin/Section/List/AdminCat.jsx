@@ -34,7 +34,6 @@ const AdminCat = (props) => {
         <div className="Category-Button">
           <Button
             title="Delete"
-            value={props.CategoryID}
             Name="CategoryID"
             type="delete"
             className="outline gray product cancel"

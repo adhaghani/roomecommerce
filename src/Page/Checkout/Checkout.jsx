@@ -73,13 +73,14 @@ const Checkout = () => {
           ProductID: item.ProductID,
           Quantity: item.Quantity
         }));
+
+        // Update the OrderData state with the orderDetail array
         setOrderData((prevOrderData) => ({
           ...prevOrderData,
           orderDetail
         }));
       });
   };
-
   useEffect(() => {
     getCartData();
   }, []);
@@ -129,10 +130,36 @@ const Checkout = () => {
     event.preventDefault();
     PostOrder();
     setTimeout(() => {
+      subtractProductStock();
       PostOrderDetails();
       navigate(`/User/${UserID}`);
-    }, 500);
+    }, 50);
   };
+
+  const subtractProductStock = async () => {
+    const productStocks = {};
+
+    for (const item of OrderData.orderDetail) {
+      const response = await axios.get(
+        `http://localhost/CSC264/RoomAPI/getProductStock.php/${item.ProductID}`
+      );
+      const productStock = response.data.ProductStock;
+      productStocks[item.ProductID] = productStock;
+    }
+    for (const item of OrderData.orderDetail) {
+      const productStock = productStocks[item.ProductID];
+      const newStock = productStock - item.Quantity;
+      await axios.post(
+        `http://localhost/CSC264/RoomAPI/UpdateProductStock.php`,
+        {
+          ProductID: item.ProductID,
+          ProductStock: newStock
+        }
+      );
+    }
+  };
+
+  const clearCart = (UserID) => {};
 
   return (
     <div className="Checkout" id="Checkout">

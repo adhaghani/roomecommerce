@@ -1,14 +1,70 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import axios from "axios";
+
 import UserNav from "../../UserNavigation/UserNav";
 
 import "./Purchase.css";
 
 import ProductUserCard from "./UserProduct/ProductUserCard";
+import AdminOrd from "../../../Admin/Section/List/AdminOrd";
+import { useParams } from "react-router-dom";
+
 const Purchase = (props) => {
   const [CurrentPage, setCurrentPage] = useState(1);
   const handleSubNavClick = (item) => {
     setCurrentPage(item);
   };
+
+  const { UserID } = useParams();
+  const [OrderData, setOrderData] = useState([]);
+
+  const getOrderData = () => {
+    axios
+      .get(`http://localhost/CSC264/RoomAPI/getOrderUser.php/${UserID}`)
+      .then((response) => {
+        setOrderData(response.data);
+        console.log(response.data);
+      });
+  };
+
+  useEffect(() => {
+    getOrderData();
+  }, []);
+
+  const decideStatus = (status) => {
+    if (status === 1) {
+      return "Ordered";
+    } else if (status === 2) {
+      return "Shipped";
+    } else if (status === 3) {
+      return "Completed";
+    } else if (status === 4) {
+      return "Cancelled";
+    }
+  };
+
+  let OrderedOrders = [];
+  let shippedOrders = [];
+  let completedOrders = [];
+  let cancelledOrders = [];
+
+  const determineOrdersType = () => {
+    OrderedOrders = OrderData.filter(
+      (item) => decideStatus(item.StatusID) === "Ordered"
+    );
+    shippedOrders = OrderData.filter(
+      (item) => decideStatus(item.StatusID) === "Shipped"
+    );
+    completedOrders = OrderData.filter(
+      (item) => decideStatus(item.StatusID) === "Completed"
+    );
+    cancelledOrders = OrderData.filter(
+      (item) => decideStatus(item.StatusID) === "Cancelled"
+    );
+  };
+
+  determineOrdersType();
+
   return (
     <div className="Purchase" id="Purchase">
       <UserNav category="Purchase" onClick={handleSubNavClick} />
@@ -16,51 +72,70 @@ const Purchase = (props) => {
         {CurrentPage === 1 && (
           <div className="page">
             <div className="productCard-Container">
-              <ProductUserCard status="Ordered" OrderPage={true} />
-              <ProductUserCard status="Cancelled" OrderPage={true} />
-              <ProductUserCard status="Ordered" OrderPage={true} />
-              <ProductUserCard status="Shipped" OrderPage={true} />
-              <ProductUserCard status="Shipped" OrderPage={true} />
-              <ProductUserCard status="Shipped" OrderPage={true} />
-              <ProductUserCard hasCompleted={true} OrderPage={true} />
-              <ProductUserCard hasCompleted={true} OrderPage={true} />
-              <ProductUserCard status="Ordered" OrderPage={true} />
+              {OrderData.map((item) => (
+                <AdminOrd
+                  key={item.OrderID}
+                  status={decideStatus(item.StatusID)}
+                  data={item}
+                  OrderPage={true}
+                />
+              ))}
             </div>
           </div>
         )}
         {CurrentPage === 2 && (
           <div className="page">
             <div className="productCard-Container">
-              <ProductUserCard status="Ordered" OrderPage={true} />
-              <ProductUserCard status="Ordered" OrderPage={true} />
-              <ProductUserCard status="Ordered" OrderPage={true} />
+              {OrderedOrders.map((item) => (
+                <AdminOrd
+                  key={item.id}
+                  status={decideStatus(item.StatusID)}
+                  data={item}
+                  OrderPage={true}
+                />
+              ))}
             </div>
           </div>
         )}
         {CurrentPage === 3 && (
           <div className="page">
             <div className="productCard-Container">
-              <ProductUserCard status="Shipped" OrderPage={true} />
-              <ProductUserCard status="Shipped" OrderPage={true} />
-              <ProductUserCard status="Shipped" OrderPage={true} />
+              {shippedOrders.map((item) => (
+                <AdminOrd
+                  key={item.id}
+                  status={decideStatus(item.StatusID)}
+                  data={item}
+                  OrderPage={true}
+                />
+              ))}
             </div>
           </div>
         )}
         {CurrentPage === 4 && (
           <div className="page">
             <div className="productCard-Container">
-              <ProductUserCard status="Received" OrderPage={true} />
-              <ProductUserCard status="Received" OrderPage={true} />
-              <ProductUserCard status="Received" OrderPage={true} />
+              {completedOrders.map((item) => (
+                <AdminOrd
+                  key={item.id}
+                  status={decideStatus(item.StatusID)}
+                  data={item}
+                  OrderPage={true}
+                />
+              ))}
             </div>
           </div>
         )}
         {CurrentPage === 5 && (
           <div className="page">
             <div className="productCard-Container">
-              <ProductUserCard status="Cancelled" OrderPage={true} />
-              <ProductUserCard status="Cancelled" OrderPage={true} />
-              <ProductUserCard status="Cancelled" OrderPage={true} />
+              {cancelledOrders.map((item) => (
+                <AdminOrd
+                  key={item.id}
+                  status={decideStatus(item.StatusID)}
+                  data={item}
+                  OrderPage={true}
+                />
+              ))}
             </div>
           </div>
         )}

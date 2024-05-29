@@ -94,11 +94,13 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
-  padding: var(--gap_10);
+
   margin: var(--gap_10) 0px;
   align-items: center;
+  gap: var(--gap_10);
   .Profile-Details,
   .Category-Details {
+    padding: 10px 0px;
     div {
       display: flex;
       span {
@@ -113,6 +115,9 @@
         }
       }
     }
+  }
+  div {
+    flex: 1 1 10;
   }
 }
 .categoryList {
@@ -138,6 +143,7 @@
   }
 }
 .orderList {
+  padding: 0px 20px;
   .prod-Container {
     height: 0%;
     overflow: hidden;

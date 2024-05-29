@@ -1,11 +1,12 @@
 .admin-Container .Page {
   width: 100%;
-  padding-top: var(--gap_20);
+  padding: var(--gap_10);
   display: flex;
   justify-content: center;
 }
 .admin-Container .Page .Page-Container {
-  width: 570px;
+  width: 100%;
+  max-width: 570px;
 }
 .admin-Container .Page .Page-Container .title-container {
   margin-left: var(--gap_10);
@@ -61,19 +62,29 @@
   justify-content: space-between;
 }
 .admin-Container .Page .Page-Container .button-container.end {
+  max-width: 570px;
   justify-content: flex-end;
 }
+.admin-Container.Orders .Page {
+  padding: var(--gap_10);
+}
 .admin-Container.Orders .Page .Page-Container {
-  width: 100%;
+  max-width: 700px;
+}
+.admin-Container.Users .Page {
+  padding: var(--gap_10);
 }
 .admin-Container.Users .Page .Page-Container {
-  width: 100%;
+  max-width: 700px;
 }
 .admin-Container.Category .Page {
-  padding-top: 0px;
+  padding: 20px;
 }
 .admin-Container.Category .Page .Page-Container.List {
-  width: 100%;
+  max-width: 700px;
+}
+.admin-Container.Product .Page {
+  padding: var(--gap_10);
 }
 .admin-Container.Product .Page .Page-Container .Image-Container {
   display: flex;
@@ -109,5 +120,5 @@
   display: none;
 }
 .admin-Container.Product .Page .Page-Container.List {
-  width: 100%;
+  max-width: 700px;
 }/*# sourceMappingURL=AdminSection.css.map */

@@ -1,24 +1,62 @@
 #Admin .Admin-Container {
-  padding-top: 120px;
-  width: var(--width_container);
+  width: clamp(1px, 100%, 2400px);
   margin: auto;
   display: flex;
+  justify-content: flex-start;
+}
+#Admin .Admin-Container .hamburger {
+  aspect-ratio: 1/1;
+  width: var(--width_icon);
+  height: var(--width_icon);
+  border-radius: 12px;
+  display: none;
   justify-content: center;
-  gap: var(--gap_20);
+  align-items: center;
+  flex-direction: column;
+  gap: 5px;
+  cursor: pointer;
+  background-color: transparent;
+}
+#Admin .Admin-Container .hamburger div {
+  width: 60%;
+  height: 5px;
+  background-color: var(--bg_colour_black);
+  border-radius: 15px;
+}
+#Admin .Admin-Container .hamburger div.top {
+  width: 14px;
+  transform: translateX(-3px);
+}
+#Admin .Admin-Container .hamburger div.bot {
+  width: 15px;
+  transform: translateX(-2px);
+}
+#Admin .Admin-Container .hamburger.active div.top {
+  width: 60%;
+  transform: rotate(45deg) translate(7px, 7px);
+}
+#Admin .Admin-Container .hamburger.active div.mid {
+  width: 0%;
+  opacity: 0;
+}
+#Admin .Admin-Container .hamburger.active div.bot {
+  width: 60%;
+  transform: rotate(-45deg) translate(7px, -7px);
 }
 #Admin .Admin-Container .Profile {
-  width: 250px;
+  position: fixed;
+  width: 230px;
+  height: 100%;
+  padding: 40px;
+  background-color: #f5f5f5;
 }
 #Admin .Admin-Container .Profile .greeting {
   height: 35px;
   padding-bottom: var(--padding_10);
   font-size: var(--font_size_16);
 }
-#Admin .Admin-Container .Profile .line {
-  width: 100%;
-  height: 1px;
-  background-color: var(--bg_colour_lgray);
-  margin-bottom: var(--gap_20);
+#Admin .Admin-Container .Profile .List {
+  transform: translateY(50px);
 }
 #Admin .Admin-Container .Profile .List li {
   padding: var(--padding_10) 0px;
@@ -37,7 +75,7 @@
   stroke: var(--text_colour_dkgray);
 }
 #Admin .Admin-Container .Profile .List li .name h4 {
-  font-size: var(--font_size_14);
+  font-size: var(--font_size_16);
   font-weight: var(--font_weight_600);
   color: var(--text_colour_dkgray);
 }
@@ -47,6 +85,90 @@
 #Admin .Admin-Container .Profile .List li.active .name h4 {
   color: var(--colour_primary_dark);
 }
+#Admin .Admin-Container .Profile .List.Mobile {
+  display: none;
+}
 #Admin .Admin-Container .CurrentPage {
-  width: clamp(300px, 100%, 800px);
+  padding-top: 40px;
+  margin-left: 230px;
+  width: calc(100% - 230px);
+}
+
+@media screen and (min-width: 426px) and (max-width: 823px) {
+  #Admin .Admin-Container .Profile {
+    width: 60px;
+    padding: 0px 10px;
+  }
+  #Admin .Admin-Container .Profile .greeting {
+    display: none;
+  }
+  #Admin .Admin-Container .Profile .List .hamburger {
+    display: flex;
+  }
+  #Admin .Admin-Container .Profile .List li {
+    height: 60px;
+    overflow: hidden;
+  }
+  #Admin .Admin-Container .Profile .List li .icon svg {
+    width: 30px;
+    height: 30px;
+  }
+  #Admin .Admin-Container .Profile .List li .name {
+    opacity: 0;
+  }
+  #Admin .Admin-Container .Profile.active {
+    width: 190px;
+  }
+  #Admin .Admin-Container .Profile.active .List {
+    overflow: hidden;
+  }
+  #Admin .Admin-Container .Profile.active .List li .name {
+    opacity: 1;
+  }
+  #Admin .Admin-Container .CurrentPage {
+    padding-top: 40px;
+    margin-left: 60px;
+    width: calc(100% - 60px);
+  }
+  #Admin .Admin-Container .CurrentPage.active {
+    margin-left: 190px;
+    width: calc(100% - 190px);
+  }
+}
+@media screen and (min-width: 1px) and (max-width: 425px) {
+  #Admin .Admin-Container .hamburger {
+    display: flex;
+    position: fixed;
+    left: 10px;
+    top: 10px;
+    background-color: #fff;
+    z-index: 4;
+  }
+  #Admin .Admin-Container .Profile {
+    display: none;
+  }
+  #Admin .Admin-Container .Profile .List {
+    display: none;
+  }
+  #Admin .Admin-Container .Profile .List.Mobile {
+    display: block;
+  }
+  #Admin .Admin-Container .Profile.Mobile {
+    background-color: #fff;
+    z-index: 2;
+    display: block;
+    width: 100%;
+    transform: translateX(-100%);
+  }
+  #Admin .Admin-Container .Profile.Mobile .greeting {
+    text-align: center;
+  }
+  #Admin .Admin-Container .Profile.Mobile.active {
+    transform: translateX(0px);
+  }
+  #Admin .Admin-Container .CurrentPage {
+    padding-top: 70px;
+    margin: 0px;
+    width: 100%;
+  }
 }/*# sourceMappingURL=Admin.css.map */

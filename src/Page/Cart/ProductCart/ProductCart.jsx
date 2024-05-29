@@ -9,15 +9,18 @@ const ProductCart = (props) => {
   const addAmount = () => {
     if (Amount + 1 > props.data.ProductStock) {
       return;
+    } else {
+      setAmount(Amount + 1);
+      props.updateQuantity(props.data.ProductID, Amount + 1);
     }
-    setAmount(Amount + 1);
-    props.updateQuantity(props.data.ProductID, Amount + 1);
   };
 
   const subAmount = () => {
     if (Amount === 1) return;
-    setAmount(Amount - 1);
-    props.updateQuantity(props.data.ProductID, Amount - 1);
+    else {
+      setAmount(Amount - 1);
+      props.updateQuantity(props.data.ProductID, Amount - 1);
+    }
   };
 
   const { UserID } = useParams();

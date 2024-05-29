@@ -42,20 +42,27 @@ const AdminOrders = () => {
     }
   };
 
-  const OrderedOrders = OrderData.filter(
-    (item) => decideStatus(item.StatusID) === "Ordered"
-  );
-  const shippedOrders = OrderData.filter(
-    (item) => decideStatus(item.StatusID) === "Shipped"
-  );
-  const completedOrders = OrderData.filter(
-    (item) => decideStatus(item.StatusID) === "Completed"
-  );
-  const cancelledOrders = OrderData.filter(
-    (item) => decideStatus(item.StatusID) === "Cancelled"
-  );
+  let OrderedOrders = [];
+  let shippedOrders = [];
+  let completedOrders = [];
+  let cancelledOrders = [];
 
-  // TODO: AT EACH ADMINORD, GET ORDERDETAILS, PRODUCTDETAILS
+  const determineOrdersType = () => {
+    OrderedOrders = OrderData.filter(
+      (item) => decideStatus(item.StatusID) === "Ordered"
+    );
+    shippedOrders = OrderData.filter(
+      (item) => decideStatus(item.StatusID) === "Shipped"
+    );
+    completedOrders = OrderData.filter(
+      (item) => decideStatus(item.StatusID) === "Completed"
+    );
+    cancelledOrders = OrderData.filter(
+      (item) => decideStatus(item.StatusID) === "Cancelled"
+    );
+  };
+
+  determineOrdersType();
 
   return (
     <div className="AdminOrders" id="AdminOrder">

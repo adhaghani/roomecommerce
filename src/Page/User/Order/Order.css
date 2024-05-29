@@ -1,5 +1,5 @@
 #Order .Order-Container {
-  width: var(--width_container);
+  width: clamp(1px, 100%, 768px);
   margin: auto;
 }
 #Order .Order-Container .Order-Title {
@@ -11,7 +11,7 @@
 }
 #Order .Order-Container .Order-Title .Title-Container {
   height: 70px;
-  width: var(--width_container);
+  width: clamp(1px, 100%, 768px);
   margin: auto;
   display: flex;
   align-items: center;
@@ -71,6 +71,7 @@
 #Order .Order-Container .Section-Container .Section {
   margin: var(--gap_20) auto;
   display: flex;
+  flex: 1 1 33%;
 }
 #Order .Order-Container .Section-Container .Section .Icon {
   display: flex;
@@ -115,11 +116,18 @@
 }
 #Order .Order-Container .Section-Container .Section.Visual .Progress .Icon .Circle-Status .Image {
   aspect-ratio: 1/1;
-  width: 150px;
+  width: 160px;
   border-radius: 100%;
   display: grid;
   place-items: center;
   background-color: var(--bg_colour_white);
+}
+#Order .Order-Container .Section-Container .Section.Visual .Progress .Icon .Circle-Status .Image svg {
+  width: 90px;
+  fill: var(--bg_colour_black);
+}
+#Order .Order-Container .Section-Container .Section.Visual .Progress .Icon .Circle-Status .Image svg path {
+  stroke: none;
 }
 #Order .Order-Container .Section-Container .Section.Visual .Progress .Icon .Circle-Status .Text {
   display: grid;
@@ -141,10 +149,13 @@
   color: var(--text_colour_black);
 }
 #Order .Order-Container .Section-Container .Section.Visual .Progress .Icon .bar-progress {
-  width: 100px;
-  height: 10px;
+  width: 120px;
+  height: 7px;
   background-color: var(--bg_colour_white);
-  transform: translateY(-35px);
+  transform: translateY(-40px);
+}
+#Order .Order-Container .Section-Container .Section.Visual .Progress .Icon .bar-progress.completed {
+  background-color: var(--colour_primary_darker);
 }
 #Order .Order-Container .Section-Container .Section.Visual .Progress .Text {
   text-align: center;
@@ -154,6 +165,7 @@
   margin: 0px;
 }
 #Order .Order-Container .Section-Container .Section.Product .Order-Total {
+  width: clamp(350px, 100%, 520px);
   border: 2px solid var(--bg_colour_lgray);
   border-radius: 6px;
   padding: var(--gap_20);
@@ -205,11 +217,10 @@
   padding: var(--gap_20);
 }
 #Order .Order-Container .Section-Container.Details .Section {
-  min-width: 340px;
-  flex: 1 1 0;
+  width: 100%;
   border-radius: 8px;
   margin: 0px;
-  padding: var(--gap_20);
+  padding: var(--gap_10);
   border: 2px solid var(--bg_colour_lgray);
 }
 #Order .Order-Container .Section-Container.Button {
@@ -224,15 +235,18 @@
 }
 #Order .Order-Container .Section-Container.Product .Section.Product {
   padding: var(--gap_20);
-  gap: var(--gap_1s0) var(--gap_10);
+  gap: 0px var(--gap_10);
   flex-wrap: wrap;
   justify-content: center;
   align-items: center;
 }
 #Order .Order-Container .Section-Container.Product .Section.Product .Product {
-  min-width: 380px;
+  min-width: 360px;
   flex: 1 1 100%;
-  max-width: 33%;
+  margin: 5px 0px;
+}
+#Order .Order-Container .Section-Container.Product .Section.Product.Total {
+  width: 100%;
 }
 
 @media screen and (min-width: 1px) and (max-width: 559px) {
@@ -255,6 +269,7 @@
     transform: translateY(-40px);
   }
   #Order .Order-Container .Section-Container .Section.Product #ProductPurchase {
+    max-width: 100% !important;
     padding: var(--gap_10) var(--gap_20);
   }
   #Order .Order-Container .Section-Container .Section.Product #ProductPurchase .Product-Detail .Product-Text .Product-Title .Product-Name h3 {
@@ -281,7 +296,7 @@
     height: 60px;
   }
 }
-@media screen and (min-width: 560px) and (max-width: 767px) {
+@media screen and (min-width: 560px) and (max-width: 1200xpx) {
   #Order .Order-Container .Section-Container .Section.Visual .Progress .Icon .Circle-Status {
     width: 120px;
   }
@@ -296,5 +311,8 @@
     width: 50px;
     height: 8px;
     transform: translateY(-40px);
+  }
+  #Order .Order-Container .Section-Container .Section.Product #ProductPurchase {
+    max-width: 100% !important;
   }
 }/*# sourceMappingURL=Order.css.map */

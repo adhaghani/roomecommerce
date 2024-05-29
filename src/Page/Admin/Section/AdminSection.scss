@@ -1,11 +1,12 @@
 .admin-Container {
   .Page {
     width: 100%;
-    padding-top: var(--gap_20);
+    padding: var(--gap_10);
     display: flex;
     justify-content: center;
     .Page-Container {
-      width: 570px;
+      width: 100%;
+      max-width: 570px;
       .title-container {
         margin-left: var(--gap_10);
         padding-bottom: var(--padding_10);
@@ -62,6 +63,7 @@
         display: flex;
         justify-content: space-between;
         &.end {
+          max-width: 570px;
           justify-content: flex-end;
         }
       }
@@ -69,30 +71,33 @@
   }
   &.Orders {
     .Page {
+      padding: var(--gap_10);
       .Page-Container {
-        width: 100%;
+        max-width: 700px;
       }
     }
   }
   &.Users {
     .Page {
+      padding: var(--gap_10);
       .Page-Container {
-        width: 100%;
+        max-width: 700px;
       }
     }
   }
   &.Category {
     .Page {
-      padding-top: 0px;
+      padding: 20px;
       .Page-Container {
         &.List {
-          width: 100%;
+          max-width: 700px;
         }
       }
     }
   }
   &.Product {
     .Page {
+      padding: var(--gap_10);
       .Page-Container {
         .Image-Container {
           display: flex;
@@ -129,7 +134,7 @@
           }
         }
         &.List {
-          width: 100%;
+          max-width: 700px;
         }
       }
     }

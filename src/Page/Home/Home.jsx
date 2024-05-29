@@ -6,8 +6,6 @@ import Footer from "../../Component/Footer/Footer";
 import Navigation from "../../Component/Navigation/Navigation";
 import Button from "../../Component/Button/Button";
 
-import Promotion from "../../Component/Promotion/Promotion";
-
 const Home = () => {
   return (
     <div className="Home" id="Home">
@@ -27,43 +25,6 @@ const Home = () => {
           </div>
         </div>
       </div>
-      <Promotion
-        size="large"
-        titleText="First Time user?"
-        mainText="Get 50% Off"
-        button={{
-          title: "Shop Now",
-          type: "Login",
-          className: "fill primary short",
-          value: "Sign in Now",
-          link: "/Login"
-        }}
-      />
-      <Promotion
-        size="small"
-        promo1={{
-          titleText: "First Time user?",
-          mainText: "Get 10% Off",
-          button: {
-            title: "Shop Now",
-            type: "Login",
-            className: "fill primary short",
-            value: "Shop now",
-            link: "/Login"
-          }
-        }}
-        promo2={{
-          titleText: "First Time user?",
-          mainText: "Get 20% Off",
-          button: {
-            title: "Shop Now",
-            type: "Login",
-            className: "fill primary short",
-            value: "Browse Now",
-            link: "/Login"
-          }
-        }}
-      />
 
       <div className="Home-Container" id="About">
         <div className="section">

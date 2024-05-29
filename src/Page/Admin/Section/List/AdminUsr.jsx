@@ -31,7 +31,7 @@ const AdminUsr = (props) => {
           value="View Detail"
           type="link"
           link={`/Admin/UserDetails/${AdminID}/${props.item.UserID}/`}
-          className="outline gray"
+          className="outline gray product"
         />
       </div>
     </div>

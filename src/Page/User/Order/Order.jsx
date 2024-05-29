@@ -4,8 +4,9 @@ import "./Order.css";
 
 import ProductUserCard from "../Section/Purchase/UserProduct/ProductUserCard";
 import Button from "../../../Component/Button/Button";
-import { useLocation, useParams } from "react-router-dom";
-const Order = (props) => {
+import { useLocation, useNavigate, useParams } from "react-router-dom";
+const Order = () => {
+  const navigate = useNavigate();
   const [IsAdmin, setIsAdmin] = useState(false);
 
   const location = useLocation();
@@ -21,7 +22,7 @@ const Order = (props) => {
     DetermineUser();
   }, []);
 
-  const { AdminID, UserID, OrderID } = useParams();
+  const { UserID, OrderID } = useParams();
 
   // GETTING ORDER DETAILS
 
@@ -45,7 +46,6 @@ const Order = (props) => {
       (response) => {
         response.json().then((data) => {
           setOrder(data);
-          console.log(Order);
         });
       }
     );
@@ -56,7 +56,6 @@ const Order = (props) => {
     ).then((response) => {
       response.json().then((data) => {
         setOrderRecipient(data);
-        console.log(OrderRecipient);
       });
     });
   };
@@ -96,7 +95,7 @@ const Order = (props) => {
 
   const decideStatus = (status) => {
     if (status === 1) {
-      return "Order received";
+      return "Order Pending";
     } else if (status === 2) {
       return "Order Shipped";
     } else if (status === 3) {
@@ -106,12 +105,30 @@ const Order = (props) => {
     }
   };
 
+  const handleReceiveOrder = () => {
+    Order.StatusID = 3;
+    updateOrder();
+  };
+  const handleCancelOrder = () => {
+    Order.StatusID = 4;
+    updateOrder();
+  };
+
+  const updateOrder = () => {
+    axios
+      .post(`http://localhost/CSC264/RoomAPI/UpdateOrder.php`, {
+        ...Order
+      })
+      .then((response) => {});
+    window.location.reload();
+    navigate(`/Order/${UserID}`);
+  };
   return (
     <div className="Order" id="Order">
       <div className="Order-Container">
         <div className="Order-Title">
           <div className="Title-Container">
-            <div className="GoBack">
+            <div className="GoBack" onClick={() => navigate(-1)}>
               <svg
                 width="35px"
                 height="35px"
@@ -139,14 +156,24 @@ const Order = (props) => {
         </div>
         <div className="Status-Card">
           <div className="Status-Detail">
-            <div className="Status-Main">
-              {Order.StatusID == 1 && <h2>We are Packing your orders</h2>}
-              {Order.StatusID == 2 && (
-                <h2>Your order has been shipped and will arrive soon</h2>
-              )}
-              {Order.StatusID == 3 && <h2>Your order has been delivered</h2>}
-              {Order.StatusID == 4 && <h2>This order is cancelled</h2>}
-            </div>
+            {!IsAdmin && (
+              <div className="Status-Main">
+                {Order.StatusID == 1 && <h2>We are Packing your orders</h2>}
+                {Order.StatusID == 2 && (
+                  <h2>Your order has been shipped and will arrive soon</h2>
+                )}
+                {Order.StatusID == 3 && <h2>Your order has been delivered</h2>}
+                {Order.StatusID == 4 && <h2>This order is cancelled</h2>}
+              </div>
+            )}
+            {IsAdmin && (
+              <div className="Status-Main">
+                {Order.StatusID == 1 && <h2>Please Pack Customer Order</h2>}
+                {Order.StatusID == 2 && <h2>Wait for the parcel delivery</h2>}
+                {Order.StatusID == 3 && <h2>this order has been delivered</h2>}
+                {Order.StatusID == 4 && <h2>This order is cancelled</h2>}
+              </div>
+            )}
           </div>
           <div className="Status-Image">
             <svg
@@ -171,7 +198,13 @@ const Order = (props) => {
           <div className="Section Visual">
             <div className="Progress">
               <div className="Icon">
-                <div className="Circle-Status completed">
+                <div
+                  className={
+                    Order.StatusID >= 1 && Order.StatusID != 4
+                      ? "Circle-Status completed"
+                      : "Circle-Status"
+                  }
+                >
                   <div className="Image">
                     <svg
                       fill="#000000"
@@ -191,12 +224,24 @@ const Order = (props) => {
                     <h3>Preparing to ship</h3>
                   </div>
                 </div>
-                <div className="bar-progress"></div>
+                <div
+                  className={
+                    Order.StatusID >= 2 && Order.StatusID != 4
+                      ? "bar-progress completed"
+                      : "bar-progress"
+                  }
+                ></div>
               </div>
             </div>
             <div className="Progress">
               <div className="Icon">
-                <div className="Circle-Status">
+                <div
+                  className={
+                    Order.StatusID >= 2 && Order.StatusID != 4
+                      ? "Circle-Status completed"
+                      : "Circle-Status"
+                  }
+                >
                   <div className="Image">
                     <svg
                       fill="#000000"
@@ -220,12 +265,24 @@ const Order = (props) => {
                     <h3>To be Delivered</h3>
                   </div>
                 </div>
-                <div className="bar-progress"></div>
+                <div
+                  className={
+                    Order.StatusID >= 3 && Order.StatusID != 4
+                      ? "bar-progress completed"
+                      : "bar-progress"
+                  }
+                ></div>
               </div>
             </div>
             <div className="Progress">
               <div className="Icon">
-                <div className="Circle-Status">
+                <div
+                  className={
+                    Order.StatusID >= 3 && Order.StatusID != 4
+                      ? "Circle-Status completed"
+                      : "Circle-Status"
+                  }
+                >
                   <div className="Image">
                     <svg
                       fill="#000000"
@@ -392,29 +449,37 @@ const Order = (props) => {
               <div className="total">
                 <h3>
                   <span className="reason">Total</span>:
-                  <span className="amount">{Order.TotalPrice}</span>
+                  <span className="amount">RM {Order.TotalPrice}</span>
                 </h3>
               </div>
             </div>
           </div>
         </div>
         {/* Button */}
-        <div className="Section-Container Button">
-          <Button
-            title="Receive Order"
-            value="Receive Order"
-            type="link"
-            link={`/Product/`}
-            className="fill primary"
-          />
-          <Button
-            title="Cancel Order"
-            value="Cancel Order"
-            type="link"
-            link={`/Product/`}
-            className="outline gray cancel"
-          />
-        </div>
+        {!IsAdmin && (
+          <div className="Section-Container Button">
+            {Order.StatusID >= 1 &&
+              Order.StatusID != 3 &&
+              Order.StatusID != 4 && (
+                <Button
+                  title="Receive Order"
+                  value="Receive Order"
+                  type="Receive Order"
+                  className="fill primary"
+                  onClick={() => handleReceiveOrder(OrderID)}
+                />
+              )}
+            {Order.StatusID == 1 && (
+              <Button
+                title="Cancel Order"
+                value="Cancel Order"
+                type="Cancel Order"
+                className="outline gray cancel"
+                onClick={() => handleCancelOrder(OrderID)}
+              />
+            )}
+          </div>
+        )}
       </div>
     </div>
   );

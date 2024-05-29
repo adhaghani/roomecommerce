@@ -10,8 +10,8 @@
 }
 #UserDetail .UserDetail-Container {
   background-color: white;
-  width: 800px;
-  aspect-ratio: 4/3;
+  width: 100%;
+  max-width: 800px;
   border-radius: 6px;
   padding: var(--padding_20);
   box-shadow: var(--box_shadow);

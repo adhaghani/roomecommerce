@@ -86,9 +86,15 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
-  padding: var(--gap_10);
   margin: var(--gap_10) 0px;
   align-items: center;
+  gap: var(--gap_10);
+}
+.userList .Profile-Details,
+.userList .Category-Details,
+.categoryList .Profile-Details,
+.categoryList .Category-Details {
+  padding: 10px 0px;
 }
 .userList .Profile-Details div,
 .userList .Category-Details div,
@@ -113,6 +119,10 @@
   color: var(--text_colour_black);
   font-weight: var(--font_weight_600);
 }
+.userList div,
+.categoryList div {
+  flex: 1 1 10;
+}
 
 .categoryList {
   border-bottom: 1px solid var(--bg_colour_lgray);
@@ -135,6 +145,9 @@
   gap: var(--gap_10);
 }
 
+.orderList {
+  padding: 0px 20px;
+}
 .orderList .prod-Container {
   height: 0%;
   overflow: hidden;

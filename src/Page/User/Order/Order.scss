@@ -1,6 +1,6 @@
 #Order {
   .Order-Container {
-    width: var(--width_container);
+    width: clamp(1px, 100%, 768px);
     margin: auto;
 
     .Order-Title {
@@ -11,7 +11,7 @@
       background-color: #fff;
       .Title-Container {
         height: 70px;
-        width: var(--width_container);
+        width: clamp(1px, 100%, 768px);
         margin: auto;
         display: flex;
         align-items: center;
@@ -82,9 +82,11 @@
       margin: var(--gap_20) 0px;
       display: flex;
       flex-wrap: wrap;
+
       .Section {
         margin: var(--gap_20) auto;
         display: flex;
+        flex: 1 1 33%;
         .Icon {
           display: flex;
           justify-content: flex-start;
@@ -130,11 +132,18 @@
               .Circle-Status {
                 .Image {
                   aspect-ratio: 1/1;
-                  width: 150px;
+                  width: 160px;
                   border-radius: 100%;
                   display: grid;
                   place-items: center;
                   background-color: var(--bg_colour_white);
+                  svg {
+                    width: 90px;
+                    fill: var(--bg_colour_black);
+                    path {
+                      stroke: none;
+                    }
+                  }
                 }
                 .Text {
                   display: grid;
@@ -161,10 +170,13 @@
                 }
               }
               .bar-progress {
-                width: 100px;
-                height: 10px;
+                width: 120px;
+                height: 7px;
                 background-color: var(--bg_colour_white);
-                transform: translateY(-35px);
+                transform: translateY(-40px);
+                &.completed {
+                  background-color: var(--colour_primary_darker);
+                }
               }
             }
             .Text {
@@ -176,6 +188,7 @@
           width: 100%;
           margin: 0px;
           .Order-Total {
+            width: clamp(350px, 100%, 520px);
             border: 2px solid var(--bg_colour_lgray);
             border-radius: 6px;
             padding: var(--gap_20);
@@ -230,11 +243,10 @@
         justify-content: center;
         padding: var(--gap_20);
         .Section {
-          min-width: 340px;
-          flex: 1 1 0;
+          width: 100%;
           border-radius: 8px;
           margin: 0px;
-          padding: var(--gap_20);
+          padding: var(--gap_10);
           border: 2px solid var(--bg_colour_lgray);
         }
       }
@@ -249,14 +261,17 @@
         margin: 0px;
         .Section.Product {
           padding: var(--gap_20);
-          gap: var(--gap_1s0) var(--gap_10);
+          gap: 0px var(--gap_10);
           flex-wrap: wrap;
           justify-content: center;
           align-items: center;
           .Product {
-            min-width: 380px;
+            min-width: 360px;
             flex: 1 1 100%;
-            max-width: 33%;
+            margin: 5px 0px;
+          }
+          &.Total {
+            width: 100%;
           }
         }
       }
@@ -299,10 +314,9 @@
           }
           &.Product {
             #ProductPurchase {
+              max-width: 100% !important;
               padding: var(--gap_10) var(--gap_20);
               .Product-Detail {
-                .Product-Image {
-                }
                 .Product-Text {
                   .Product-Title {
                     .Product-Name {
@@ -345,7 +359,7 @@
   }
 }
 
-@media screen and (min-width: 560px) and (max-width: 767px) {
+@media screen and (min-width: 560px) and (max-width: 1200xpx) {
   #Order {
     .Order-Container {
       .Section-Container {
@@ -369,6 +383,11 @@
                   transform: translateY(-40px);
                 }
               }
+            }
+          }
+          &.Product {
+            #ProductPurchase {
+              max-width: 100% !important;
             }
           }
         }

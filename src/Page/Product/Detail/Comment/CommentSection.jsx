@@ -168,7 +168,7 @@ const CommentSection = (props) => {
         {ReviewData.length === 0 ? (
           <div className="Comment">
             <div className="CommentDetail-Container">
-              <h3 className="noreview">No reviews found.</h3>
+              <h3 className="noreview">No reviews found, write one!</h3>
             </div>
           </div>
         ) : null}
