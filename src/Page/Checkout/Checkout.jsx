@@ -130,6 +130,7 @@ const Checkout = () => {
     event.preventDefault();
     PostOrder();
     setTimeout(() => {
+      clearCart(UserID);
       subtractProductStock();
       PostOrderDetails();
       navigate(`/User/${UserID}`);
@@ -159,7 +160,23 @@ const Checkout = () => {
     }
   };
 
-  const clearCart = (UserID) => {};
+  const clearCart = async (UserID) => {
+    const response = await axios.get(
+      `http://localhost/CSC264/RoomAPI/getCart.php/${UserID}`
+    );
+    const cartItems = response.data;
+
+    for (const item of cartItems) {
+      const productID = item.ProductID;
+
+      await axios.delete(`http://localhost/CSC264/RoomAPI/DeleteCart.php`, {
+        params: {
+          UserID: UserID,
+          ProductID: productID
+        }
+      });
+    }
+  };
 
   return (
     <div className="Checkout" id="Checkout">
