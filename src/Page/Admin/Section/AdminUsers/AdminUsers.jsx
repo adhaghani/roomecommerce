@@ -12,8 +12,6 @@ const AdminUsers = (props) => {
 
   const { AdminID } = useParams();
 
-  console.log(AdminID);
-
   // get from server
   useEffect(() => {
     getUser();
@@ -22,7 +20,6 @@ const AdminUsers = (props) => {
     axios
       .get("http://localhost/CSC264/RoomAPI/getUser.php")
       .then((response) => {
-        console.log(response.data);
         setUserList(response.data);
       });
   }

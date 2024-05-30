@@ -108,7 +108,7 @@ const Cart = () => {
 
   useEffect(() => {
     calculateSubtotal();
-  }, []);
+  }, [Cart]);
 
   const calculateTotalAmount = (subtotal, serviceFee1, serviceFee2) => {
     const serviceFeeAmount1 = subtotal * (serviceFee1 / 100);

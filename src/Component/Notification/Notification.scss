@@ -1,0 +1,27 @@
+#Notification {
+  padding-top: 100px;
+  position: fixed;
+  right: 100px;
+
+  .Notification-Container {
+    margin: 20px 0px;
+    background-color: #fff;
+    border-radius: 8px;
+    border: 2px solid var(--bg_colour_green);
+    .Notification-Message {
+      padding: var(--gap_10) var(--gap_20);
+      display: flex;
+      align-items: center;
+      gap: var(--gap_10);
+      .image {
+        display: grid;
+        place-items: center;
+        svg {
+          path {
+            stroke: var(--bg_colour_green);
+          }
+        }
+      }
+    }
+  }
+}

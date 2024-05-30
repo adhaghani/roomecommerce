@@ -46,6 +46,18 @@
   font-size: var(--font_size_14);
   color: var(--bg_colour_red);
 }
+.ProductDetail .Container-ProductDetail .Product-Detail-Container .product-special .Low-Stock {
+  margin-bottom: 10px;
+  padding: 10px 20px;
+  width: -moz-fit-content;
+  width: fit-content;
+  background-color: yellow;
+  box-shadow: 3px 3px var(--colour_primary_darker);
+}
+.ProductDetail .Container-ProductDetail .Product-Detail-Container .product-special .Low-Stock p {
+  font-weight: var(--font_weight_600);
+  color: var(--colour_primary_darker);
+}
 .ProductDetail .Container-ProductDetail .Product-Detail-Container .product-title .title h3 {
   font-size: var(--font_size_48);
 }

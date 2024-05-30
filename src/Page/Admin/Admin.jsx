@@ -5,7 +5,7 @@ import AdminOrders from "./Section/AdminOrders/AdminOrders";
 import AdminProduct from "./Section/AdminProduct/AdminProduct";
 import AdminUsers from "./Section/AdminUsers/AdminUsers";
 import AdminStatistic from "./Section/AdminStatistic/AdminStatistic";
-
+import Notification from "../../Component/Notification/Notification";
 import "./Admin.css";
 
 import { Link, useParams } from "react-router-dom";
@@ -31,6 +31,7 @@ const Admin = (props) => {
   const [CurrentPage, setCurrentPage] = useState("Statistic");
   return (
     <div className="Admin" id="Admin">
+      <Notification />
       <div className="Admin-Container">
         <button
           className={IsActive ? "hamburger active" : "hamburger"}

@@ -146,6 +146,9 @@
 .admin-Container.Product .Page .Page-Container.List {
   max-width: 700px;
 }
+.admin-Container.Statistic .Page .Page-Container {
+  max-width: 100%;
+}
 
 .NoData {
   padding-top: 100px;

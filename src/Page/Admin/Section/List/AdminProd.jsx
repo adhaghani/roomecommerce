@@ -9,11 +9,8 @@ import Admin from "../../Admin";
 
 import Loading from "../../../Loading/Loading";
 const AdminProd = (props) => {
-  const [IsLoading, setIsLoading] = useState(false);
   function deleteProduct(ProductID) {
     if (confirm("Are you sure you want to delete this Product?")) {
-      props.onDelete();
-      setIsLoading(true);
       axios
         .delete("http://localhost/CSC264/RoomAPI/DeleteProduct.php", {
           params: {
@@ -24,9 +21,12 @@ const AdminProd = (props) => {
           props.onDelete();
         });
     }
-    setTimeout(() => {
-      setIsLoading(false);
-    }, 150);
+    setTimeout(() => {}, 150);
+    window.dispatchEvent(
+      new CustomEvent("showNotification", {
+        detail: { message: "Product Delete", type: "success" }
+      })
+    );
   }
 
   const { AdminID } = useParams();
@@ -35,7 +35,6 @@ const AdminProd = (props) => {
     <>
       {props.type !== "Order" && (
         <div className="Product" id="ProductPurchase">
-          {IsLoading && <Loading />}
           <div className="Product-Detail">
             <div className="Image">
               <img src={props.PicturePath} alt="" />

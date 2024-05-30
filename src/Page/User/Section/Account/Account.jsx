@@ -15,24 +15,24 @@ const Account = (props) => {
   // Set User Data received from props
   useEffect(() => {
     setUserData(props.UserData);
-    console.log(UserData);
   }, [props.UserData]);
 
   const handleSubNavClick = (item) => {
     setCurrentPage(item);
   };
-  const [Password, setPassword] = useState("");
+  const [NewPassword, setNewPassword] = useState("");
 
   const [isValidLength, setIsValidLength] = useState(false);
   const [isValidSymbol, setIsValidSymbol] = useState(false);
   const [isValidNumber, setIsValidNumber] = useState(false);
 
   const handlePasswordChange = (event) => {
-    const newPassword = event.target.value;
-    setPassword(newPassword);
-    setIsValidLength(validateLength(newPassword));
-    setIsValidSymbol(validateSymbol(newPassword));
-    setIsValidNumber(validateNumber(newPassword));
+    const value = event.target.value;
+    setNewPassword(value);
+    setIsValidLength(validateLength(value));
+    setIsValidSymbol(validateSymbol(value));
+    setIsValidNumber(validateNumber(value));
+    console.log(NewPassword);
   };
 
   const validateLength = (password) => {
@@ -66,12 +66,13 @@ const Account = (props) => {
     setIsValid2(validateConfirmPassword(newConfirmPassword));
   };
   const validateConfirmPassword = (password) => {
-    return password === Password;
+    if (password === NewPassword) return true;
+    return false;
   };
 
-  const handleProfileUpdate = () => {
+  const handleProfileUpdate = (event) => {
     setIsLoading(true);
-    fetch();
+    event.preventDefault();
     const {
       UserID,
       firstName,
@@ -83,7 +84,6 @@ const Account = (props) => {
       postCode,
       city,
       country,
-      Password,
       Username
     } = UserData;
     const data = {
@@ -97,10 +97,61 @@ const Account = (props) => {
       postCode,
       city,
       country,
-      Password,
       Username
     };
-    fetch
+    fetch("http://localhost/CSC264/RoomAPI/UpdateUser.php", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(data)
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        props.onUpdate();
+        setTimeout(() => {
+          setIsLoading(false);
+        }, 400);
+      });
+    window.dispatchEvent(
+      new CustomEvent("showNotification", {
+        detail: { message: "Profile Updated", type: "success" }
+      })
+    );
+  };
+
+  const handlePasswordUpdate = () => {
+    if (!IsValid2) return;
+    if (!isValidLength || !isValidSymbol || !isValidNumber) return;
+
+    setIsLoading(true);
+    const { UserID } = UserData;
+    const Password = ConfirmPassword;
+    const data = {
+      UserID,
+      Password
+    };
+    console.log(data.Password);
+    fetch("http://localhost/CSC264/RoomAPI/UpdateUserPassword.php", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(data)
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        console.log(data);
+        props.onUpdate();
+        setTimeout(() => {
+          setIsLoading(false);
+        }, 400);
+      });
+    window.dispatchEvent(
+      new CustomEvent("showNotification", {
+        detail: { message: "Password Updated", type: "success" }
+      })
+    );
   };
 
   return (
@@ -181,8 +232,8 @@ const Account = (props) => {
                 formSize="full"
                 inputProps={{
                   type: "tel",
-                  name: "New Username",
-                  id: "New Username",
+                  name: "Username",
+                  id: "Username",
                   label: "New Username",
                   placeholder: "New Username",
                   className: "input",
@@ -191,7 +242,11 @@ const Account = (props) => {
                 }}
               />
               <div className="button-container end">
-                <Button type="update" className="fill primary" />
+                <Button
+                  type="update"
+                  className="fill primary"
+                  onClick={handleProfileUpdate}
+                />
               </div>
             </div>
           </div>
@@ -205,10 +260,7 @@ const Account = (props) => {
                   <h1>Home Address</h1>
                 </div>
                 <div className="title-detail">
-                  <p>
-                    Provide your home address so it will be easier for us to
-                    ship the product directly to your doorstep
-                  </p>
+                  <p>Update your home address here.</p>
                 </div>
               </div>
 
@@ -276,7 +328,11 @@ const Account = (props) => {
                 }}
               />
               <div className="button-container end">
-                <Button type="update" className="fill primary" />
+                <Button
+                  type="update"
+                  className="fill primary"
+                  onClick={handleProfileUpdate}
+                />
               </div>
             </div>
           </div>
@@ -290,7 +346,7 @@ const Account = (props) => {
                   <h1>Password</h1>
                 </div>
                 <div className="title-detail">
-                  <p>To secure your account, let's create a password.</p>
+                  <p>Hate your old password? Update it here.</p>
                 </div>
               </div>
               <Input
@@ -319,7 +375,7 @@ const Account = (props) => {
                   label: "New Password",
                   placeholder: "NewPassword",
                   className: "input",
-                  value: Password,
+                  value: NewPassword,
                   onChange: handlePasswordChange
                 }}
               />
@@ -349,7 +405,11 @@ const Account = (props) => {
                 }}
               />
               <div className="button-container end">
-                <Button type="update" className="fill primary" />
+                <Button
+                  type="update"
+                  className="fill primary"
+                  onClick={handlePasswordUpdate}
+                />
               </div>
             </div>
           </div>

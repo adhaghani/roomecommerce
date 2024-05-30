@@ -131,3 +131,46 @@
     }
   }
 }
+
+.statisticList {
+  .ContainerStat {
+    width: 100%;
+    .Title {
+      width: 100%;
+      text-align: center;
+      margin: 30px 0px;
+    }
+
+    .Cont {
+      display: flex;
+      width: 100%;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: var(--gap_10);
+
+      .Statistic-Container {
+        width: fit-content;
+        border-radius: 6px;
+        box-shadow: rgba(9, 30, 66, 0.25) 0px 1px 1px,
+          rgba(9, 30, 66, 0.13) 0px 0px 1px 1px;
+        flex: 1 1 0;
+        min-width: 255px;
+        .DataTitle {
+          text-align: center;
+          padding: 20px;
+          border-bottom: 2px solid var(--bg_colour_lgray);
+          h3 {
+            font-weight: var(--font_weight_500);
+          }
+        }
+        .data {
+          display: grid;
+          place-items: center;
+          padding: 10px;
+          letter-spacing: 3px;
+        }
+      }
+    }
+  }
+}

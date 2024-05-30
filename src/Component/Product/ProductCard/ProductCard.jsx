@@ -102,6 +102,11 @@ const ProductCard = (props) => {
   const handleAddToCart = (event) => {
     event.preventDefault();
     addToCart(UserID, props.data.ProductID, 1);
+    window.dispatchEvent(
+      new CustomEvent("showNotification", {
+        detail: { message: "Product Added to cart", type: "success" }
+      })
+    );
   };
 
   const addToCart = (UserID, ProductID, Quantity) => {

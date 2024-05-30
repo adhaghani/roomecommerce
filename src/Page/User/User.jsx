@@ -11,7 +11,9 @@ import Account from "./Section/Account/Account";
 import Liked from "./Section/Liked/Liked";
 import Purchase from "./Section/Purchase/Purchase";
 import "./User.css";
+import Notification from "../../Component/Notification/Notification";
 
+Notification;
 const User = (props) => {
   const [CurrentPage, setCurrentPage] = useState("Purchase");
 
@@ -31,7 +33,10 @@ const User = (props) => {
     getUserData();
   }, []);
 
-  console.log(User);
+  const onUpdate = () => {
+    getUserData();
+    getUserData();
+  };
 
   const [IsActive, setIsActive] = useState(false);
 
@@ -43,6 +48,7 @@ const User = (props) => {
         setCurrentPage={setCurrentPage}
         CurrentPage={CurrentPage}
       />
+      <Notification />
       <div className="User-Container">
         <div className="Profile">
           <h3 className="greeting">Hello, {User.Username}</h3>
@@ -170,7 +176,9 @@ const User = (props) => {
           </ul>
         </div>
         <div className="Task">
-          {CurrentPage === "Profile" && <Account UserData={User} />}
+          {CurrentPage === "Profile" && (
+            <Account UserData={User} onUpdate={onUpdate} />
+          )}
           {CurrentPage === "Purchase" && <Purchase />}
           {CurrentPage === "Like" && <Liked />}
         </div>

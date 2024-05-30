@@ -12,7 +12,6 @@ import Loading from "../../../Loading/Loading";
 
 const AdminProduct = () => {
   const [CurrentPage, setCurrentPage] = useState(1);
-  const [IsLoading, setIsLoading] = useState(false);
   const handleSubNavClick = (item) => {
     setCurrentPage(item);
   };
@@ -77,7 +76,6 @@ const AdminProduct = () => {
 
   // Add Product Handler
   const handleSubmit = (event) => {
-    setIsLoading(true);
     event.preventDefault();
     const { Name, Description, Price, ProductStock, CategoryID, PicturePath } =
       products;
@@ -102,8 +100,12 @@ const AdminProduct = () => {
       });
     setTimeout(() => {
       setCurrentPage(3);
-      setIsLoading(false);
     }, 150);
+    window.dispatchEvent(
+      new CustomEvent("showNotification", {
+        detail: { message: "Product Added", type: "success" }
+      })
+    );
   };
 
   // Update Product State
@@ -177,7 +179,6 @@ const AdminProduct = () => {
 
   // UPDATE PRODUCT TO SERVER
   const handleProductUpdate = (event) => {
-    setIsLoading(true);
     event.preventDefault();
     const {
       ProductID,
@@ -210,8 +211,12 @@ const AdminProduct = () => {
       });
     setTimeout(() => {
       setCurrentPage(3);
-      setIsLoading(false);
     }, 150);
+    window.dispatchEvent(
+      new CustomEvent("showNotification", {
+        detail: { message: "Product Updated", type: "success" }
+      })
+    );
   };
   // GET CATEGORY
   const [CategoryList, setCategoryList] = useState([]);
@@ -249,7 +254,6 @@ const AdminProduct = () => {
 
   return (
     <div className="AdminProduct" id="AdminProduct">
-      {IsLoading && <Loading />}
       <UserNav category="AdminProduct" onClick={handleSubNavClick} />
       <div className="admin-Container Product">
         {/* ADD PRODUCT */}

@@ -7,6 +7,7 @@ import ProductUserCard from "../Purchase/UserProduct/ProductUserCard";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 
+
 const Liked = (props) => {
   const [Like, setLike] = useState([]);
 
@@ -53,6 +54,11 @@ const Liked = (props) => {
         getLike();
         getProductDetail();
       });
+    window.dispatchEvent(
+      new CustomEvent("showNotification", {
+        detail: { message: "Removed Successfully", type: "success" }
+      })
+    );
   }
 
   return (

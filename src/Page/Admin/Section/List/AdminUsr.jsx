@@ -7,8 +7,6 @@ import { useParams } from "react-router-dom";
 
 const AdminUsr = (props) => {
   const { AdminID } = useParams();
-
-  console.log(AdminID);
   return (
     <div className="userList" id="userList">
       <div className="Profile-Details">

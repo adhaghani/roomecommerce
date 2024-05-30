@@ -7,8 +7,14 @@ const AdminStatistic = () => {
   return (
     <div className="AdminStatistic" id="AdminStatistic">
       <UserNav category="AdminStatistic" />
-      <div className="admin-Container">
-        <div className="Page">All</div>
+      <div className="admin-Container Statistic">
+        <div className="Page">
+          <div className="Page-Container">
+            <div className="List-Container">
+              <AdminSta />
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   );

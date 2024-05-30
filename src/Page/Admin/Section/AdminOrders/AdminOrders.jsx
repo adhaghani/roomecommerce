@@ -66,9 +66,14 @@ const AdminOrders = () => {
 
   const handleUpdateChange = () => {
     getOrderData();
+    determineOrdersType();
     getOrderData();
     determineOrdersType();
-    determineOrdersType();
+    window.dispatchEvent(
+      new CustomEvent("showNotification", {
+        detail: { message: "Order Updated", type: "success" }
+      })
+    );
   };
 
   determineOrdersType();
@@ -77,7 +82,6 @@ const AdminOrders = () => {
 
   return (
     <div className="AdminOrders" id="AdminOrder">
-      {/* <Loading /> */}
       <UserNav category="AdminOrders" onClick={handleSubNavClick} />
       <div className="admin-Container Orders">
         {CurrentPage == 1 && (

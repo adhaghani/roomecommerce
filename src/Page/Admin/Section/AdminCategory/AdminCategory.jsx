@@ -25,7 +25,6 @@ const AdminCategory = () => {
     const name = event.target.name;
     const value = event.target.value;
     setCategory((values) => ({ ...values, [name]: value }));
-    console.log(Category);
   };
 
   // ADD CATEGORY
@@ -41,9 +40,13 @@ const AdminCategory = () => {
     })
       .then((response) => response.json())
       .then((data) => {
-        console.log(data);
-        window.location.reload();
+        getCategory();
       });
+    window.dispatchEvent(
+      new CustomEvent("showNotification", {
+        detail: { message: "Category Added", type: "success" }
+      })
+    );
   };
 
   // UPDATE CATEGORY
@@ -69,7 +72,6 @@ const AdminCategory = () => {
       }));
     }
 
-    console.log(UpdateCategory);
   };
 
   const handleUpdate = (event) => {
@@ -83,9 +85,13 @@ const AdminCategory = () => {
     })
       .then((response) => response.json())
       .then((data) => {
-        console.log(data);
-        window.location.reload();
+        getCategory();
       });
+    window.dispatchEvent(
+      new CustomEvent("showNotification", {
+        detail: { message: "Category Updated", type: "success" }
+      })
+    );
   };
 
   // GET CATEGORY
@@ -99,7 +105,6 @@ const AdminCategory = () => {
     axios
       .get("http://localhost/CSC264/RoomAPI/GetCategory.php")
       .then((response) => {
-        console.log(response.data);
         setCategoryList(response.data);
       });
   }
@@ -206,6 +211,7 @@ const AdminCategory = () => {
                       key={item.CategoryID}
                       Name={item.Name}
                       CategoryID={item.CategoryID}
+                      getCategory={getCategory}
                     />
                   );
                 })}

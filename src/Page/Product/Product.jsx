@@ -8,6 +8,8 @@ import axios from "axios";
 import NoData from "../Admin/Section/NoData";
 import { useParams } from "react-router-dom";
 
+import Notification from "../../Component/Notification/Notification";
+
 const Product = () => {
   const [ProductList, setProductList] = useState([]);
   const [searchValue, setsearchValue] = useState("");
@@ -34,6 +36,7 @@ const Product = () => {
   return (
     <div className="Product" id="Product">
       <Navigation onSearch={setsearchValue} />
+      <Notification />
       <div className="Product-Container">
         <div className="product-group">
           {filteredProductList.length > 0 ? (

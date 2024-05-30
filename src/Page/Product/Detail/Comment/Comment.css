@@ -47,12 +47,13 @@
 }
 .Comment-Section .Comment-Container .Comment {
   margin: var(--gap_20);
+  border: 2px solid var(--bg_colour_lgray);
   border-radius: 12px;
 }
 .Comment-Section .Comment-Container .Comment .CommentDetail-Container {
   padding: var(--gap_15);
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   gap: var(--gap_10);
 }
 .Comment-Section .Comment-Container .Comment .CommentDetail-Container .Review-Section {
@@ -125,6 +126,12 @@
   width: 100%;
   text-align: center;
   color: var(--colour_primary_darker);
+}
+.Comment-Section .Comment-Container .Comment.noLine {
+  border: none;
+}
+.Comment-Section .Comment-Container .Comment.noLine .CommentDetail-Container {
+  flex-direction: column;
 }
 
 @media screen and (min-width: 1px) and (max-width: 500px) {

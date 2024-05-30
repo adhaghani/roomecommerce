@@ -56,6 +56,11 @@ const CommentSection = (props) => {
     })
       .then((response) => response.json())
       .then((data) => {});
+    window.dispatchEvent(
+      new CustomEvent("showNotification", {
+        detail: { message: "Comment Added", type: "success" }
+      })
+    );
   };
 
   const getProductReview = () => {
@@ -166,7 +171,7 @@ const CommentSection = (props) => {
         ))}
 
         {ReviewData.length === 0 ? (
-          <div className="Comment">
+          <div className="Comment noLine">
             <div className="CommentDetail-Container">
               <div className="image">
                 <svg

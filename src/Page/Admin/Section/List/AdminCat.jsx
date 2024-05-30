@@ -7,22 +7,26 @@ import axios from "axios";
 
 // Delete Category
 
-function deleteCategory(CategoryID) {
-  if (confirm("Are you sure you want to delete this category?")) {
-    axios
-      .delete("http://localhost/CSC264/RoomAPI/DeleteCategory.php", {
-        params: {
-          CategoryID
-        }
-      })
-      .then((response) => {
-        window.location.reload();
-        console.log(response.data);
-      });
-  }
-}
-
 const AdminCat = (props) => {
+  function deleteCategory(CategoryID) {
+    if (confirm("Are you sure you want to delete this category?")) {
+      axios
+        .delete("http://localhost/CSC264/RoomAPI/DeleteCategory.php", {
+          params: {
+            CategoryID
+          }
+        })
+        .then((response) => {
+          props.getCategory();
+        });
+    }
+    window.dispatchEvent(
+      new CustomEvent("showNotification", {
+        detail: { message: "Category Deleted", type: "success" }
+      })
+    );
+  }
+
   return (
     <tr>
       <div className="CategoryContainer">

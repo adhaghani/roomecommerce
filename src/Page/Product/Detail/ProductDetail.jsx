@@ -8,6 +8,7 @@ import "./Detail.css";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 
+import Notification from "../../../Component/Notification/Notification";
 const ProductDetail = () => {
   const [Product, setProduct] = useState([]);
   const [CategoryName, setCategoryName] = useState([]);
@@ -57,7 +58,10 @@ const ProductDetail = () => {
   const [Quantity, setQuantity] = useState(1);
 
   const handleIncrement = () => {
-    setQuantity(Quantity + 1);
+    if (Quantity + 1 > Product.ProductStock) {
+    } else {
+      setQuantity(Quantity + 1);
+    }
   };
 
   const handleDecrement = () => {
@@ -139,6 +143,11 @@ const ProductDetail = () => {
   const handleAddToCart = (event) => {
     event.preventDefault();
     addToCart(UserID, ProductID, Quantity);
+    window.dispatchEvent(
+      new CustomEvent("showNotification", {
+        detail: { message: "Product Added To Cart", type: "success" }
+      })
+    );
   };
 
   const addToCart = (UserID, ProductID, Quantity) => {
@@ -164,6 +173,7 @@ const ProductDetail = () => {
       {determineAdmin() === false && (
         <div className="ProductDetail" id="ProductDetail">
           <Navigation isOnHomePage={false} />
+          <Notification />
           <div className="Container-ProductDetail">
             <div className="Product-Image-Container">
               <div className="Main-Image-Container">
@@ -175,6 +185,11 @@ const ProductDetail = () => {
             <div className="Product-Detail-Container">
               <div className="product-special">
                 {IsNew && <p>Newly Arrived</p>}
+                {Product.ProductStock <= 10 && (
+                  <div className="Low-Stock">
+                    <p>Low Stock</p>
+                  </div>
+                )}
               </div>
               <div className="product-title">
                 <div className="title">

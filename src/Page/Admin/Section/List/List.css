@@ -133,4 +133,43 @@
 }
 .orderList .prod-Container.active {
   height: 100%;
+}
+
+.statisticList .ContainerStat {
+  width: 100%;
+}
+.statisticList .ContainerStat .Title {
+  width: 100%;
+  text-align: center;
+  margin: 30px 0px;
+}
+.statisticList .ContainerStat .Cont {
+  display: flex;
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--gap_10);
+}
+.statisticList .ContainerStat .Cont .Statistic-Container {
+  width: -moz-fit-content;
+  width: fit-content;
+  border-radius: 6px;
+  box-shadow: rgba(9, 30, 66, 0.25) 0px 1px 1px, rgba(9, 30, 66, 0.13) 0px 0px 1px 1px;
+  flex: 1 1 0;
+  min-width: 255px;
+}
+.statisticList .ContainerStat .Cont .Statistic-Container .DataTitle {
+  text-align: center;
+  padding: 20px;
+  border-bottom: 2px solid var(--bg_colour_lgray);
+}
+.statisticList .ContainerStat .Cont .Statistic-Container .DataTitle h3 {
+  font-weight: var(--font_weight_500);
+}
+.statisticList .ContainerStat .Cont .Statistic-Container .data {
+  display: grid;
+  place-items: center;
+  padding: 10px;
+  letter-spacing: 3px;
 }/*# sourceMappingURL=List.css.map */

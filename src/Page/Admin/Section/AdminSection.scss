@@ -163,6 +163,13 @@
       }
     }
   }
+  &.Statistic {
+    .Page {
+      .Page-Container {
+        max-width: 100%;
+      }
+    }
+  }
 }
 
 .NoData {
