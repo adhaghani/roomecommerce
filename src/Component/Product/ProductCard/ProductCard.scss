@@ -6,13 +6,31 @@
   cursor: pointer;
   display: block;
   .Card-Container {
+    canvas {
+      background-color: blue;
+      position: absolute;
+    }
     .product-image {
       width: 100%;
       aspect-ratio: 1/1;
-      background-color: var(--bg_colour_lgray);
       overflow: hidden;
       img {
         width: 100%;
+      }
+      .Low-Stock {
+        position: absolute;
+        transform: translateY(20px);
+        padding: 5px 10px;
+        background-color: yellow;
+        box-shadow: 3px 3px var(--colour_primary_darker);
+        z-index: 2;
+        p {
+          color: var(--colour_primary_darker);
+          font-weight: var(--font_weight_600);
+        }
+        &.Out {
+          background-color: var(--bg_colour_lred);
+        }
       }
     }
     .product-details {
@@ -103,6 +121,16 @@
               }
             }
           }
+        }
+      }
+    }
+  }
+  &.Disabled {
+    pointer-events: none;
+    .Card-Container {
+      .product-image {
+        img {
+          filter: grayscale(100%);
         }
       }
     }

@@ -24,8 +24,6 @@ const Product = () => {
 
   const { UserID } = useParams();
 
-  const [sessionId, setSessionId] = useState("");
-
   return (
     <div className="Product" id="Product">
       <Navigation />

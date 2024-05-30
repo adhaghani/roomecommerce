@@ -125,11 +125,23 @@ const ProductCard = (props) => {
   return (
     <Link
       to={`/Product/${props.UserID}/${props.data.CategoryID}/${props.data.ProductID}/`}
-      className="ProductCard"
+      className={
+        props.data.ProductStock == 0 ? "ProductCard Disabled" : "ProductCard"
+      }
       id="ProductCard"
     >
       <div className="Card-Container">
         <div className="product-image">
+          {props.data.ProductStock <= 10 && props.data.ProductStock != 0 && (
+            <div className="Low-Stock">
+              <p>Low Stock</p>
+            </div>
+          )}
+          {props.data.ProductStock == 0 && (
+            <div className="Low-Stock Out">
+              <p>Out of Stock</p>
+            </div>
+          )}
           <img src={props.data.PicturePath} alt="" loading="lazy" />
         </div>
         <div className="product-details">
