@@ -1,12 +1,23 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 import UserNav from "../../UserNavigation/UserNav";
 import Input from "../../../../Component/Input/Input";
 import Button from "../../../../Component/Button/Button";
 import ProgressBar from "../../../LoginRegister/Register/ProgressBar";
 import "./Account.css";
+import axios from "axios";
+import Loading from "../../../Loading/Loading";
 const Account = (props) => {
   const [CurrentPage, setCurrentPage] = useState(1);
+  const [UserData, setUserData] = useState({});
+  const [IsLoading, setIsLoading] = useState(false);
+
+  // Set User Data received from props
+  useEffect(() => {
+    setUserData(props.UserData);
+    console.log(UserData);
+  }, [props.UserData]);
+
   const handleSubNavClick = (item) => {
     setCurrentPage(item);
   };
@@ -42,7 +53,8 @@ const Account = (props) => {
   const handleChange = (event) => {
     const name = event.target.name;
     const value = event.target.value;
-    setInputs((values) => ({ ...values, [name]: value }));
+    setUserData((values) => ({ ...values, [name]: value }));
+    console.log(UserData);
   };
 
   // Handle Confirm Password
@@ -55,6 +67,40 @@ const Account = (props) => {
   };
   const validateConfirmPassword = (password) => {
     return password === Password;
+  };
+
+  const handleProfileUpdate = () => {
+    setIsLoading(true);
+    fetch();
+    const {
+      UserID,
+      firstName,
+      lastName,
+      emailAddress,
+      phoneNumber,
+      addressLine1,
+      addressLine2,
+      postCode,
+      city,
+      country,
+      Password,
+      Username
+    } = UserData;
+    const data = {
+      UserID,
+      firstName,
+      lastName,
+      emailAddress,
+      phoneNumber,
+      addressLine1,
+      addressLine2,
+      postCode,
+      city,
+      country,
+      Password,
+      Username
+    };
+    fetch
   };
 
   return (
@@ -81,6 +127,7 @@ const Account = (props) => {
                   id: "firstName",
                   label: "First Name",
                   placeholder: "First Name",
+                  value: UserData.firstName,
                   className: "input",
                   onChange: handleChange
                 }}
@@ -91,6 +138,7 @@ const Account = (props) => {
                   label: "Last Name",
                   placeholder: "Last Name",
                   className: "input",
+                  value: UserData.lastName,
                   onChange: handleChange
                 }}
               />
@@ -98,11 +146,12 @@ const Account = (props) => {
                 formSize="full"
                 inputProps={{
                   type: "email",
-                  name: "email",
-                  id: "email",
+                  name: "emailAddress",
+                  id: "emailAddress",
                   label: "Email Address",
                   placeholder: "Email Address",
                   className: "input",
+                  value: UserData.emailAddress,
                   onChange: handleChange
                 }}
               />
@@ -110,11 +159,12 @@ const Account = (props) => {
                 formSize="full"
                 inputProps={{
                   type: "tel",
-                  name: "phone",
-                  id: "phone",
+                  name: "phoneNumber",
+                  id: "phoneNumber",
                   label: "phone Number",
                   placeholder: "phone Number",
                   className: "input",
+                  value: UserData.phoneNumber,
                   onChange: handleChange
                 }}
               />
@@ -136,6 +186,7 @@ const Account = (props) => {
                   label: "New Username",
                   placeholder: "New Username",
                   className: "input",
+                  value: UserData.Username,
                   onChange: handleChange
                 }}
               />
@@ -165,11 +216,12 @@ const Account = (props) => {
                 formSize="full"
                 inputProps={{
                   type: "text",
-                  name: "Address Line 1",
-                  id: "Address Line 1",
+                  name: "addressLine1",
+                  id: "addressLine1",
                   label: "Address Line 1",
                   placeholder: "Address Line 1",
                   className: "input",
+                  value: UserData.addressLine1,
                   onChange: handleChange
                 }}
               />
@@ -177,11 +229,12 @@ const Account = (props) => {
                 formSize="full"
                 inputProps={{
                   type: "text",
-                  name: "Address Line 2",
-                  id: "Address Line 2",
+                  name: "addressLine2",
+                  id: "addressLine2",
                   label: "Address Line 2",
                   placeholder: "Address Line 2  ",
                   className: "input",
+                  value: UserData.addressLine2,
                   onChange: handleChange
                 }}
               />
@@ -189,20 +242,22 @@ const Account = (props) => {
                 formSize="half"
                 inputProps={{
                   type: "text",
-                  name: "Postcode",
-                  id: "Postcode",
+                  name: "postCode",
+                  id: "postCode",
                   label: "Postcode",
                   placeholder: "Postcode",
                   className: "input",
+                  value: UserData.postCode,
                   onChange: handleChange
                 }}
                 inputProps2={{
                   type: "text",
-                  name: "City",
-                  id: "City",
+                  name: "city",
+                  id: "city",
                   label: "City",
                   placeholder: "City",
                   className: "input",
+                  value: UserData.city,
                   onChange: handleChange
                 }}
               />
@@ -211,11 +266,12 @@ const Account = (props) => {
                 formSize="full"
                 inputProps={{
                   type: "text",
-                  name: "Country",
-                  id: "Country",
+                  name: "country",
+                  id: "country",
                   label: "Country",
                   placeholder: "Country",
                   className: "input",
+                  value: UserData.country,
                   onChange: handleChange
                 }}
               />
@@ -241,11 +297,10 @@ const Account = (props) => {
                 formSize="full"
                 inputProps={{
                   type: "password",
-                  name: "CurrentPassword",
-                  id: "CurrentPassword",
-                  label: "Current Password",
-                  placeholder: "Current Password",
-                  className: "input"
+                  name: "oldpassword",
+                  id: "oldpassword",
+                  className: "input",
+                  value: UserData.Password
                 }}
               />
               <div className="bar ">
@@ -262,7 +317,7 @@ const Account = (props) => {
                   name: "NewPassword",
                   id: "NewPassword",
                   label: "New Password",
-                  placeholder: "New Password",
+                  placeholder: "NewPassword",
                   className: "input",
                   value: Password,
                   onChange: handlePasswordChange

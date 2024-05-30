@@ -170,7 +170,7 @@ const User = (props) => {
           </ul>
         </div>
         <div className="Task">
-          {CurrentPage === "Profile" && <Account />}
+          {CurrentPage === "Profile" && <Account UserData={User} />}
           {CurrentPage === "Purchase" && <Purchase />}
           {CurrentPage === "Like" && <Liked />}
         </div>

@@ -3,13 +3,14 @@ import React, { Suspense, useEffect, useState } from "react";
 import Navigation from "../../Component/Navigation/Navigation";
 import ProductCard from "../../Component/Product/ProductCard/ProductCard";
 import Footer from "../../Component/Footer/Footer";
-import Loading from "../Loading/Loading";
 import "./Product.css";
 import axios from "axios";
+import NoData from "../Admin/Section/NoData";
 import { useParams } from "react-router-dom";
 
 const Product = () => {
   const [ProductList, setProductList] = useState([]);
+  const [searchValue, setsearchValue] = useState("");
   useEffect(() => {
     getProduct();
   }, []);
@@ -24,19 +25,29 @@ const Product = () => {
 
   const { UserID } = useParams();
 
+  const filteredProductList = ProductList.filter(
+    (item) =>
+      item.Name.toLowerCase().includes(searchValue.toLowerCase()) ||
+      item.Description.toLowerCase().includes(searchValue.toLowerCase())
+  );
+
   return (
     <div className="Product" id="Product">
-      <Navigation />
+      <Navigation onSearch={setsearchValue} />
       <div className="Product-Container">
         <div className="product-group">
-          {ProductList.map((item) => (
-            <ProductCard
-              key={item.ProductID}
-              id={item.ProductID}
-              data={item}
-              UserID={UserID}
-            />
-          ))}
+          {filteredProductList.length > 0 ? (
+            filteredProductList.map((item) => (
+              <ProductCard
+                key={item.ProductID}
+                id={item.ProductID}
+                data={item}
+                UserID={UserID}
+              />
+            ))
+          ) : (
+            <NoData ProductSearch={true} />
+          )}
         </div>
       </div>
       <Footer />

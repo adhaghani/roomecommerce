@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Link, useParams } from "react-router-dom";
+import { Link, useLocation, useNavigate, useParams } from "react-router-dom";
 
 // import IconButton from "../IconButton/IconButton";
 import Button from "../Button/Button";
@@ -13,7 +13,18 @@ const Navigation = (props) => {
 
   const { UserID } = useParams();
 
-  
+  const navigate = useNavigate();
+  const location = useLocation();
+  const [searchValue, setSearchValue] = useState("");
+  const handleSearchChange = (event) => {
+    if (location.pathname !== `/Product/${UserID}`) {
+      navigate(`/Product/${UserID}`);
+    }
+    const value = event.target.value;
+    setSearchValue(value);
+    props.onSearch(value);
+    console.log(searchValue);
+  };
 
   return (
     <>
@@ -75,7 +86,14 @@ const Navigation = (props) => {
           </div>
           {!props.isOnHomePage && (
             <div className="Search">
-              <input type="text" placeholder="Search" />
+              <input
+                name="Search"
+                id="Search"
+                type="text"
+                placeholder="Search"
+                value={searchValue}
+                onChange={handleSearchChange}
+              />
             </div>
           )}
 
@@ -148,7 +166,12 @@ const Navigation = (props) => {
       >
         {!props.isOnHomePage && (
           <div className="Search">
-            <input type="text" placeholder="Search" />
+            <input
+              type="text"
+              placeholder="Search"
+              value={searchValue}
+              onChange={handleSearchChange}
+            />
           </div>
         )}
         {!props.isOnHomePage && (

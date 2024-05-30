@@ -47,12 +47,12 @@
 }
 .Comment-Section .Comment-Container .Comment {
   margin: var(--gap_20);
-  border: 2px solid var(--bg_colour_lgray);
   border-radius: 12px;
 }
 .Comment-Section .Comment-Container .Comment .CommentDetail-Container {
   padding: var(--gap_15);
   display: flex;
+  flex-direction: column;
   gap: var(--gap_10);
 }
 .Comment-Section .Comment-Container .Comment .CommentDetail-Container .Review-Section {
@@ -112,10 +112,19 @@
   margin-top: 10px;
   justify-content: flex-end;
 }
+.Comment-Section .Comment-Container .Comment .CommentDetail-Container .image {
+  display: grid;
+  place-items: center;
+}
+.Comment-Section .Comment-Container .Comment .CommentDetail-Container .image svg {
+  max-width: 300px;
+  height: 300px;
+}
 .Comment-Section .Comment-Container .Comment .CommentDetail-Container .noreview {
   display: block;
   width: 100%;
   text-align: center;
+  color: var(--colour_primary_darker);
 }
 
 @media screen and (min-width: 1px) and (max-width: 500px) {
