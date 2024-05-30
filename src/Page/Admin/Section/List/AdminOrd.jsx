@@ -84,12 +84,13 @@ const AdminOrd = (props) => {
   };
 
   const handleCancelOrder = () => {
-    UpdateOrder.StatusID = 4;
-    updateOrder();
-    props.handleUpdateChange();
-    props.handleUpdateChange();
-    window.location.reload();
-    setTimeout(() => {}, 100);
+    if (confirm("Are you sure you want to cancel this order?")) {
+      UpdateOrder.StatusID = 4;
+      updateOrder();
+      props.handleUpdateChange();
+      props.handleUpdateChange();
+      setTimeout(() => {}, 100);
+    }
   };
 
   const updateOrder = () => {
@@ -136,20 +137,21 @@ const AdminOrd = (props) => {
   };
 
   const handleDeleteOrder = (event) => {
-    event.preventDefault();
+    if (confirm("Are you sure you want to delete this order?")) {
+      event.preventDefault();
+      deleteOrderDetail(props.data.OrderID, Products);
+      deleteOrderRecipient();
+      deleteOrder();
+      props.handleUpdateChange();
+      props.handleUpdateChange();
 
-    deleteOrderDetail(props.data.OrderID, Products);
-    deleteOrderRecipient();
-    deleteOrder();
-    props.handleUpdateChange();
-    props.handleUpdateChange();
-
-    setTimeout(() => {}, 1000);
-    window.dispatchEvent(
-      new CustomEvent("showNotification", {
-        detail: { message: "Category Updated", type: "success" }
-      })
-    );
+      setTimeout(() => {}, 1000);
+      window.dispatchEvent(
+        new CustomEvent("showNotification", {
+          detail: { message: "Category Updated", type: "success" }
+        })
+      );
+    }
   };
 
   return (

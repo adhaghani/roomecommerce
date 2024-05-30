@@ -1,0 +1,13 @@
+.Development {
+  width: 100%;
+  display: flex;
+  position: fixed;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  height: 100vh;
+  background-color: var(--bg_colour_white);
+}
+.Development h2 {
+  color: var(--colour_primary_darker);
+}/*# sourceMappingURL=Development.css.map */

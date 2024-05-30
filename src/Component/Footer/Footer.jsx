@@ -1,6 +1,7 @@
 import React from "react";
 
 import "./Footer.css";
+import { Link } from "react-router-dom";
 
 const Footer = () => {
   return (
@@ -10,19 +11,19 @@ const Footer = () => {
           <h5 className="title">Customer Service</h5>
           <ul>
             <li>
-              <a href="">Help Centre</a>
+              <Link to={"/Development"}>Help Centre</Link>
             </li>
             <li>
-              <a href="">How to Use</a>
+              <Link to={"/Development"}>How to Use</Link>
             </li>
             <li>
-              <a href="">RoomPay</a>
+              <Link to={"/Development"}>RoomPay</Link>
             </li>
             <li>
-              <a href="">Outlet</a>
+              <Link to={"/outlet"}>Outlet</Link>
             </li>
             <li>
-              <a href="">Scam Safety Tips</a>
+              <Link to={"/Development"}>Scam Safety Tips</Link>
             </li>
           </ul>
         </div>
@@ -30,13 +31,13 @@ const Footer = () => {
           <h5 className="title">Follow Us @</h5>
           <ul>
             <li>
-              <a href="">Instagram</a>
+              <Link to={"/Development"}>Instagram</Link>
             </li>
             <li>
-              <a href="">Github</a>
+              <Link to={"/Development"}>Github</Link>
             </li>
             <li>
-              <a href="">Linkedin</a>
+              <Link to={"/Development"}>Linkedin</Link>
             </li>
           </ul>
         </div>
@@ -44,16 +45,16 @@ const Footer = () => {
           <h5 className="title">About Room</h5>
           <ul>
             <li>
-              <a href="">About Us</a>
+              <Link to={"/#About"}>About Us</Link>
             </li>
             <li>
-              <a href="">Room Careers</a>
+              <Link to={"/Development"}>Room Career</Link>
             </li>
             <li>
-              <a href="">Room Policies</a>
+              <Link to={"/Development"}>Room Policies</Link>
             </li>
             <li>
-              <a href="">Privacy Policy</a>
+              <Link to={"/Development"}>Privacy Policy</Link>
             </li>
           </ul>
         </div>
@@ -61,13 +62,13 @@ const Footer = () => {
           <h5 className="title">Contact Us</h5>
           <ul>
             <li>
-              <a href="">Email</a>
+              <Link to={"/Development"}>Email</Link>
             </li>
             <li>
-              <a href="">Customer Service</a>
+              <Link to={"/Development"}>Customer Service</Link>
             </li>
             <li>
-              <a href="">Headquaters</a>
+              <Link to={"/Development"}>Headquaters</Link>
             </li>
           </ul>
         </div>

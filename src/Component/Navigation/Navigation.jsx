@@ -63,14 +63,11 @@ const Navigation = (props) => {
             {!props.isOnHomePage && (
               <ul className="link">
                 <li>
-                  <Link to="/">Home</Link>
-                </li>
-                <li>
                   <Link to={`/Product/${UserID}`}>Products</Link>
                 </li>
               </ul>
             )}
-            {props.sisOnHomePage && (
+            {props.isOnHomePage && (
               <ul className="link">
                 <li>
                   <Link to="/">Home</Link>
@@ -177,9 +174,6 @@ const Navigation = (props) => {
         {!props.isOnHomePage && (
           <ul className="link">
             <li>
-              <Link to="/">Home</Link>
-            </li>
-            <li>
               <Link to={`/Product/${UserID}`}>Products</Link>
             </li>
           </ul>
@@ -191,9 +185,6 @@ const Navigation = (props) => {
             </li>
             <li>
               <a href="#About">About Us</a>
-            </li>
-            <li>
-              <Link to="/Sales">Outlet</Link>
             </li>
           </ul>
         )}

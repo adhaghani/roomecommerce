@@ -7,7 +7,7 @@ import ProductUserCard from "../Purchase/UserProduct/ProductUserCard";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 
-
+import NoData from "../../../Admin/Section/NoData";
 const Liked = (props) => {
   const [Like, setLike] = useState([]);
 
@@ -64,13 +64,17 @@ const Liked = (props) => {
   return (
     <div className="Like" id="Like">
       <div className="Like-Container" onClick={getLike}>
-        {Product.map((item) => (
-          <ProductUserCard
-            isLiked={true}
-            data={item}
-            onRemoveClick={() => removeLike(UserID, item.ProductID)}
-          />
-        ))}
+        {Product.length == 0 ? (
+          <NoData />
+        ) : (
+          Product.map((item) => (
+            <ProductUserCard
+              isLiked={true}
+              data={item}
+              onRemoveClick={() => removeLike(UserID, item.ProductID)}
+            />
+          ))
+        )}
       </div>
     </div>
   );

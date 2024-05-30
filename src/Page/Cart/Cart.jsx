@@ -11,8 +11,7 @@ import ProductCart from "./ProductCart/ProductCart";
 import Button from "../../Component/Button/Button";
 import NoData from "../Admin/Section/NoData";
 
-import Loading from "../Loading/Loading";
-
+import Notification from "../../Component/Notification/Notification";
 import "./Cart.css";
 
 const Cart = () => {
@@ -77,8 +76,15 @@ const Cart = () => {
         }
       })
       .then((response) => {
+        getCartData();
+        getProductData();
         calculateSubtotal();
       });
+    window.dispatchEvent(
+      new CustomEvent("showNotification", {
+        detail: { message: "Product Removed to cart", type: "success" }
+      })
+    );
   };
 
   const calculateFee = (subtotal, percentage) => {
@@ -93,7 +99,6 @@ const Cart = () => {
   // CALCULATE SUBTOTAL FOR EACH PRODUCT BY USING PRODUCT PRICE FROM WITH QUANTITY FROM CART LIKNED WITH PRODUCTID
   const calculateSubtotal = () => {
     let totalSubtotal = 0;
-    getProductData();
     getCartData();
     products.forEach((products) => {
       const cartItem = Cart.find(
@@ -121,7 +126,7 @@ const Cart = () => {
   return (
     <div className="Cart" id="Cart">
       <Navigation isOnHomePage={false} />
-
+      <Notification />
       <div className="Cart-Container">
         <div className="Product-Container">
           {products.length > 0 ? (

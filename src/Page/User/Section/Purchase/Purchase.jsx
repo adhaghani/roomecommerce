@@ -67,11 +67,15 @@ const Purchase = (props) => {
 
   const handleUpdateChange = () => {
     getOrderData();
+    determineOrdersType();
     getOrderData();
     determineOrdersType();
-    determineOrdersType();
+    window.dispatchEvent(
+      new CustomEvent("showNotification", {
+        detail: { message: "Order Cancelled", type: "success" }
+      })
+    );
   };
-  
 
   return (
     <div className="Purchase" id="Purchase">

@@ -455,31 +455,6 @@ const Order = () => {
             </div>
           </div>
         </div>
-        {/* Button */}
-        {!IsAdmin && (
-          <div className="Section-Container Button">
-            {Order.StatusID >= 1 &&
-              Order.StatusID != 3 &&
-              Order.StatusID != 4 && (
-                <Button
-                  title="Receive Order"
-                  value="Receive Order"
-                  type="Receive Order"
-                  className="fill primary"
-                  onClick={() => handleReceiveOrder(OrderID)}
-                />
-              )}
-            {Order.StatusID == 1 && (
-              <Button
-                title="Cancel Order"
-                value="Cancel Order"
-                type="Cancel Order"
-                className="outline gray cancel"
-                onClick={() => handleCancelOrder(OrderID)}
-              />
-            )}
-          </div>
-        )}
       </div>
     </div>
   );
