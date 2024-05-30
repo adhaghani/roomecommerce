@@ -1,1 +1,5 @@
-/*# sourceMappingURL=Purchase.css.map */
+#Purchase .Purchase-Container .page {
+  padding: var(--gap_10);
+  margin: auto;
+  max-width: 700px;
+}/*# sourceMappingURL=Purchase.css.map */

@@ -12,7 +12,7 @@
     max-width: 800px;
     border-radius: 6px;
     padding: var(--padding_20);
-    box-shadow: var(--box_shadow);
+    border: 2px solid var(--bg_colour_lgray);
     .User-Title {
       text-align: center;
       display: flex;
@@ -49,6 +49,12 @@
             align-items: center;
             gap: var(--gap_10);
             font-size: var(--font_size_18);
+            color: var(--colour_primary_darker);
+          }
+          svg {
+            path {
+              stroke: var(--colour_primary_darker);
+            }
           }
         }
         .Section-Details {

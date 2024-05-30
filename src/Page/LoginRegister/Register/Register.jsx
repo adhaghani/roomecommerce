@@ -5,6 +5,7 @@ import Button from "../../../Component/Button/Button";
 import ProgressBar from "./ProgressBar";
 import "./Register.css";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 const Register = () => {
   // Flipping page
   const [CurrentPage, setCurrentPage] = useState(0);
@@ -170,6 +171,12 @@ const Register = () => {
       });
   };
 
+  const navigate = useNavigate();
+
+  const handleClick = () => {
+    navigate("/Login");
+  };
+
   return (
     <>
       <div className="LoginRegister">
@@ -288,7 +295,12 @@ const Register = () => {
                       }}
                     />
                   </div>
-                  <div className="button-container end">
+                  <div className="button-container">
+                    <Button
+                      type="back"
+                      className="outline gray"
+                      onClick={handleClick}
+                    />
                     <Button
                       type="Next"
                       className="fill primary"

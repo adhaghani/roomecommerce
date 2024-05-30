@@ -1,2 +1,9 @@
 #Purchase {
+  .Purchase-Container {
+    .page {
+      padding: var(--gap_10);
+      margin: auto;
+      max-width: 700px;
+    }
+  }
 }

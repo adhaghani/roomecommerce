@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 
 import Button from "../../../../Component/Button/Button";
 import axios from "axios";
@@ -6,9 +6,14 @@ import axios from "axios";
 import "../../../User/Section/Purchase/UserProduct/ProductUser.css";
 import { useParams } from "react-router-dom";
 import Admin from "../../Admin";
+
+import Loading from "../../../Loading/Loading";
 const AdminProd = (props) => {
+  const [IsLoading, setIsLoading] = useState(false);
   function deleteProduct(ProductID) {
     if (confirm("Are you sure you want to delete this Product?")) {
+      props.onDelete();
+      setIsLoading(true);
       axios
         .delete("http://localhost/CSC264/RoomAPI/DeleteProduct.php", {
           params: {
@@ -16,9 +21,12 @@ const AdminProd = (props) => {
           }
         })
         .then((response) => {
-          window.location.reload();
+          props.onDelete();
         });
     }
+    setTimeout(() => {
+      setIsLoading(false);
+    }, 150);
   }
 
   const { AdminID } = useParams();
@@ -27,6 +35,7 @@ const AdminProd = (props) => {
     <>
       {props.type !== "Order" && (
         <div className="Product" id="ProductPurchase">
+          {IsLoading && <Loading />}
           <div className="Product-Detail">
             <div className="Image">
               <img src={props.PicturePath} alt="" />

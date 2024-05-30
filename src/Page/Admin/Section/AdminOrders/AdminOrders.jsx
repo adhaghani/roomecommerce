@@ -5,6 +5,8 @@ import UserNav from "../../../User/UserNavigation/UserNav";
 import AdminOrd from "../List/AdminOrd";
 import "../AdminSection.css";
 import Order from "../../../User/Order/Order";
+import Loading from "../../../Loading/Loading";
+import NoData from "../NoData";
 
 const AdminOrders = () => {
   const [CurrentPage, setCurrentPage] = useState(1);
@@ -22,7 +24,6 @@ const AdminOrders = () => {
     axios
       .get("http://localhost/CSC264/RoomAPI/getOrder.php")
       .then((response) => {
-        console.log(response.data);
         setOrderData(response.data);
       })
       .catch((error) => {
@@ -40,6 +41,7 @@ const AdminOrders = () => {
     } else if (status === 4) {
       return "Cancelled";
     }
+    setUpdatedStatus(status);
   };
 
   let OrderedOrders = [];
@@ -62,23 +64,38 @@ const AdminOrders = () => {
     );
   };
 
+  const handleUpdateChange = () => {
+    getOrderData();
+    getOrderData();
+    determineOrdersType();
+    determineOrdersType();
+  };
+
   determineOrdersType();
+
+  const [updatedStatus, setUpdatedStatus] = useState(null);
 
   return (
     <div className="AdminOrders" id="AdminOrder">
+      {/* <Loading /> */}
       <UserNav category="AdminOrders" onClick={handleSubNavClick} />
       <div className="admin-Container Orders">
         {CurrentPage == 1 && (
           <div className="Page">
             <div className="Page-Container">
               <div className="List-Container">
-                {OrderData.map((item) => (
-                  <AdminOrd
-                    key={item.id}
-                    status={decideStatus(item.StatusID)}
-                    data={item}
-                  />
-                ))}
+                {OrderData.length > 0 ? (
+                  OrderData.map((item) => (
+                    <AdminOrd
+                      key={item.id}
+                      status={decideStatus(item.StatusID)}
+                      data={item}
+                      handleUpdateChange={handleUpdateChange}
+                    />
+                  ))
+                ) : (
+                  <NoData />
+                )}
               </div>
             </div>
           </div>
@@ -87,13 +104,18 @@ const AdminOrders = () => {
           <div className="Page">
             <div className="Page-Container">
               <div className="List-Container">
-                {OrderedOrders.map((item) => (
-                  <AdminOrd
-                    key={item.id}
-                    status={decideStatus(item.StatusID)}
-                    data={item}
-                  />
-                ))}
+                {OrderedOrders.length > 0 ? (
+                  OrderedOrders.map((item) => (
+                    <AdminOrd
+                      key={item.id}
+                      status={decideStatus(item.StatusID)}
+                      handleUpdateChange={handleUpdateChange}
+                      data={item}
+                    />
+                  ))
+                ) : (
+                  <NoData />
+                )}
               </div>
             </div>
           </div>
@@ -102,13 +124,18 @@ const AdminOrders = () => {
           <div className="Page">
             <div className="Page-Container">
               <div className="List-Container">
-                {shippedOrders.map((item) => (
-                  <AdminOrd
-                    key={item.id}
-                    status={decideStatus(item.StatusID)}
-                    data={item}
-                  />
-                ))}
+                {shippedOrders.length > 0 ? (
+                  shippedOrders.map((item) => (
+                    <AdminOrd
+                      key={item.id}
+                      status={decideStatus(item.StatusID)}
+                      data={item}
+                      handleUpdateChange={handleUpdateChange}
+                    />
+                  ))
+                ) : (
+                  <NoData />
+                )}
               </div>
             </div>
           </div>
@@ -117,13 +144,18 @@ const AdminOrders = () => {
           <div className="Page">
             <div className="Page-Container">
               <div className="List-Container">
-                {completedOrders.map((item) => (
-                  <AdminOrd
-                    key={item.id}
-                    status={decideStatus(item.StatusID)}
-                    data={item}
-                  />
-                ))}
+                {completedOrders.length > 0 ? (
+                  completedOrders.map((item) => (
+                    <AdminOrd
+                      key={item.id}
+                      status={decideStatus(item.StatusID)}
+                      data={item}
+                      handleUpdateChange={handleUpdateChange}
+                    />
+                  ))
+                ) : (
+                  <NoData />
+                )}
               </div>
             </div>
           </div>
@@ -132,13 +164,18 @@ const AdminOrders = () => {
           <div className="Page">
             <div className="Page-Container">
               <div className="List-Container">
-                {cancelledOrders.map((item) => (
-                  <AdminOrd
-                    key={item.id}
-                    status={decideStatus(item.StatusID)}
-                    data={item}
-                  />
-                ))}
+                {cancelledOrders.length > 0 ? (
+                  cancelledOrders.map((item) => (
+                    <AdminOrd
+                      key={item.id}
+                      status={decideStatus(item.StatusID)}
+                      data={item}
+                      handleUpdateChange={handleUpdateChange}
+                    />
+                  ))
+                ) : (
+                  <NoData />
+                )}
               </div>
             </div>
           </div>

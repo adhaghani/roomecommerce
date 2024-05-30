@@ -71,7 +71,7 @@ const Login = (props) => {
           <div className="form-section">
             <div className="progress-container">
               <h1 className="Title">Sign In</h1>
-              <h5>Welcome to Room Furniture Online store!</h5>
+              <h5>Welcome to Room Furniture Online store!</h5>=
             </div>
             <form method="POST" onSubmit={handleSubmit}>
               <>

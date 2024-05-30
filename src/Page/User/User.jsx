@@ -46,7 +46,6 @@ const User = (props) => {
       <div className="User-Container">
         <div className="Profile">
           <h3 className="greeting">Hello, {User.Username}</h3>
-          <div className="line"></div>
           <ul className={IsActive ? "List active" : "List"}>
             <button
               className={IsActive ? "hamburger active" : "hamburger"}

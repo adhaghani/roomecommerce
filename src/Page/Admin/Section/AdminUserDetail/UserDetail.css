@@ -14,7 +14,7 @@
   max-width: 800px;
   border-radius: 6px;
   padding: var(--padding_20);
-  box-shadow: var(--box_shadow);
+  border: 2px solid var(--bg_colour_lgray);
 }
 #UserDetail .UserDetail-Container .User-Title {
   text-align: center;
@@ -43,6 +43,10 @@
   align-items: center;
   gap: var(--gap_10);
   font-size: var(--font_size_18);
+  color: var(--colour_primary_darker);
+}
+#UserDetail .UserDetail-Container .User-Details .Section .Section-Title svg path {
+  stroke: var(--colour_primary_darker);
 }
 #UserDetail .UserDetail-Container .User-Details .Section .Section-Details {
   margin-top: 10px;

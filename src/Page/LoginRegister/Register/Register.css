@@ -61,6 +61,16 @@
 .LoginRegister .LoginRegister-Container .form-section .progress-container .section.active .number h2 {
   color: var(--colour_primary_dark);
 }
+.LoginRegister .LoginRegister-Container .form-section .progress-container .Image {
+  height: -moz-fit-content;
+  height: fit-content;
+  display: grid;
+  place-items: center;
+}
+.LoginRegister .LoginRegister-Container .form-section .progress-container .Image svg {
+  width: 220px;
+  height: 200px;
+}
 .LoginRegister .LoginRegister-Container .form-section form {
   width: 60%;
   max-width: 574px;

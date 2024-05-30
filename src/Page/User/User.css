@@ -1,24 +1,24 @@
 #User .User-Container {
-  padding: 120px 20px;
-  width: var(--width_container);
+  padding: 70px 0px;
+  width: clamp(1px, 100%, 2400px);
   margin: auto;
   display: flex;
-  justify-content: center;
-  gap: var(--gap_20);
+  justify-content: flex-start;
 }
 #User .User-Container .Profile {
+  padding-top: 50px;
+  padding-left: 20px;
   width: 250px;
+  background-color: #f5f5f5;
+  height: 100%;
+  position: fixed;
 }
 #User .User-Container .Profile .greeting {
   height: 35px;
   padding-bottom: var(--padding_10);
   font-size: var(--font_size_16);
-}
-#User .User-Container .Profile .line {
-  width: 100%;
-  height: 1px;
-  background-color: var(--bg_colour_lgray);
-  margin-bottom: var(--gap_20);
+  text-align: center;
+  margin-right: 20px;
 }
 #User .User-Container .Profile .List {
   display: flex;
@@ -90,20 +90,24 @@
   color: var(--colour_primary_dark);
 }
 #User .User-Container .Task {
-  width: clamp(300px, 100%, 800px);
+  padding-top: 50px;
+  margin-left: 250px;
+  width: calc(100% - 250px);
 }
 
 @media screen and (min-width: 501px) and (max-width: 768px) {
   #User .User-Container {
     gap: 0px;
-    padding-left: 70px;
+    padding-left: 50px;
   }
   #User .User-Container .Profile {
+    background-color: white;
     height: 100%;
     width: 50px;
     position: fixed;
     z-index: 3;
     left: 0px;
+    padding-left: 0px;
   }
   #User .User-Container .Profile .greeting {
     display: none;
@@ -139,6 +143,11 @@
   #User .User-Container .Profile .List.active li .name {
     opacity: 1;
   }
+  #User .User-Container .Task {
+    width: 100%;
+    margin-left: 0px;
+    padding: 50px 10px;
+  }
 }
 @media screen and (min-width: 1px) and (max-width: 500px) {
   #User .User-Container .Profile {
@@ -151,6 +160,7 @@
     justify-content: center;
     align-items: center;
     box-shadow: rgba(17, 17, 26, 0.05) 0px 1px 0px, rgba(17, 17, 26, 0.1) 0px 0px 8px;
+    padding: 0px;
   }
   #User .User-Container .Profile .line {
     display: none;
@@ -173,5 +183,10 @@
   #User .User-Container .Profile .List li .name h4 {
     text-align: center;
     font-size: 11px !important;
+  }
+  #User .User-Container .Task {
+    padding: 50px 10px;
+    width: 100%;
+    margin-left: 0px;
   }
 }/*# sourceMappingURL=User.css.map */

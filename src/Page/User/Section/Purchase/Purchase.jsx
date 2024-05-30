@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { Suspense, useEffect, useState } from "react";
 import axios from "axios";
 
 import UserNav from "../../UserNavigation/UserNav";
@@ -7,6 +7,7 @@ import "./Purchase.css";
 
 import ProductUserCard from "./UserProduct/ProductUserCard";
 import AdminOrd from "../../../Admin/Section/List/AdminOrd";
+import NoData from "../../../Admin/Section/NoData";
 import { useParams } from "react-router-dom";
 
 const Purchase = (props) => {
@@ -62,8 +63,15 @@ const Purchase = (props) => {
       (item) => decideStatus(item.StatusID) === "Cancelled"
     );
   };
-
   determineOrdersType();
+
+  const handleUpdateChange = () => {
+    getOrderData();
+    getOrderData();
+    determineOrdersType();
+    determineOrdersType();
+  };
+  
 
   return (
     <div className="Purchase" id="Purchase">
@@ -72,70 +80,95 @@ const Purchase = (props) => {
         {CurrentPage === 1 && (
           <div className="page">
             <div className="productCard-Container">
-              {OrderData.map((item) => (
-                <AdminOrd
-                  key={item.OrderID}
-                  status={decideStatus(item.StatusID)}
-                  data={item}
-                  OrderPage={true}
-                />
-              ))}
+              {OrderData.length > 0 ? (
+                OrderData.map((item) => (
+                  <AdminOrd
+                    key={item.OrderID}
+                    status={decideStatus(item.StatusID)}
+                    data={item}
+                    OrderPage={true}
+                    handleUpdateChange={handleUpdateChange}
+                  />
+                ))
+              ) : (
+                <NoData />
+              )}
             </div>
           </div>
         )}
         {CurrentPage === 2 && (
           <div className="page">
             <div className="productCard-Container">
-              {OrderedOrders.map((item) => (
-                <AdminOrd
-                  key={item.id}
-                  status={decideStatus(item.StatusID)}
-                  data={item}
-                  OrderPage={true}
-                />
-              ))}
+              {OrderedOrders > 0 ? (
+                OrderedOrders.map((item) => (
+                  <AdminOrd
+                    key={item.id}
+                    status={decideStatus(item.StatusID)}
+                    data={item}
+                    OrderPage={true}
+                    handleUpdateChange={handleUpdateChange}
+                  />
+                ))
+              ) : (
+                <NoData />
+              )}
             </div>
           </div>
         )}
         {CurrentPage === 3 && (
           <div className="page">
             <div className="productCard-Container">
-              {shippedOrders.map((item) => (
-                <AdminOrd
-                  key={item.id}
-                  status={decideStatus(item.StatusID)}
-                  data={item}
-                  OrderPage={true}
-                />
-              ))}
+              {shippedOrders.length > 0 ? (
+                shippedOrders.map((item) => (
+                  <AdminOrd
+                    key={item.id}
+                    status={decideStatus(item.StatusID)}
+                    data={item}
+                    OrderPage={true}
+                    handleUpdateChange={handleUpdateChange}
+                  />
+                ))
+              ) : (
+                <NoData />
+              )}
             </div>
           </div>
         )}
         {CurrentPage === 4 && (
           <div className="page">
             <div className="productCard-Container">
-              {completedOrders.map((item) => (
-                <AdminOrd
-                  key={item.id}
-                  status={decideStatus(item.StatusID)}
-                  data={item}
-                  OrderPage={true}
-                />
-              ))}
+              {completedOrders.length > 0 ? (
+                completedOrders.map((item) => (
+                  <AdminOrd
+                    key={item.id}
+                    status={decideStatus(item.StatusID)}
+                    data={item}
+                    OrderPage={true}
+                    handleUpdateChange={handleUpdateChange}
+                  />
+                ))
+              ) : (
+                <NoData />
+              )}
             </div>
           </div>
         )}
         {CurrentPage === 5 && (
           <div className="page">
             <div className="productCard-Container">
-              {cancelledOrders.map((item) => (
-                <AdminOrd
-                  key={item.id}
-                  status={decideStatus(item.StatusID)}
-                  data={item}
-                  OrderPage={true}
-                />
-              ))}
+              {cancelledOrders.length > 0 ? (
+                cancelledOrders.map((item) => (
+                  <AdminOrd
+                    key={item.id}
+                    status={decideStatus(item.StatusID)}
+                    data={item}
+                    OrderPage={true}
+                    handleUpdateChange={handleUpdateChange}
+                  />
+                ))
+              ) : (
+                <NoData />
+              )}
             </div>
           </div>
         )}

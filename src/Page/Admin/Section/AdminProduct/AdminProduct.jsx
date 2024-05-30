@@ -8,9 +8,11 @@ import "../List/List.css";
 import Input from "../../../../Component/Input/Input";
 import Button from "../../../../Component/Button/Button";
 import Select from "../../../../Component/Select/Select";
+import Loading from "../../../Loading/Loading";
 
 const AdminProduct = () => {
   const [CurrentPage, setCurrentPage] = useState(1);
+  const [IsLoading, setIsLoading] = useState(false);
   const handleSubNavClick = (item) => {
     setCurrentPage(item);
   };
@@ -75,6 +77,7 @@ const AdminProduct = () => {
 
   // Add Product Handler
   const handleSubmit = (event) => {
+    setIsLoading(true);
     event.preventDefault();
     const { Name, Description, Price, ProductStock, CategoryID, PicturePath } =
       products;
@@ -97,6 +100,10 @@ const AdminProduct = () => {
       .then((data) => {
         getProduct();
       });
+    setTimeout(() => {
+      setCurrentPage(3);
+      setIsLoading(false);
+    }, 150);
   };
 
   // Update Product State
@@ -170,6 +177,7 @@ const AdminProduct = () => {
 
   // UPDATE PRODUCT TO SERVER
   const handleProductUpdate = (event) => {
+    setIsLoading(true);
     event.preventDefault();
     const {
       ProductID,
@@ -200,6 +208,10 @@ const AdminProduct = () => {
       .then((data) => {
         getProduct();
       });
+    setTimeout(() => {
+      setCurrentPage(3);
+      setIsLoading(false);
+    }, 150);
   };
   // GET CATEGORY
   const [CategoryList, setCategoryList] = useState([]);
@@ -231,11 +243,17 @@ const AdminProduct = () => {
       });
   }
 
+  const onDelete = () => {
+    getProduct();
+  };
+
   return (
     <div className="AdminProduct" id="AdminProduct">
+      {IsLoading && <Loading />}
       <UserNav category="AdminProduct" onClick={handleSubNavClick} />
       <div className="admin-Container Product">
         {/* ADD PRODUCT */}
+
         {CurrentPage == 1 && (
           <div className="Page">
             <div className="Page-Container">
@@ -473,6 +491,7 @@ const AdminProduct = () => {
                       AdminPage={true}
                       key={product.ProductID}
                       {...product}
+                      onDelete={onDelete}
                     />
                   );
                 })}

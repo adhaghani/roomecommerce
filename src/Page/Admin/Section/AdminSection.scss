@@ -164,3 +164,22 @@
     }
   }
 }
+
+.NoData {
+  padding-top: 100px;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  place-items: center;
+  gap: 30px;
+  svg {
+    aspect-ratio: 1/1;
+    width: 50%;
+    height: 70%;
+    max-width: 450px;
+  }
+  h1 {
+    color: var(--colour_primary_darker);
+    font-size: var(--font_size_24);
+  }
+}
