@@ -17,14 +17,25 @@ const AdminCat = (props) => {
           }
         })
         .then((response) => {
-          props.getCategory();
+          if (response.data.status == 0) {
+            window.dispatchEvent(
+              new CustomEvent("showNotification", {
+                detail: {
+                  message: "Unable to Delete Category",
+                  type: "Error"
+                }
+              })
+            );
+          } else {
+            props.getCategory();
+            window.dispatchEvent(
+              new CustomEvent("showNotification", {
+                detail: { message: "Category Delete", type: "success" }
+              })
+            );
+          }
         });
     }
-    window.dispatchEvent(
-      new CustomEvent("showNotification", {
-        detail: { message: "Category Deleted", type: "success" }
-      })
-    );
   }
 
   return (

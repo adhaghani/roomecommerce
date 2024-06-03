@@ -148,7 +148,7 @@ const AdminOrd = (props) => {
       setTimeout(() => {}, 1000);
       window.dispatchEvent(
         new CustomEvent("showNotification", {
-          detail: { message: "Category Updated", type: "success" }
+          detail: { message: "Order Deleted", type: "success" }
         })
       );
     }

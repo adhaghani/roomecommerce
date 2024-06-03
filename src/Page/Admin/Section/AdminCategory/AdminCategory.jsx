@@ -71,7 +71,6 @@ const AdminCategory = () => {
         Name: value
       }));
     }
-
   };
 
   const handleUpdate = (event) => {
@@ -159,11 +158,11 @@ const AdminCategory = () => {
               <div className="Page-Container">
                 <div className="title-container">
                   <div className="title">
-                    <h1>Add Category</h1>
+                    <h1>Update Category</h1>
                   </div>
                   <div className="title-detail">
                     <p>
-                      add Category, Adding category may increase variety of
+                      Update Category, Updating category may increase variety of
                       products.
                     </p>
                   </div>

@@ -1,13 +1,10 @@
-import React, { useState } from "react";
+import React from "react";
 
 import Button from "../../../../Component/Button/Button";
 import axios from "axios";
 
 import "../../../User/Section/Purchase/UserProduct/ProductUser.css";
 import { useParams } from "react-router-dom";
-import Admin from "../../Admin";
-
-import Loading from "../../../Loading/Loading";
 const AdminProd = (props) => {
   function deleteProduct(ProductID) {
     if (confirm("Are you sure you want to delete this Product?")) {
@@ -18,15 +15,25 @@ const AdminProd = (props) => {
           }
         })
         .then((response) => {
-          props.onDelete();
+          if (response.data.status == 0) {
+            window.dispatchEvent(
+              new CustomEvent("showNotification", {
+                detail: {
+                  message: "Unable to Delete Product",
+                  type: "Error"
+                }
+              })
+            );
+          } else {
+            props.onDelete();
+            window.dispatchEvent(
+              new CustomEvent("showNotification", {
+                detail: { message: "Product Delete", type: "success" }
+              })
+            );
+          }
         });
     }
-    setTimeout(() => {}, 150);
-    window.dispatchEvent(
-      new CustomEvent("showNotification", {
-        detail: { message: "Product Delete", type: "success" }
-      })
-    );
   }
 
   const { AdminID } = useParams();

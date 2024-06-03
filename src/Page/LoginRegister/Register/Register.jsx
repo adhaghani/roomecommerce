@@ -125,6 +125,7 @@ const Register = () => {
     return hasNumber.test(password);
   };
 
+  const navigate = useNavigate();
   const handleSubmit = (event) => {
     event.preventDefault();
     const {
@@ -169,9 +170,13 @@ const Register = () => {
       .catch((error) => {
         console.error(error);
       });
+    navigate(`/Login`);
+    window.dispatchEvent(
+      new CustomEvent("showNotification", {
+        detail: { message: "Product Added To Cart", type: "success" }
+      })
+    );
   };
-
-  const navigate = useNavigate();
 
   const handleClick = () => {
     navigate("/Login");
@@ -526,6 +531,7 @@ const Register = () => {
                       className="fill primary"
                       value={"Register"}
                       link="/Login"
+                      onClick={handleSubmit}
                     />
                   </div>
                 </>

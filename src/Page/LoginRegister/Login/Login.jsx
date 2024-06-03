@@ -4,6 +4,7 @@ import axios from "axios";
 
 import Input from "../../../Component/Input/Input";
 import Button from "../../../Component/Button/Button";
+import Notification from "../../../Component/Notification/Notification";
 
 const Login = (props) => {
   const [Inputs, setInputs] = useState({
@@ -50,7 +51,14 @@ const Login = (props) => {
             navigate(`/Product/${data.UserID}`);
           }
         } else {
-          alert(data.message);
+          window.dispatchEvent(
+            new CustomEvent("showNotification", {
+              detail: {
+                message: "Wrong Credential.",
+                type: "Error"
+              }
+            })
+          );
         }
       });
   };
@@ -67,6 +75,7 @@ const Login = (props) => {
   return (
     <>
       <div className="LoginRegister">
+        <Notification />
         <div className="LoginRegister-Container">
           <div className="form-section">
             <div className="progress-container">

@@ -23,5 +23,17 @@
         }
       }
     }
+    &.Error {
+      border: 2px solid var(--bg_colour_red);
+      .Notification-Message {
+        .image {
+          svg {
+            path {
+              stroke: var(--bg_colour_red);
+            }
+          }
+        }
+      }
+    }
   }
 }
