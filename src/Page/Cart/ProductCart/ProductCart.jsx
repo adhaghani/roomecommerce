@@ -3,6 +3,8 @@ import React, { useEffect, useState } from "react";
 import Button from "../../../Component/Button/Button";
 import { useParams } from "react-router-dom";
 import axios from "axios";
+
+import { getUserCartData } from "../../../Function/getUserCartData";
 const ProductCart = (props) => {
   const [Amount, setAmount] = useState(10);
 
@@ -25,18 +27,17 @@ const ProductCart = (props) => {
 
   const { UserID } = useParams();
 
-  const getCartData = () => {
-    axios
-      .get(
-        `http://localhost/CSC264/RoomAPI/getCart.php/${UserID}/${props.data.ProductID}`
-      )
-      .then((response) => {
-        setAmount(response.data.Quantity);
-      });
+  const fetchCartData = async () => {
+    try {
+      const data = await getUserCartData(UserID, props.data.ProductID);
+      setAmount(data);
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   useEffect(() => {
-    getCartData();
+    fetchCartData();
   }, []);
 
   const handleRemoveFromCart = () => {

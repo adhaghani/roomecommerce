@@ -12,7 +12,7 @@ const CheckoutCart = (props) => {
         <p>:</p>
       </div>
       <div className="Sub-Total">
-        <h3>RM {props.Amount}</h3>
+        <h3>RM{props.Amount}</h3>
       </div>
     </div>
   );

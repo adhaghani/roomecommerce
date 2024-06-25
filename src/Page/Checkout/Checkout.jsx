@@ -11,6 +11,7 @@ import Button from "../../Component/Button/Button";
 
 import CheckoutCart from "../Cart/CheckoutCart/CheckoutCart";
 
+import { getSession } from "../../Function/Session";
 const Checkout = () => {
   const [IsUsingCard, setIsUsingCard] = useState(false);
   const handleInput = (field, value) => {
@@ -29,7 +30,7 @@ const Checkout = () => {
       ...prevOrderData,
       PaymentMethod: selectedPaymentMethod
     }));
-    if (selectedPaymentMethod === "Card") {
+    if (selectedPaymentMethod === "Credit/Debit Card") {
       setIsUsingCard(true);
     } else {
       setIsUsingCard(false);
@@ -179,6 +180,15 @@ const Checkout = () => {
     }
   };
 
+  // SESSION FUNCTION
+
+  useEffect(() => {
+    const sessionData = getSession();
+    if (!sessionData) {
+      navigate("/NoSession");
+    }
+  }, [navigate]);
+
   return (
     <div className="Checkout" id="Checkout">
       <Navigation isOnHomePage={false} />
@@ -316,8 +326,8 @@ const Checkout = () => {
                 onChange={handleSelectChange}
               >
                 <option value="">Choose Payment Method</option>
-                <option value="Cash">Cash on Delivery</option>
-                <option value="Card">Credit/Debit Card</option>
+                <option value="Cash On Delivery">Cash on Delivery</option>
+                <option value="Credit/Debit Card">Credit/Debit Card</option>
               </select>
             </div>
           </div>

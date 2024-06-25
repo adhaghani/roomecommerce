@@ -8,8 +8,10 @@ import AdminStatistic from "./Section/AdminStatistic/AdminStatistic";
 import Notification from "../../Component/Notification/Notification";
 import "./Admin.css";
 
-import { Link, useParams } from "react-router-dom";
+import { Link, useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
+
+import { getSession, clearSession } from "../../Function/Session";
 
 const Admin = (props) => {
   const { AdminID } = useParams();
@@ -29,6 +31,22 @@ const Admin = (props) => {
   const [IsActive, setIsActive] = useState(false);
 
   const [CurrentPage, setCurrentPage] = useState("Statistic");
+
+  // SESSION FUNCTION
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const sessionData = getSession();
+    if (!sessionData) {
+      navigate("/NoSession");
+    }
+  }, [navigate]);
+
+  const handleClearSession = () => {
+    clearSession();
+    navigate("/");
+  };
+
   return (
     <div className="Admin" id="Admin">
       <Notification />
@@ -184,7 +202,7 @@ const Admin = (props) => {
             <Link to={"/"}>
               <li
                 className={CurrentPage === "Out" ? "active" : ""}
-                onClick={() => setCurrentPage("Out")}
+                onClick={handleClearSession}
               >
                 <div className="icon">
                   <svg
@@ -355,7 +373,7 @@ const Admin = (props) => {
             <Link to={"/"}>
               <li
                 className={CurrentPage === "Out" ? "active" : ""}
-                onClick={() => setCurrentPage("Out")}
+                onClick={handleClearSession}
               >
                 <div className="icon">
                   <svg

@@ -13,6 +13,7 @@ import Order from "./Page/User/Order/Order";
 import Admin from "./Page/Admin/Admin";
 import Development from "./Page/Development/Development";
 import UserDetail from "./Page/Admin/Section/AdminUserDetail/UserDetail";
+import NoSession from "./Page/NoSession/NoSession";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 function App() {
@@ -24,6 +25,7 @@ function App() {
           <Route exact path="/register" element={<Register />} />
           <Route exact path="/login" element={<Login />} />
           <Route exact path="/outlet" element={<Outlet />} />
+          <Route exact path="/NoSession" element={<NoSession />} />
           <Route exact path="/Product/:UserID" element={<Product />} />
           <Route exact path="/Cart/:UserID" element={<Cart />} />
           <Route exact path="/Development" element={<Development />} />

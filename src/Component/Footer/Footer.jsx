@@ -28,20 +28,6 @@ const Footer = () => {
           </ul>
         </div>
         <div className="footer-section">
-          <h5 className="title">Follow Us @</h5>
-          <ul>
-            <li>
-              <Link to={"/Development"}>Instagram</Link>
-            </li>
-            <li>
-              <Link to={"/Development"}>Github</Link>
-            </li>
-            <li>
-              <Link to={"/Development"}>Linkedin</Link>
-            </li>
-          </ul>
-        </div>
-        <div className="footer-section">
           <h5 className="title">About Room</h5>
           <ul>
             <li>
@@ -74,7 +60,7 @@ const Footer = () => {
         </div>
       </div>
       <div className="Copyright">
-        <p>Copyright by @Adhaghani, All rights Reserved</p>
+        <p>Copyright by @Room, All rights Reserved</p>
       </div>
     </div>
   );

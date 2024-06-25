@@ -1,6 +1,5 @@
 #ProductPurchase {
   padding: var(--padding_20);
-  border-bottom: 1px solid var(--bg_colour_dkgray);
 }
 #ProductPurchase .Product-Detail {
   display: flex;

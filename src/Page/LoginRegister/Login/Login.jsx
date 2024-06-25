@@ -6,6 +6,7 @@ import Input from "../../../Component/Input/Input";
 import Button from "../../../Component/Button/Button";
 import Notification from "../../../Component/Notification/Notification";
 
+import { setSession } from "../../../Function/Session";
 const Login = (props) => {
   const [Inputs, setInputs] = useState({
     Username: "",
@@ -29,7 +30,6 @@ const Login = (props) => {
   const handleSubmit = (event) => {
     event.preventDefault();
     const { Username, Password } = Inputs;
-
     const data = {
       Username: Username,
       Password: Password
@@ -42,24 +42,53 @@ const Login = (props) => {
       },
       body: JSON.stringify(data)
     })
-      .then((response) => response.json())
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error("Network response was not ok");
+        }
+        return response.json();
+      })
       .then((data) => {
+        console.log(data);
         if (data.message === "Login Success") {
           if (data.RoleID == 1) {
             navigate(`/Admin/${data.UserID}`);
+            const sessionData = {
+              UserID: data.UserID,
+              RoleID: data.RoleID,
+              Username: data.Username
+            };
+            setSession(sessionData);
           } else {
             navigate(`/Product/${data.UserID}`);
+            const sessionData = {
+              UserID: data.UserID,
+              RoleID: data.RoleID,
+              Username: data.Username
+            };
+            setSession(sessionData);
           }
         } else {
           window.dispatchEvent(
             new CustomEvent("showNotification", {
               detail: {
-                message: "Wrong Credential.",
+                message: "Wrong Username/Password. Please Retry",
                 type: "Error"
               }
             })
           );
         }
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+        window.dispatchEvent(
+          new CustomEvent("showNotification", {
+            detail: {
+              message: "An error occurred. Please try again later.",
+              type: "Error"
+            }
+          })
+        );
       });
   };
 
@@ -80,7 +109,7 @@ const Login = (props) => {
           <div className="form-section">
             <div className="progress-container">
               <h1 className="Title">Sign In</h1>
-              <h5>Welcome to Room Furniture Online store!</h5>=
+              <h5>Welcome to Room Furniture Online store!</h5>
             </div>
             <form method="POST" onSubmit={handleSubmit}>
               <>

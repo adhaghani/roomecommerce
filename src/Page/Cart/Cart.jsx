@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
 
 import Navigation from "../../Component/Navigation/Navigation";
@@ -14,44 +14,44 @@ import NoData from "../Admin/Section/NoData";
 import Notification from "../../Component/Notification/Notification";
 import "./Cart.css";
 
+import { getUserCart } from "../../Function/getUserCart";
+import { getProductData } from "../../Function/getProductData";
+
 const Cart = () => {
   const [products, setProducts] = useState([]);
   const [Cart, setCart] = useState([]);
-  const [IsLoading, setIsLoading] = useState(false);
 
   const { UserID } = useParams();
 
   // GET CART DATA
-  const getCartData = () => {
-    axios
-      .get(`http://localhost/CSC264/RoomAPI/getCart.php/${UserID}`)
-      .then((response) => {
-        setCart(response.data);
-      });
+
+  const fetchUserCart = async () => {
+    try {
+      const data = await getUserCart(UserID);
+      setCart(data);
+    } catch (error) {
+      console.error(error);
+    }
   };
 
-  useEffect(() => {
-    getCartData();
-  }, []);
-
-  // GET PRODUCT DATA
-  const getProductData = async () => {
-    setIsLoading(true);
-    const productDetail = await Promise.all(
-      Cart.map(async (item) => {
-        const response = await axios.get(
-          `http://localhost/CSC264/RoomAPI/getProductDetail.php/${item.ProductID}`
-        );
-        return response.data;
-      })
-    );
-    setIsLoading(false);
-    setProducts(productDetail);
+  const fetchProductData = async () => {
+    try {
+      const productDetail = await Promise.all(
+        Cart.map(async (item) => {
+          const productData = await getProductData(item.ProductID);
+          return productData;
+        })
+      );
+      setProducts(productDetail);
+    } catch (error) {
+      console.error(error);
+    }
   };
 
-  useEffect(() => {
+  const handleCartUpdate = () => {
     getProductData();
-  }, [Cart]);
+    fetchUserCart();
+  };
 
   // UPDATE CART QUANTITY
   const UpdateQuantity = (ProductID, Quantity) => {
@@ -60,10 +60,7 @@ const Cart = () => {
       ProductID: ProductID,
       Quantity: Quantity
     });
-
-    getCartData();
-    getProductData();
-    calculateSubtotal();
+    handleCartUpdate();
   };
 
   // REMOVE FROM CART
@@ -76,9 +73,7 @@ const Cart = () => {
         }
       })
       .then((response) => {
-        getCartData();
-        getProductData();
-        calculateSubtotal();
+        handleCartUpdate();
       });
     window.dispatchEvent(
       new CustomEvent("showNotification", {
@@ -99,7 +94,7 @@ const Cart = () => {
   // CALCULATE SUBTOTAL FOR EACH PRODUCT BY USING PRODUCT PRICE FROM WITH QUANTITY FROM CART LIKNED WITH PRODUCTID
   const calculateSubtotal = () => {
     let totalSubtotal = 0;
-    getCartData();
+    fetchUserCart();
     products.forEach((products) => {
       const cartItem = Cart.find(
         (item) => item.ProductID === products.ProductID
@@ -122,6 +117,23 @@ const Cart = () => {
   };
 
   const totalAmount = calculateTotalAmount(subtotal, 6, 5);
+
+  useEffect(() => {
+    fetchProductData();
+  }, [Cart]);
+  useEffect(() => {
+    fetchUserCart();
+  }, []);
+
+  // SESSION FUNCTION
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const sessionData = getSession();
+    if (!sessionData) {
+      navigate("/NoSession");
+    }
+  }, [navigate]);
 
   return (
     <div className="Cart" id="Cart">

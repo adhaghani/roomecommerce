@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
 
 import Footer from "../../Component/Footer/Footer";
@@ -13,6 +13,7 @@ import Purchase from "./Section/Purchase/Purchase";
 import "./User.css";
 import Notification from "../../Component/Notification/Notification";
 
+import { getSession, clearSession } from "../../Function/Session";
 Notification;
 const User = (props) => {
   const [CurrentPage, setCurrentPage] = useState("Purchase");
@@ -39,6 +40,21 @@ const User = (props) => {
   };
 
   const [IsActive, setIsActive] = useState(false);
+
+  // SESSION FUNCTION
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const sessionData = getSession();
+    if (!sessionData) {
+      navigate("/NoSession");
+    }
+  }, [navigate]);
+
+  const handleClearSession = () => {
+    clearSession();
+    navigate("/");
+  };
 
   return (
     <div className="User" id="User">
@@ -149,7 +165,7 @@ const User = (props) => {
             <Link to={"/"}>
               <li
                 className={CurrentPage === "Out" ? "active" : ""}
-                onClick={() => setCurrentPage("Out")}
+                onClick={handleClearSession}
               >
                 <div className="icon">
                   <svg

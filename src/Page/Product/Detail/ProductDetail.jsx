@@ -5,7 +5,8 @@ import Footer from "../../../Component/Footer/Footer";
 import CommentSection from "./Comment/CommentSection";
 
 import "./Detail.css";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
+import { getSession } from "../../../Function/Session";
 import axios from "axios";
 
 import Notification from "../../../Component/Notification/Notification";
@@ -167,6 +168,16 @@ const ProductDetail = () => {
         console.log(data);
       });
   };
+
+  // SESSION FUNCTION
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const sessionData = getSession();
+    if (!sessionData) {
+      navigate("/NoSession");
+    }
+  }, [navigate]);
 
   return (
     <>

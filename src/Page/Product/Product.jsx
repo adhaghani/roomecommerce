@@ -10,6 +10,8 @@ import { useParams } from "react-router-dom";
 
 import Notification from "../../Component/Notification/Notification";
 
+import { getSession } from "../../Function/Session";
+import { useNavigate } from "react-router-dom";
 const Product = () => {
   const [ProductList, setProductList] = useState([]);
   const [searchValue, setsearchValue] = useState("");
@@ -32,6 +34,16 @@ const Product = () => {
       item.Name.toLowerCase().includes(searchValue.toLowerCase()) ||
       item.Description.toLowerCase().includes(searchValue.toLowerCase())
   );
+
+  // SESSION FUNCTION
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const sessionData = getSession();
+    if (!sessionData) {
+      navigate("/NoSession");
+    }
+  }, [navigate]);
 
   return (
     <div className="Product" id="Product">

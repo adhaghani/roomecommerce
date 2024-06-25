@@ -69,6 +69,8 @@ const AdminOrders = () => {
     determineOrdersType();
     getOrderData();
     determineOrdersType();
+    getOrderData();
+    determineOrdersType();
     window.dispatchEvent(
       new CustomEvent("showNotification", {
         detail: { message: "Order Updated", type: "success" }

@@ -18,7 +18,6 @@
   flex-wrap: wrap;
   gap: var(--gap_20);
   padding: var(--gap_15);
-  border-bottom: 1px solid var(--bg_colour_lgray);
 }
 .Cart .Cart-Container .Product-Container .ProductCart .Product-Details {
   min-width: 250px;
@@ -139,11 +138,14 @@
 .Cart .Checkout-Container {
   position: sticky;
   width: 400px;
+  height: -moz-fit-content;
+  height: fit-content;
   padding: var(--padding_20);
   display: flex;
   flex-direction: column;
   gap: var(--gap_20);
-  position: sticky;
+  border: 1px solid var(--bg_colour_lgray);
+  border-radius: 6px;
 }
 .Cart .Checkout-Container .Card .Checkout-Card {
   display: flex;

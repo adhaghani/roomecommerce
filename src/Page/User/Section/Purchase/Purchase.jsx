@@ -64,7 +64,7 @@ const Purchase = (props) => {
     );
   };
   determineOrdersType();
-
+  determineOrdersType();
   const handleUpdateChange = () => {
     getOrderData();
     determineOrdersType();
@@ -103,14 +103,14 @@ const Purchase = (props) => {
         {CurrentPage === 2 && (
           <div className="page">
             <div className="productCard-Container">
-              {OrderedOrders > 0 ? (
+              {OrderedOrders.length > 0 ? (
                 OrderedOrders.map((item) => (
                   <AdminOrd
                     key={item.id}
                     status={decideStatus(item.StatusID)}
-                    data={item}
-                    OrderPage={true}
                     handleUpdateChange={handleUpdateChange}
+                    data={item}
+                    OrderPage={true}      
                   />
                 ))
               ) : (
