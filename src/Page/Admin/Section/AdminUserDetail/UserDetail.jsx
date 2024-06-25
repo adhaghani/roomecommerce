@@ -206,7 +206,7 @@ const UserDetail = (props) => {
               <div className="details Account-Password">
                 <div className="container-details">
                   <p className="label">Password</p>
-                  <p>{user.Password}</p>
+                  <p>***</p>
                 </div>
               </div>
               <div className="details-State">

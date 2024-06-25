@@ -1,27 +1,3 @@
-.Home .heading-container {
-  width: 100%;
-  height: 100vh;
-  background-image: url(./Assets/bg.svg);
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: bottom;
-  padding: 20px;
-}
-.Home .heading-container .heading {
-  display: grid;
-  place-items: center;
-  height: 100vh;
-}
-.Home .heading-container .heading .title {
-  text-align: center;
-  color: var(--text_colour_white);
-}
-.Home .heading-container .heading .title h1 {
-  font-size: var(--font_size_64);
-}
-.Home .heading-container .heading .title h2 {
-  font-size: var(--font_size_64);
-}
 .Home .Home-Container {
   width: var(--width_container);
   margin: 0px auto;
@@ -29,69 +5,26 @@
 }
 .Home .Home-Container .section {
   padding-top: 70px;
-  margin: var(--gap_20);
 }
 .Home .Home-Container .section .section-title {
   font-size: var(--font_size_24);
   color: var(--colour_primary_dark);
 }
-.Home .Home-Container .section .section-details {
-  font-size: var(--font_size_18);
-  width: 100%;
-  display: flex;
-  align-items: center;
-  flex-wrap: wrap;
-}
-.Home .Home-Container .section .section-details p {
-  text-align: justify;
-  min-width: 200px;
-  margin: var(--padding_20);
-  color: var(--text_colour_black);
-}
-.Home .Home-Container .section .section-details.faq {
-  gap: var(--gap_20);
-}
-.Home .Home-Container .section .section-details.faq #FrequentlyAsked {
-  margin-top: 20px;
-  width: 100%;
-}
-.Home .Home-Container .section .section-details.faq #FrequentlyAsked .question-container {
-  background-color: var(--colour_primary_dark);
-  padding: var(--padding_20);
-  border-radius: 6px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-.Home .Home-Container .section .section-details.faq #FrequentlyAsked .question-container h3 {
-  color: var(--text_colour_white);
-  font-weight: var(--font_weight_600);
-  letter-spacing: 1px;
-}
-.Home .Home-Container .section .section-details.faq #FrequentlyAsked .question-container button {
-  display: grid;
-  place-items: center;
-  border-radius: 100%;
-  background-color: transparent;
-  transition: 0.3s all ease-in-out;
-  padding: 5px;
-  cursor: pointer;
-}
-.Home .Home-Container .section .section-details.faq #FrequentlyAsked .question-container button svg path {
-  stroke: var(--bg_colour_white);
-}
-.Home .Home-Container .section .section-details.faq #FrequentlyAsked .question-container button.active {
-  transform: rotate(180deg);
-}
-.Home .Home-Container .section .section-details.faq #FrequentlyAsked .answer-container {
-  margin-top: 10px;
-  border: 2px solid var(--bg_colour_lgray);
-  padding: var(--padding_20);
-  border-radius: 6px;
-}
-.Home .Home-Container .section .section-details.faq #FrequentlyAsked .answer-container p {
-  margin: 0px;
-  margin-left: 15px;
-  font-size: var(--font_size_16);
-  text-align: left;
+
+@media screen and (min-width: 1px) and (max-width: 769px) {
+  .Home .heading-container .heading {
+    gap: 50px;
+    flex-wrap: wrap-reverse;
+  }
+  .Home .heading-container .heading .title {
+    width: 100%;
+    text-align: center;
+  }
+  .Home .heading-container .heading .images {
+    width: 100%;
+    justify-content: center;
+  }
+  .Home .heading-container .heading .images img {
+    width: 300px;
+  }
 }/*# sourceMappingURL=Home.css.map */

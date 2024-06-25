@@ -17,6 +17,8 @@ import "./Cart.css";
 import { getUserCart } from "../../Function/getUserCart";
 import { getProductData } from "../../Function/getProductData";
 
+import { getSession } from "../../Function/Session";
+
 const Cart = () => {
   const [products, setProducts] = useState([]);
   const [Cart, setCart] = useState([]);

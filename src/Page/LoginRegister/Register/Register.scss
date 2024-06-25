@@ -94,6 +94,10 @@
               p {
                 font-size: var(--font_size_14);
                 color: var(--text_colour_dkgray);
+                &.required {
+                  margin-top: 5px;
+                  color: var(--bg_colour_red);
+                }
               }
             }
           }

@@ -142,10 +142,6 @@ const Account = (props) => {
       .then((response) => response.json())
       .then((data) => {
         console.log(data);
-        props.onUpdate();
-        setTimeout(() => {
-          setIsLoading(false);
-        }, 400);
       });
     window.dispatchEvent(
       new CustomEvent("showNotification", {
@@ -356,7 +352,7 @@ const Account = (props) => {
                   name: "oldpassword",
                   id: "oldpassword",
                   className: "input",
-                  value: UserData.Password
+                  value: "***"
                 }}
               />
               <div className="bar ">

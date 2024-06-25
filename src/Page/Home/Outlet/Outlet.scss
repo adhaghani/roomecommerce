@@ -1,6 +1,8 @@
 #Outlet {
   #Outlet-Container {
     padding-top: 70px;
+    width: var(--width_container);
+    margin: auto;
     .section {
       margin: var(--gap_20);
       .section-title {

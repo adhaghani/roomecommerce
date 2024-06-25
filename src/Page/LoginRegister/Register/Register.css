@@ -92,6 +92,10 @@
   font-size: var(--font_size_14);
   color: var(--text_colour_dkgray);
 }
+.LoginRegister .LoginRegister-Container .form-section form .page .title-container .title-detail p.required {
+  margin-top: 5px;
+  color: var(--bg_colour_red);
+}
 .LoginRegister .LoginRegister-Container .form-section form .page .bar {
   background-color: var(--bg_colour_lgray);
   height: 6px;

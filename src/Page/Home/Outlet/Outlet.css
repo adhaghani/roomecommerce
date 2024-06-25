@@ -1,5 +1,7 @@
 #Outlet #Outlet-Container {
   padding-top: 70px;
+  width: var(--width_container);
+  margin: auto;
 }
 #Outlet #Outlet-Container .section {
   margin: var(--gap_20);

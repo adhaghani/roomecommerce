@@ -1,0 +1,15 @@
+#Title {
+  width: 100%;
+  text-align: center;
+  margin: 40px 0px;
+}
+#Title .Title {
+  color: var(--colour_primary_dark);
+  font-size: var(--font_size_48);
+  letter-spacing: 1px;
+}
+#Title .Subtitle {
+  margin-top: -5px;
+  color: var(--text_colour_black);
+  font-size: var(--font_size_18);
+}/*# sourceMappingURL=Title.css.map */

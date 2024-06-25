@@ -6,12 +6,11 @@ import Footer from "../../Component/Footer/Footer";
 import "./Product.css";
 import axios from "axios";
 import NoData from "../Admin/Section/NoData";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 
 import Notification from "../../Component/Notification/Notification";
 
 import { getSession } from "../../Function/Session";
-import { useNavigate } from "react-router-dom";
 const Product = () => {
   const [ProductList, setProductList] = useState([]);
   const [searchValue, setsearchValue] = useState("");

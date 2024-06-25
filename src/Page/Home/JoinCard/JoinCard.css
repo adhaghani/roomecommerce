@@ -1,0 +1,25 @@
+#JoinCard {
+  padding: 30px 0px;
+  border-radius: 8px;
+  background-color: var(--colour_primary_dark);
+  text-align: center;
+}
+#JoinCard h2 {
+  color: var(--text_colour_white);
+  font-size: var(--font_size_32);
+}
+#JoinCard p {
+  color: var(--text_colour_white);
+  font-size: var(--font_size_18);
+}
+#JoinCard a {
+  display: block;
+  margin: 10px auto;
+  width: 150px;
+  padding: 10px 15px;
+  background-color: var(--text_colour_white);
+  color: var(--colour_primary_dark);
+  font-weight: var(--font_weight_700);
+  letter-spacing: 1px;
+  border-radius: 8px;
+}/*# sourceMappingURL=JoinCard.css.map */

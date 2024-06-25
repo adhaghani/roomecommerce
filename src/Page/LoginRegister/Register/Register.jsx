@@ -239,6 +239,7 @@ const Register = () => {
                           Let's start by filling your personal information,
                           please fill your name, email address and phone number
                         </p>
+                        <p className="required">* Required Fields</p>
                       </div>
                       <div className="error"></div>
                     </div>
@@ -248,7 +249,7 @@ const Register = () => {
                         type: "text",
                         name: "firstName",
                         id: "firstName",
-                        label: "First Name",
+                        label: "* First Name",
                         placeholder: "First Name",
                         className: isInputEmpty.firstName
                           ? "input error"
@@ -260,7 +261,7 @@ const Register = () => {
                         type: "text",
                         name: "lastName",
                         id: "lastName",
-                        label: "Last Name",
+                        label: "* Last Name",
                         placeholder: "Last Name",
                         className: isInputEmpty.lastName
                           ? "input error"
@@ -275,7 +276,7 @@ const Register = () => {
                         type: "email",
                         name: "emailAddress",
                         id: "emailAddress",
-                        label: "Email Address",
+                        label: "* Email Address",
                         placeholder: "Email Address",
                         className: isInputEmpty.emailAddress
                           ? "input error"
@@ -290,7 +291,7 @@ const Register = () => {
                         type: "tel",
                         name: "phoneNumber",
                         id: "phoneNumber",
-                        label: "Phone Number",
+                        label: "* Phone Number",
                         placeholder: "phone Number",
                         className: isInputEmpty.phoneNumber
                           ? "input error"
@@ -327,6 +328,7 @@ const Register = () => {
                           Provide your home address so it will be easier for us
                           to ship the product directly to your doorstep
                         </p>
+                        <p className="required">* Required</p>
                       </div>
                     </div>
 
@@ -336,7 +338,7 @@ const Register = () => {
                         type: "text",
                         name: "addressLine1",
                         id: "addressLine1",
-                        label: "Address Line 1",
+                        label: "* Address Line 1",
                         placeholder: "Address Line 1",
                         className: isInputEmpty.addressLine1
                           ? "input error"
@@ -364,7 +366,7 @@ const Register = () => {
                         type: "text",
                         name: "postCode",
                         id: "postCode",
-                        label: "postCode",
+                        label: "* postCode",
                         placeholder: "postCode",
                         className: isInputEmpty.postCode
                           ? "input error"
@@ -376,7 +378,7 @@ const Register = () => {
                         type: "text",
                         name: "city",
                         id: "city",
-                        label: "City",
+                        label: "* City",
                         placeholder: "City",
                         className: isInputEmpty.city ? "input error" : "input",
                         value: Inputs.city,
@@ -389,7 +391,7 @@ const Register = () => {
                         type: "text",
                         name: "country",
                         id: "country",
-                        label: "Country",
+                        label: "* Country",
                         placeholder: "Country",
                         className: isInputEmpty.country
                           ? "input error"
@@ -423,6 +425,7 @@ const Register = () => {
                       </div>
                       <div className="title-detail">
                         <p>To secure your account, let's create a password.</p>
+                        <p className="required">* Required</p>
                       </div>
                     </div>
                     <div className="bar ">
@@ -438,7 +441,7 @@ const Register = () => {
                         type: "password",
                         name: "Password",
                         id: "Password",
-                        label: "New Password",
+                        label: "* New Password",
                         placeholder: "Password",
                         className: isInputEmpty.Password
                           ? "input error"
@@ -465,7 +468,7 @@ const Register = () => {
                         type: "password",
                         name: "confirmPassword",
                         id: "confirmPassword",
-                        label: "Confirm Password",
+                        label: "* Confirm Password",
                         placeholder: "Confirm Password",
                         className: isInputEmpty.confirmPassword
                           ? "input error"
@@ -502,6 +505,7 @@ const Register = () => {
                           You're almost done, but first provide your username so
                           we would know what to call you.
                         </p>
+                        <p className="required">* Required</p>
                       </div>
                     </div>
 
@@ -511,7 +515,7 @@ const Register = () => {
                         type: "text",
                         name: "Username",
                         id: "Username",
-                        label: "Username",
+                        label: "* Username",
                         placeholder: "username",
                         className: isInputEmpty.Username
                           ? "input error"

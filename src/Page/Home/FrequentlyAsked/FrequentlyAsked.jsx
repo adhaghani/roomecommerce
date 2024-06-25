@@ -1,15 +1,19 @@
 import React, { useState } from "react";
 
+import "./FAQ.css";
 const FrequentlyAsked = (props) => {
   const [Show, setShow] = useState(false);
 
   return (
     <div className="FrequentlyAsked" id="FrequentlyAsked">
-      <div className="question-container">
+      <div
+        className={Show ? "question-container active" : "question-container"}
+        onClick={() => setShow(!Show)}
+      >
         <div className="question">
           <h3>{props.question}</h3>
         </div>
-        <button className={Show ? "active" : ""} onClick={() => setShow(!Show)}>
+        <button className={Show ? "active" : ""}>
           <svg
             width="30px"
             height="30px"

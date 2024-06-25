@@ -1,0 +1,36 @@
+.heading-container {
+  width: var(--width_container);
+  height: 100vh;
+  padding: 20px;
+  margin: auto;
+  padding-top: 80px;
+  display: grid;
+  place-items: center;
+  .heading {
+    margin: auto;
+    display: flex;
+
+    justify-content: space-between;
+    align-items: center;
+    .title {
+      width: 60%;
+      min-width: 300px;
+      h1 {
+        font-size: var(--font_size_64);
+        span {
+          color: var(--colour_primary_dark);
+        }
+      }
+      color: var(--text_colour_dkgrayy);
+    }
+    .images {
+      display: flex;
+      justify-content: flex-end;
+
+      width: 40%;
+      img {
+        width: clamp(350px, 100%, 400px);
+      }
+    }
+  }
+}
