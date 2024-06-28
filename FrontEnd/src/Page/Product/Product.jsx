@@ -6,7 +6,7 @@ import Footer from "../../Component/Footer/Footer";
 import "./Product.css";
 import axios from "axios";
 import NoData from "../Admin/Section/NoData";
-import { useParams, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 import Notification from "../../Component/Notification/Notification";
 
@@ -18,6 +18,21 @@ const Product = () => {
     getProduct();
   }, []);
 
+  // SESSION FUNCTION
+  const navigate = useNavigate();
+  const [UserID, setUserID] = useState(null);
+
+  useEffect(() => {
+    const sessionData = getSession();
+    if (!sessionData) {
+      navigate("/NoSession");
+    } else {
+      console.log(sessionData);
+      setUserID(sessionData.UserID);
+      console.log(sessionData.UserID);
+    }
+  }, [navigate]);
+
   function getProduct() {
     axios
       .get("http://localhost/CSC264/RoomAPI/GetProduct.php")
@@ -26,23 +41,11 @@ const Product = () => {
       });
   }
 
-  const { UserID } = useParams();
-
   const filteredProductList = ProductList.filter(
     (item) =>
       item.Name.toLowerCase().includes(searchValue.toLowerCase()) ||
       item.Description.toLowerCase().includes(searchValue.toLowerCase())
   );
-
-  // SESSION FUNCTION
-  const navigate = useNavigate();
-
-  useEffect(() => {
-    const sessionData = getSession();
-    if (!sessionData) {
-      navigate("/NoSession");
-    }
-  }, [navigate]);
 
   return (
     <div className="Product" id="Product">

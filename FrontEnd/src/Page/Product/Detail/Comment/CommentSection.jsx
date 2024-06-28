@@ -6,6 +6,7 @@ import "./Comment.css";
 
 import Button from "../../../../Component/Button/Button";
 import axios from "axios";
+import { getSession } from "../../../../Function/Session";
 
 const CommentSection = (props) => {
   // receive props like UserID, ProductID
@@ -18,6 +19,18 @@ const CommentSection = (props) => {
     ReviewTitle: "",
     ReviewText: ""
   });
+
+  useEffect(() => {
+    const fetchSessionData = async () => {
+      const sessionData = await getSession();
+      setReview((prevReview) => ({
+        ...prevReview,
+        UserID: sessionData?.UserID
+      }));
+    };
+
+    fetchSessionData();
+  }, []);
 
   const [ReviewData, setReviewData] = useState([]);
 
@@ -37,12 +50,11 @@ const CommentSection = (props) => {
     setTimeout(() => {
       getProductReview();
       setAddReview(false);
-      setReview({
-        UserID: props.UserID,
-        ProductID: props.ProductID,
+      setReview((prevReview) => ({
+        ...prevReview,
         ReviewTitle: "",
         ReviewText: ""
-      });
+      }));
     }, 100);
   };
 
@@ -167,9 +179,8 @@ const CommentSection = (props) => {
           </div>
         )}
         {ReviewData.map((item) => (
-          <Comment key={item.id} data={item} />
+          <Comment key={item.ReviewID} data={item} />
         ))}
-
         {ReviewData.length === 0 ? (
           <div className="Comment noLine">
             <div className="CommentDetail-Container">

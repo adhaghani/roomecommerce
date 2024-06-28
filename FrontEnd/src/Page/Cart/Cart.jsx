@@ -23,7 +23,18 @@ const Cart = () => {
   const [products, setProducts] = useState([]);
   const [Cart, setCart] = useState([]);
 
-  const { UserID } = useParams();
+  // SESSION FUNCTION
+  const navigate = useNavigate();
+  const [UserID, setUserID] = useState(null);
+
+  useEffect(() => {
+    const sessionData = getSession();
+    if (!sessionData) {
+      navigate("/NoSession");
+    } else {
+      setUserID(sessionData.UserID);
+    }
+  }, [navigate]);
 
   // GET CART DATA
 
@@ -126,16 +137,6 @@ const Cart = () => {
   useEffect(() => {
     fetchUserCart();
   }, []);
-
-  // SESSION FUNCTION
-  const navigate = useNavigate();
-
-  useEffect(() => {
-    const sessionData = getSession();
-    if (!sessionData) {
-      navigate("/NoSession");
-    }
-  }, [navigate]);
 
   return (
     <div className="Cart" id="Cart">

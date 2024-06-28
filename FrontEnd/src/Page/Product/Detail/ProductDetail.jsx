@@ -15,7 +15,21 @@ const ProductDetail = () => {
   const [CategoryName, setCategoryName] = useState([]);
   const [User, setUser] = useState([]);
 
-  const { UserID, categoryID, ProductID } = useParams();
+  const { categoryID, ProductID } = useParams();
+
+  // SESSION FUNCTION
+  const navigate = useNavigate();
+  const [UserID, setUserID] = useState(null);
+
+  useEffect(() => {
+    const sessionData = getSession();
+    if (!sessionData) {
+      navigate("/NoSession");
+    } else {
+      setUserID(sessionData.UserID);
+      console.log(sessionData.UserID);
+    }
+  }, [navigate]);
 
   useEffect(() => {
     getUser();
@@ -168,16 +182,6 @@ const ProductDetail = () => {
         console.log(data);
       });
   };
-
-  // SESSION FUNCTION
-  const navigate = useNavigate();
-
-  useEffect(() => {
-    const sessionData = getSession();
-    if (!sessionData) {
-      navigate("/NoSession");
-    }
-  }, [navigate]);
 
   return (
     <>

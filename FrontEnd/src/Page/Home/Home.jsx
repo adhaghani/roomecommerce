@@ -9,6 +9,7 @@ import Hero from "./Hero/Hero";
 import FAQMain from "./FrequentlyAsked/FAQMain";
 import About from "./About/About";
 import JoinCard from "./JoinCard/JoinCard";
+import Contact from "./Contact/Contact";
 
 const Home = () => {
   return (
@@ -19,6 +20,7 @@ const Home = () => {
         <About />
         <JoinCard />
         <FAQMain />
+        <Contact />
       </div>
 
       <Footer />

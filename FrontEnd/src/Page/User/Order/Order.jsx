@@ -424,6 +424,7 @@ const Order = () => {
           <div className="Section Product">
             {ProductsDetail.map((product) => (
               <ProductUserCard
+                key={product.ProductID}
                 OnOrder={true}
                 data={{ ...product, Quantity: product.Quantity }}
               />
