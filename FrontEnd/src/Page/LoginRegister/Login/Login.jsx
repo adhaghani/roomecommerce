@@ -4,7 +4,6 @@ import axios from "axios";
 
 import Input from "../../../Component/Input/Input";
 import Button from "../../../Component/Button/Button";
-import Notification from "../../../Component/Notification/Notification";
 
 import { setSession } from "../../../Function/Session";
 const Login = (props) => {
@@ -20,12 +19,7 @@ const Login = (props) => {
   };
 
   // Login system
-
-  const [Users, setUsers] = useState([]);
-  useEffect(() => {
-    getUsers();
-  }, []);
-
+  const [CredentialError, setCredentialError] = useState(false);
   const navigate = useNavigate();
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -69,42 +63,17 @@ const Login = (props) => {
             setSession(sessionData);
           }
         } else {
-          window.dispatchEvent(
-            new CustomEvent("showNotification", {
-              detail: {
-                message: "Wrong Username/Password. Please Retry",
-                type: "Error"
-              }
-            })
-          );
+          setCredentialError(true);
         }
       })
       .catch((error) => {
         console.error("Error:", error);
-        window.dispatchEvent(
-          new CustomEvent("showNotification", {
-            detail: {
-              message: "An error occurred. Please try again later.",
-              type: "Error"
-            }
-          })
-        );
       });
   };
-
-  function getUsers() {
-    axios
-      .get("http://localhost/CSC264/RoomAPI/getUser.php")
-      .then((response) => {
-        console.log(response.data);
-        setUsers(response.data);
-      });
-  }
 
   return (
     <>
       <div className="LoginRegister">
-        <Notification />
         <div className="LoginRegister-Container">
           <div className="form-section">
             <div className="progress-container">
@@ -121,6 +90,15 @@ const Login = (props) => {
                     <div className="title-detail">
                       <p>Sign in to your account.</p>
                     </div>
+                  </div>
+                  <div className="error-container">
+                    {CredentialError == true ? (
+                      <p className="Error">
+                        Wrong Username/Password. Please Retry
+                      </p>
+                    ) : (
+                      <p></p>
+                    )}
                   </div>
                   <Input
                     formSize="full"

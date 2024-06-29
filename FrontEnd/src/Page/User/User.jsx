@@ -53,7 +53,6 @@ const User = (props) => {
 
   const handleClearSession = () => {
     clearSession();
-    navigate("/");
   };
 
   return (
@@ -162,7 +161,7 @@ const User = (props) => {
                 <h4>Liked product</h4>
               </div>
             </li>
-            <Link to={"/"}>
+            <Link to={"/Login"}>
               <li
                 className={CurrentPage === "Out" ? "active" : ""}
                 onClick={handleClearSession}

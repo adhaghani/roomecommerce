@@ -108,16 +108,23 @@ const Account = (props) => {
     })
       .then((response) => response.json())
       .then((data) => {
-        props.onUpdate();
-        setTimeout(() => {
-          setIsLoading(false);
-        }, 400);
+        if (data.status === 0) {
+          window.dispatchEvent(
+            new CustomEvent("showNotification", {
+              detail: {
+                message: "Username or Email Address Already Exist",
+                type: "Error"
+              }
+            })
+          );
+        } else {
+          window.dispatchEvent(
+            new CustomEvent("showNotification", {
+              detail: { message: "Profile Updated", type: "success" }
+            })
+          );
+        }
       });
-    window.dispatchEvent(
-      new CustomEvent("showNotification", {
-        detail: { message: "Profile Updated", type: "success" }
-      })
-    );
   };
 
   const handlePasswordUpdate = () => {

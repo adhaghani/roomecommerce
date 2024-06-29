@@ -3,7 +3,6 @@ import React, { useEffect, useState } from "react";
 import "./List.css";
 
 import Button from "../../../../Component/Button/Button";
-import Loading from "../../../Loading/Loading";
 
 import AdminProd from "./AdminProd";
 import { useParams } from "react-router-dom";
@@ -105,55 +104,6 @@ const AdminOrd = (props) => {
     props.handleUpdateChange();
   };
 
-  const deleteOrder = () => {
-    axios.delete(`http://localhost/CSC264/RoomAPI/DeleteOrder.php`, {
-      params: {
-        OrderID: props.data.OrderID
-      }
-    });
-    props.handleUpdateChange();
-  };
-
-  const deleteOrderDetail = async (OrderID, Products) => {
-    for (const item of Products) {
-      await axios.delete(
-        `http://localhost/CSC264/RoomAPI/DeleteOrderDetail.php`,
-        {
-          params: {
-            OrderID: OrderID,
-            ProductID: item.ProductID
-          }
-        }
-      );
-    }
-  };
-
-  const deleteOrderRecipient = () => {
-    axios.delete(`http://localhost/CSC264/RoomAPI/DeleteOrderRecipient.php`, {
-      params: {
-        OrderID: props.data.OrderID
-      }
-    });
-  };
-
-  const handleDeleteOrder = (event) => {
-    if (confirm("Are you sure you want to delete this order?")) {
-      event.preventDefault();
-      deleteOrderDetail(props.data.OrderID, Products);
-      deleteOrderRecipient();
-      deleteOrder();
-      props.handleUpdateChange();
-      props.handleUpdateChange();
-
-      setTimeout(() => {}, 1000);
-      window.dispatchEvent(
-        new CustomEvent("showNotification", {
-          detail: { message: "Order Deleted", type: "success" }
-        })
-      );
-    }
-  };
-
   return (
     <>
       <div className="orderList" id="orderList">
@@ -209,24 +159,6 @@ const AdminOrd = (props) => {
                     type="Ship Order"
                     onClick={handleOrderUpdate}
                     className="outline gray product"
-                  />
-                )}
-                {props.status === "Completed" && (
-                  <Button
-                    title="Delete"
-                    value="Delete"
-                    type="Delete"
-                    onClick={handleDeleteOrder}
-                    className="outline gray product cancel"
-                  />
-                )}
-                {props.status === "Cancelled" && (
-                  <Button
-                    title="Delete"
-                    value="Delete"
-                    type="Delete"
-                    onClick={handleDeleteOrder}
-                    className="outline gray product cancel"
                   />
                 )}
                 <Button
@@ -318,7 +250,7 @@ const AdminOrd = (props) => {
                       <p className="yellow">pending</p>
                     )}
                     {props.status === "Completed" && (
-                      <p className="green">Delivered</p>
+                      <p className="green">ivered</p>
                     )}
                   </div>
                 }

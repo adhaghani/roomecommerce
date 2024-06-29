@@ -96,7 +96,9 @@
                 color: var(--text_colour_dkgray);
                 &.required {
                   margin-top: 5px;
-                  color: var(--bg_colour_red);
+                  color: var(--text_colour_dkgray);
+                  font-weight: var(--font_weight_600);
+                  letter-spacing: 0.5px;
                 }
               }
             }
@@ -123,8 +125,7 @@
             }
           }
           .error-container {
-            margin: var(--gap_10);
-            margin-top: 0px;
+            margin: var(--gap_10) 0px;
             p {
               color: var(--bg_colour_red);
             }

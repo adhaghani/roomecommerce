@@ -44,7 +44,6 @@ const Admin = (props) => {
 
   const handleClearSession = () => {
     clearSession();
-    navigate("/");
   };
 
   return (
@@ -199,7 +198,7 @@ const Admin = (props) => {
                 <h4>Users</h4>
               </div>
             </li>
-            <Link to={"/"}>
+            <Link to={"/Login"}>
               <li
                 className={CurrentPage === "Out" ? "active" : ""}
                 onClick={handleClearSession}

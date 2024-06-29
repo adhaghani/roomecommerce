@@ -94,7 +94,9 @@
 }
 .LoginRegister .LoginRegister-Container .form-section form .page .title-container .title-detail p.required {
   margin-top: 5px;
-  color: var(--bg_colour_red);
+  color: var(--text_colour_dkgray);
+  font-weight: var(--font_weight_600);
+  letter-spacing: 0.5px;
 }
 .LoginRegister .LoginRegister-Container .form-section form .page .bar {
   background-color: var(--bg_colour_lgray);
@@ -117,8 +119,7 @@
   background-color: var(--bg_colour_green);
 }
 .LoginRegister .LoginRegister-Container .form-section form .page .error-container {
-  margin: var(--gap_10);
-  margin-top: 0px;
+  margin: var(--gap_10) 0px;
 }
 .LoginRegister .LoginRegister-Container .form-section form .page .error-container p {
   color: var(--bg_colour_red);

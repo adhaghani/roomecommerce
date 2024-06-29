@@ -126,6 +126,8 @@ const Register = () => {
   };
 
   const navigate = useNavigate();
+
+  const [ErrorMessage, setErrorMessage] = useState("");
   const handleSubmit = (event) => {
     event.preventDefault();
     const {
@@ -166,16 +168,14 @@ const Register = () => {
       .then((response) => response.json())
       .then((data) => {
         console.log(data);
+        if (data.status === 0) {
+          setErrorMessage(data.message);
+          console.log(data.message);
+        }
       })
       .catch((error) => {
         console.error(error);
       });
-    navigate(`/Login`);
-    window.dispatchEvent(
-      new CustomEvent("showNotification", {
-        detail: { message: "Product Added To Cart", type: "success" }
-      })
-    );
   };
 
   const handleClick = () => {
@@ -507,6 +507,11 @@ const Register = () => {
                         </p>
                         <p className="required">* Required</p>
                       </div>
+                      <div className="error-container">
+                        <div className="error">
+                          <p>{ErrorMessage}</p>
+                        </div>
+                      </div>
                     </div>
 
                     <Input
@@ -534,7 +539,6 @@ const Register = () => {
                       type="formsubmit"
                       className="fill primary"
                       value={"Register"}
-                      link="/Login"
                       onClick={handleSubmit}
                     />
                   </div>
