@@ -3,9 +3,7 @@ import { Link } from "react-router-dom";
 import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
 
-import Footer from "../../Component/Footer/Footer";
 import Navigation from "../../Component/Navigation/Navigation";
-import UserNav from "./UserNavigation/UserNav";
 
 import Account from "./Section/Account/Account";
 import Liked from "./Section/Liked/Liked";
@@ -198,7 +196,6 @@ const User = (props) => {
           {CurrentPage === "Like" && <Liked />}
         </div>
       </div>
-      <Footer />
     </div>
   );
 };

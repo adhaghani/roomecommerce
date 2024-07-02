@@ -147,6 +147,24 @@ const AdminSta = () => {
     ]
   };
 
+  // Product PieChart
+
+  const ProductChart = {
+    labels: ["Below 10 in Stock", "Out of Stock", "Above 10 in Stock"],
+    datasets: [
+      {
+        label: "# of Products",
+        data: [
+          getLowOnStockProducts(),
+          getOutOfStockProducts(),
+          ProductData.length - getLowOnStockProducts() - getOutOfStockProducts()
+        ],
+        backgroundColor: ["#ffce54", "#ed5565", "#48cfad"],
+        borderColor: ["#ffce54", "#ed5565", "#48cfad"]
+      }
+    ]
+  };
+
   // Sales Per Day LineChart
   const [OrdersPDay, setOrdersPDay] = useState({
     labels: [],
@@ -387,6 +405,10 @@ const AdminSta = () => {
         <h2 className="Data-Title">Number of Orders</h2>
         <Pie data={dataOrders} />
       </div>
+      <div className="Data-Container">
+        <h2 className="Data-Title">Product Inventory Status</h2>
+        <Pie data={ProductChart} />
+      </div>
       <div className="Data-Container sm">
         <div className="container-sm">
           <h2 className="Data-Title">Number of Account</h2>
@@ -399,17 +421,6 @@ const AdminSta = () => {
         <div className="container-sm">
           <h2 className="Data-Title">Average Revenue</h2>
           <h1>RM {getAveragePerOrder()}</h1>
-        </div>
-      </div>
-
-      <div className="Data-Container sm">
-        <div className="container-sm">
-          <h2 className="Data-Title">Product Out of Stock</h2>
-          <h1>{getOutOfStockProducts()}</h1>
-        </div>
-        <div className="container-sm">
-          <h2 className="Data-Title">Product Low on stock</h2>
-          <h1>{getLowOnStockProducts()}</h1>
         </div>
       </div>
     </div>
